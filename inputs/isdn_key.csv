@@ -1,0 +1,931 @@
+ISDN,site.name,Hospital,date,n.stroke
+London,"Barking, Havering and Redbridge University Hospitals NHS Trust",Queens Hospital Romford HASU,Apr 2019-Mar 2020,1127
+London,"Barking, Havering and Redbridge University Hospitals NHS Trust",Queens Hospital Romford HASU,Apr 2020-Mar 2021,1095
+London,"Barking, Havering and Redbridge University Hospitals NHS Trust",Queens Hospital Romford HASU,Apr 2021-Mar 2022,1057
+London,"Barking, Havering and Redbridge University Hospitals NHS Trust",Queens Hospital Romford HASU,Apr 2022-Mar 2023,1112
+London,"Barking, Havering and Redbridge University Hospitals NHS Trust",Queens Hospital Romford HASU,Apr 2023-Mar 2024,1096
+London,Barts Health NHS Trust,Royal London Hospital HASU,Apr 2019-Mar 2020,1034
+London,Barts Health NHS Trust,Royal London Hospital HASU,Apr 2020-Mar 2021,974
+London,Barts Health NHS Trust,Royal London Hospital HASU,Apr 2021-Mar 2022,1116
+London,Barts Health NHS Trust,Royal London Hospital HASU,Apr 2022-Mar 2023,1278
+London,Barts Health NHS Trust,Royal London Hospital HASU,Apr 2023-Mar 2024,1324
+London,Imperial College Healthcare NHS Trust,Charing Cross Hospital HASU,Apr 2019-Mar 2020,1257
+London,Imperial College Healthcare NHS Trust,Charing Cross Hospital HASU,Apr 2020-Mar 2021,1163
+London,Imperial College Healthcare NHS Trust,Charing Cross Hospital HASU,Apr 2021-Mar 2022,1374
+London,Imperial College Healthcare NHS Trust,Charing Cross Hospital HASU,Apr 2022-Mar 2023,1313
+London,Imperial College Healthcare NHS Trust,Charing Cross Hospital HASU,Apr 2023-Mar 2024,1382
+London,King's College Hospital NHS Foundation Trust,King's College Hospital HASU,Apr 2019-Mar 2020,902
+London,King's College Hospital NHS Foundation Trust,King's College Hospital HASU,Apr 2020-Mar 2021,738
+London,King's College Hospital NHS Foundation Trust,King's College Hospital HASU,Apr 2021-Mar 2022,922
+London,King's College Hospital NHS Foundation Trust,King's College Hospital HASU,Apr 2022-Mar 2023,1045
+London,King's College Hospital NHS Foundation Trust,King's College Hospital HASU,Apr 2023-Mar 2024,1107
+London,King's College Hospital NHS Foundation Trust,Princess Royal University Hospital HASU,Apr 2019-Mar 2020,891
+London,King's College Hospital NHS Foundation Trust,Princess Royal University Hospital HASU,Apr 2020-Mar 2021,913
+London,King's College Hospital NHS Foundation Trust,Princess Royal University Hospital HASU,Apr 2021-Mar 2022,891
+London,King's College Hospital NHS Foundation Trust,Princess Royal University Hospital HASU,Apr 2022-Mar 2023,885
+London,King's College Hospital NHS Foundation Trust,Princess Royal University Hospital HASU,Apr 2023-Mar 2024,1047
+London,London North West University Healthcare NHS Trust,Northwick Park Hospital HASU,Apr 2019-Mar 2020,1413
+London,London North West University Healthcare NHS Trust,Northwick Park Hospital HASU,Apr 2020-Mar 2021,1283
+London,London North West University Healthcare NHS Trust,Northwick Park Hospital HASU,Apr 2021-Mar 2022,1420
+London,London North West University Healthcare NHS Trust,Northwick Park Hospital HASU,Apr 2022-Mar 2023,1429
+London,London North West University Healthcare NHS Trust,Northwick Park Hospital HASU,Apr 2023-Mar 2024,1435
+London,St George's University Hospitals NHS Foundation Trust,St George's Hospital HASU,Apr 2019-Mar 2020,1052
+London,St George's University Hospitals NHS Foundation Trust,St George's Hospital HASU,Apr 2020-Mar 2021,872
+London,St George's University Hospitals NHS Foundation Trust,St George's Hospital HASU,Apr 2021-Mar 2022,1085
+London,St George's University Hospitals NHS Foundation Trust,St George's Hospital HASU,Apr 2022-Mar 2023,1203
+London,St George's University Hospitals NHS Foundation Trust,St George's Hospital HASU,Apr 2023-Mar 2024,1359
+London,University College London Hospitals NHS Foundation Trust,University College Hospital HASU,Apr 2019-Mar 2020,1457
+London,University College London Hospitals NHS Foundation Trust,University College Hospital HASU,Apr 2020-Mar 2021,1210
+London,University College London Hospitals NHS Foundation Trust,University College Hospital HASU,Apr 2021-Mar 2022,1156
+London,University College London Hospitals NHS Foundation Trust,University College Hospital HASU,Apr 2022-Mar 2023,1134
+London,University College London Hospitals NHS Foundation Trust,University College Hospital HASU,Apr 2023-Mar 2024,1098
+East Midlands,Northampton General Hospital NHS Trust,Northampton General Hospital,Apr 2019-Mar 2020,937
+East Midlands,Northampton General Hospital NHS Trust,Northampton General Hospital,Apr 2020-Mar 2021,929
+East Midlands,Northampton General Hospital NHS Trust,Northampton General Hospital,Apr 2021-Mar 2022,974
+East Midlands,Northampton General Hospital NHS Trust,Northampton General Hospital,Apr 2022-Mar 2023,896
+East Midlands,Northampton General Hospital NHS Trust,Northampton General Hospital,Apr 2023-Mar 2024,981
+East Midlands,Nottingham University Hospitals NHS Trust,Queen's Medical Centre - Nottingham,Apr 2019-Mar 2020,.
+East Midlands,Nottingham University Hospitals NHS Trust,Queen's Medical Centre - Nottingham,Apr 2020-Mar 2021,985
+East Midlands,Nottingham University Hospitals NHS Trust,Queen's Medical Centre - Nottingham,Apr 2021-Mar 2022,1288
+East Midlands,Nottingham University Hospitals NHS Trust,Queen's Medical Centre - Nottingham,Apr 2022-Mar 2023,1603
+East Midlands,Nottingham University Hospitals NHS Trust,Queen's Medical Centre - Nottingham,Apr 2023-Mar 2024,1479
+East Midlands,Sherwood Forest Hospitals NHS Foundation Trust,Kings Mill Hospital,Apr 2019-Mar 2020,612
+East Midlands,Sherwood Forest Hospitals NHS Foundation Trust,Kings Mill Hospital,Apr 2020-Mar 2021,677
+East Midlands,Sherwood Forest Hospitals NHS Foundation Trust,Kings Mill Hospital,Apr 2021-Mar 2022,699
+East Midlands,Sherwood Forest Hospitals NHS Foundation Trust,Kings Mill Hospital,Apr 2022-Mar 2023,723
+East Midlands,Sherwood Forest Hospitals NHS Foundation Trust,Kings Mill Hospital,Apr 2023-Mar 2024,733
+East Midlands,United Lincolnshire Hospitals NHS Trust,Lincoln County Hospital,Apr 2019-Mar 2020,622
+East Midlands,United Lincolnshire Hospitals NHS Trust,Lincoln County Hospital,Apr 2020-Mar 2021,882
+East Midlands,United Lincolnshire Hospitals NHS Trust,Lincoln County Hospital,Apr 2021-Mar 2022,987
+East Midlands,United Lincolnshire Hospitals NHS Trust,Lincoln County Hospital,Apr 2022-Mar 2023,967
+East Midlands,United Lincolnshire Hospitals NHS Trust,Lincoln County Hospital,Apr 2023-Mar 2024,963
+East Midlands,University Hospitals of Derby and Burton NHS Foundation Trust,Royal Derby Hospital,Apr 2019-Mar 2020,1007
+East Midlands,University Hospitals of Derby and Burton NHS Foundation Trust,Royal Derby Hospital,Apr 2020-Mar 2021,1269
+East Midlands,University Hospitals of Derby and Burton NHS Foundation Trust,Royal Derby Hospital,Apr 2021-Mar 2022,1355
+East Midlands,University Hospitals of Derby and Burton NHS Foundation Trust,Royal Derby Hospital,Apr 2022-Mar 2023,1354
+East Midlands,University Hospitals of Derby and Burton NHS Foundation Trust,Royal Derby Hospital,Apr 2023-Mar 2024,1376
+East Midlands,University Hospitals of Leicester NHS Trust,Leicester Royal Infirmary,Apr 2019-Mar 2020,1262
+East Midlands,University Hospitals of Leicester NHS Trust,Leicester Royal Infirmary,Apr 2020-Mar 2021,1204
+East Midlands,University Hospitals of Leicester NHS Trust,Leicester Royal Infirmary,Apr 2021-Mar 2022,1265
+East Midlands,University Hospitals of Leicester NHS Trust,Leicester Royal Infirmary,Apr 2022-Mar 2023,1173
+East Midlands,University Hospitals of Leicester NHS Trust,Leicester Royal Infirmary,Apr 2023-Mar 2024,1298
+East of England (North),Cambridge University Hospitals NHS Foundation Trust,Addenbrooke's Hospital,Apr 2019-Mar 2020,779
+East of England (North),Cambridge University Hospitals NHS Foundation Trust,Addenbrooke's Hospital,Apr 2020-Mar 2021,752
+East of England (North),Cambridge University Hospitals NHS Foundation Trust,Addenbrooke's Hospital,Apr 2021-Mar 2022,780
+East of England (North),Cambridge University Hospitals NHS Foundation Trust,Addenbrooke's Hospital,Apr 2022-Mar 2023,858
+East of England (North),Cambridge University Hospitals NHS Foundation Trust,Addenbrooke's Hospital,Apr 2023-Mar 2024,905
+East of England (North),East Suffolk and North Essex NHS Foundation Trust,Colchester General Hospital,Apr 2019-Mar 2020,681
+East of England (North),East Suffolk and North Essex NHS Foundation Trust,Colchester General Hospital,Apr 2020-Mar 2021,700
+East of England (North),East Suffolk and North Essex NHS Foundation Trust,Colchester General Hospital,Apr 2021-Mar 2022,710
+East of England (North),East Suffolk and North Essex NHS Foundation Trust,Colchester General Hospital,Apr 2022-Mar 2023,639
+East of England (North),East Suffolk and North Essex NHS Foundation Trust,Colchester General Hospital,Apr 2023-Mar 2024,721
+East of England (North),East Suffolk and North Essex NHS Foundation Trust,Ipswich Hospital,Apr 2019-Mar 2020,498
+East of England (North),East Suffolk and North Essex NHS Foundation Trust,Ipswich Hospital,Apr 2020-Mar 2021,535
+East of England (North),East Suffolk and North Essex NHS Foundation Trust,Ipswich Hospital,Apr 2021-Mar 2022,480
+East of England (North),East Suffolk and North Essex NHS Foundation Trust,Ipswich Hospital,Apr 2022-Mar 2023,529
+East of England (North),East Suffolk and North Essex NHS Foundation Trust,Ipswich Hospital,Apr 2023-Mar 2024,635
+East of England (North),James Paget University Hospitals NHS Foundation Trust,James Paget Hospital,Apr 2019-Mar 2020,506
+East of England (North),James Paget University Hospitals NHS Foundation Trust,James Paget Hospital,Apr 2020-Mar 2021,471
+East of England (North),James Paget University Hospitals NHS Foundation Trust,James Paget Hospital,Apr 2021-Mar 2022,490
+East of England (North),James Paget University Hospitals NHS Foundation Trust,James Paget Hospital,Apr 2022-Mar 2023,481
+East of England (North),James Paget University Hospitals NHS Foundation Trust,James Paget Hospital,Apr 2023-Mar 2024,504
+East of England (North),Norfolk and Norwich University Hospitals NHS Foundation Trust,Norfolk and Norwich University Hospital,Apr 2019-Mar 2020,1166
+East of England (North),Norfolk and Norwich University Hospitals NHS Foundation Trust,Norfolk and Norwich University Hospital,Apr 2020-Mar 2021,889
+East of England (North),Norfolk and Norwich University Hospitals NHS Foundation Trust,Norfolk and Norwich University Hospital,Apr 2021-Mar 2022,1114
+East of England (North),Norfolk and Norwich University Hospitals NHS Foundation Trust,Norfolk and Norwich University Hospital,Apr 2022-Mar 2023,1017
+East of England (North),Norfolk and Norwich University Hospitals NHS Foundation Trust,Norfolk and Norwich University Hospital,Apr 2023-Mar 2024,1061
+East of England (North),North West Anglia NHS Foundation Trust,Peterborough City Hospital,Apr 2019-Mar 2020,727
+East of England (North),North West Anglia NHS Foundation Trust,Peterborough City Hospital,Apr 2020-Mar 2021,785
+East of England (North),North West Anglia NHS Foundation Trust,Peterborough City Hospital,Apr 2021-Mar 2022,748
+East of England (North),North West Anglia NHS Foundation Trust,Peterborough City Hospital,Apr 2022-Mar 2023,806
+East of England (North),North West Anglia NHS Foundation Trust,Peterborough City Hospital,Apr 2023-Mar 2024,835
+East of England (North),Queen Elizabeth Hospital King's Lynn NHS Foundation Trust,Queen Elizabeth Hospital Kings Lynn,Apr 2019-Mar 2020,549
+East of England (North),Queen Elizabeth Hospital King's Lynn NHS Foundation Trust,Queen Elizabeth Hospital Kings Lynn,Apr 2020-Mar 2021,592
+East of England (North),Queen Elizabeth Hospital King's Lynn NHS Foundation Trust,Queen Elizabeth Hospital Kings Lynn,Apr 2021-Mar 2022,629
+East of England (North),Queen Elizabeth Hospital King's Lynn NHS Foundation Trust,Queen Elizabeth Hospital Kings Lynn,Apr 2022-Mar 2023,580
+East of England (North),Queen Elizabeth Hospital King's Lynn NHS Foundation Trust,Queen Elizabeth Hospital Kings Lynn,Apr 2023-Mar 2024,542
+East of England (North),West Suffolk NHS Foundation Trust,West Suffolk Hospital,Apr 2019-Mar 2020,560
+East of England (North),West Suffolk NHS Foundation Trust,West Suffolk Hospital,Apr 2020-Mar 2021,478
+East of England (North),West Suffolk NHS Foundation Trust,West Suffolk Hospital,Apr 2021-Mar 2022,594
+East of England (North),West Suffolk NHS Foundation Trust,West Suffolk Hospital,Apr 2022-Mar 2023,540
+East of England (North),West Suffolk NHS Foundation Trust,West Suffolk Hospital,Apr 2023-Mar 2024,571
+East of England (South),Bedfordshire Hospitals NHS Foundation Trust,Luton and Dunstable Hospital,Apr 2019-Mar 2020,733
+East of England (South),Bedfordshire Hospitals NHS Foundation Trust,Luton and Dunstable Hospital,Apr 2020-Mar 2021,457
+East of England (South),Bedfordshire Hospitals NHS Foundation Trust,Luton and Dunstable Hospital,Apr 2021-Mar 2022,727
+East of England (South),Bedfordshire Hospitals NHS Foundation Trust,Luton and Dunstable Hospital,Apr 2022-Mar 2023,729
+East of England (South),Bedfordshire Hospitals NHS Foundation Trust,Luton and Dunstable Hospital,Apr 2023-Mar 2024,804
+East of England (South),East and North Hertfordshire NHS Trust,Lister Hospital,Apr 2019-Mar 2020,842
+East of England (South),East and North Hertfordshire NHS Trust,Lister Hospital,Apr 2020-Mar 2021,835
+East of England (South),East and North Hertfordshire NHS Trust,Lister Hospital,Apr 2021-Mar 2022,849
+East of England (South),East and North Hertfordshire NHS Trust,Lister Hospital,Apr 2022-Mar 2023,826
+East of England (South),East and North Hertfordshire NHS Trust,Lister Hospital,Apr 2023-Mar 2024,934
+East of England (South),Mid and South Essex NHS Foundation Trust,Basildon University Hospital,Apr 2019-Mar 2020,583
+East of England (South),Mid and South Essex NHS Foundation Trust,Basildon University Hospital,Apr 2020-Mar 2021,570
+East of England (South),Mid and South Essex NHS Foundation Trust,Basildon University Hospital,Apr 2021-Mar 2022,644
+East of England (South),Mid and South Essex NHS Foundation Trust,Basildon University Hospital,Apr 2022-Mar 2023,655
+East of England (South),Mid and South Essex NHS Foundation Trust,Basildon University Hospital,Apr 2023-Mar 2024,645
+East of England (South),Mid and South Essex NHS Foundation Trust,Broomfield Hospital,Apr 2019-Mar 2020,557
+East of England (South),Mid and South Essex NHS Foundation Trust,Broomfield Hospital,Apr 2020-Mar 2021,648
+East of England (South),Mid and South Essex NHS Foundation Trust,Broomfield Hospital,Apr 2021-Mar 2022,700
+East of England (South),Mid and South Essex NHS Foundation Trust,Broomfield Hospital,Apr 2022-Mar 2023,719
+East of England (South),Mid and South Essex NHS Foundation Trust,Broomfield Hospital,Apr 2023-Mar 2024,759
+East of England (South),Mid and South Essex NHS Foundation Trust,Southend Hospital,Apr 2019-Mar 2020,701
+East of England (South),Mid and South Essex NHS Foundation Trust,Southend Hospital,Apr 2020-Mar 2021,505
+East of England (South),Mid and South Essex NHS Foundation Trust,Southend Hospital,Apr 2021-Mar 2022,673
+East of England (South),Mid and South Essex NHS Foundation Trust,Southend Hospital,Apr 2022-Mar 2023,699
+East of England (South),Mid and South Essex NHS Foundation Trust,Southend Hospital,Apr 2023-Mar 2024,699
+East of England (South),West Hertfordshire Teaching Hospitals NHS Trust,Watford General Hospital,Apr 2019-Mar 2020,625
+East of England (South),West Hertfordshire Teaching Hospitals NHS Trust,Watford General Hospital,Apr 2020-Mar 2021,544
+East of England (South),West Hertfordshire Teaching Hospitals NHS Trust,Watford General Hospital,Apr 2021-Mar 2022,662
+East of England (South),West Hertfordshire Teaching Hospitals NHS Trust,Watford General Hospital,Apr 2022-Mar 2023,626
+East of England (South),West Hertfordshire Teaching Hospitals NHS Trust,Watford General Hospital,Apr 2023-Mar 2024,705
+North Midlands,Dudley Group NHS Foundation Trust,Russells Hall Hospital,Apr 2019-Mar 2020,565
+North Midlands,Dudley Group NHS Foundation Trust,Russells Hall Hospital,Apr 2020-Mar 2021,609
+North Midlands,Dudley Group NHS Foundation Trust,Russells Hall Hospital,Apr 2021-Mar 2022,559
+North Midlands,Dudley Group NHS Foundation Trust,Russells Hall Hospital,Apr 2022-Mar 2023,618
+North Midlands,Dudley Group NHS Foundation Trust,Russells Hall Hospital,Apr 2023-Mar 2024,668
+North Midlands,Royal Wolverhampton NHS Trust,New Cross Hospital,Apr 2019-Mar 2020,929
+North Midlands,Royal Wolverhampton NHS Trust,New Cross Hospital,Apr 2020-Mar 2021,1019
+North Midlands,Royal Wolverhampton NHS Trust,New Cross Hospital,Apr 2021-Mar 2022,1104
+North Midlands,Royal Wolverhampton NHS Trust,New Cross Hospital,Apr 2022-Mar 2023,1043
+North Midlands,Royal Wolverhampton NHS Trust,New Cross Hospital,Apr 2023-Mar 2024,1215
+North Midlands,Shrewsbury and Telford Hospital NHS Trust,Princess Royal Hospital Telford,Apr 2019-Mar 2020,959
+North Midlands,Shrewsbury and Telford Hospital NHS Trust,Princess Royal Hospital Telford,Apr 2020-Mar 2021,964
+North Midlands,Shrewsbury and Telford Hospital NHS Trust,Princess Royal Hospital Telford,Apr 2021-Mar 2022,983
+North Midlands,Shrewsbury and Telford Hospital NHS Trust,Princess Royal Hospital Telford,Apr 2022-Mar 2023,876
+North Midlands,Shrewsbury and Telford Hospital NHS Trust,Princess Royal Hospital Telford,Apr 2023-Mar 2024,841
+North Midlands,University Hospitals of North Midlands NHS Trust,Royal Stoke University Hospital,Apr 2019-Mar 2020,1477
+North Midlands,University Hospitals of North Midlands NHS Trust,Royal Stoke University Hospital,Apr 2020-Mar 2021,1295
+North Midlands,University Hospitals of North Midlands NHS Trust,Royal Stoke University Hospital,Apr 2021-Mar 2022,1171
+North Midlands,University Hospitals of North Midlands NHS Trust,Royal Stoke University Hospital,Apr 2022-Mar 2023,1212
+North Midlands,University Hospitals of North Midlands NHS Trust,Royal Stoke University Hospital,Apr 2023-Mar 2024,1282
+West Midlands,Sandwell and West Birmingham Hospitals NHS Trust,Sandwell District Hospital,Apr 2019-Mar 2020,652
+West Midlands,Sandwell and West Birmingham Hospitals NHS Trust,Sandwell District Hospital,Apr 2020-Mar 2021,652
+West Midlands,Sandwell and West Birmingham Hospitals NHS Trust,Sandwell District Hospital,Apr 2021-Mar 2022,776
+West Midlands,Sandwell and West Birmingham Hospitals NHS Trust,Sandwell District Hospital,Apr 2022-Mar 2023,773
+West Midlands,Sandwell and West Birmingham Hospitals NHS Trust,Sandwell District Hospital,Apr 2023-Mar 2024,814
+West Midlands,University Hospitals Birmingham NHS Foundation Trust,Birmingham Heartlands Hospital,Apr 2019-Mar 2020,911
+West Midlands,University Hospitals Birmingham NHS Foundation Trust,Birmingham Heartlands Hospital,Apr 2020-Mar 2021,391
+West Midlands,University Hospitals Birmingham NHS Foundation Trust,Birmingham Heartlands Hospital,Apr 2021-Mar 2022,521
+West Midlands,University Hospitals Birmingham NHS Foundation Trust,Birmingham Heartlands Hospital,Apr 2022-Mar 2023,601
+West Midlands,University Hospitals Birmingham NHS Foundation Trust,Birmingham Heartlands Hospital,Apr 2023-Mar 2024,670
+West Midlands,University Hospitals Birmingham NHS Foundation Trust,Good Hope General Hospital,Apr 2019-Mar 2020,282
+West Midlands,University Hospitals Birmingham NHS Foundation Trust,Good Hope General Hospital,Apr 2020-Mar 2021,254
+West Midlands,University Hospitals Birmingham NHS Foundation Trust,Good Hope General Hospital,Apr 2021-Mar 2022,360
+West Midlands,University Hospitals Birmingham NHS Foundation Trust,Good Hope General Hospital,Apr 2022-Mar 2023,368
+West Midlands,University Hospitals Birmingham NHS Foundation Trust,Good Hope General Hospital,Apr 2023-Mar 2024,384
+West Midlands,University Hospitals Birmingham NHS Foundation Trust,Queen Elizabeth Hospital Edgbaston,Apr 2019-Mar 2020,655
+West Midlands,University Hospitals Birmingham NHS Foundation Trust,Queen Elizabeth Hospital Edgbaston,Apr 2020-Mar 2021,1307
+West Midlands,University Hospitals Birmingham NHS Foundation Trust,Queen Elizabeth Hospital Edgbaston,Apr 2021-Mar 2022,1192
+West Midlands,University Hospitals Birmingham NHS Foundation Trust,Queen Elizabeth Hospital Edgbaston,Apr 2022-Mar 2023,1262
+West Midlands,University Hospitals Birmingham NHS Foundation Trust,Queen Elizabeth Hospital Edgbaston,Apr 2023-Mar 2024,1284
+West Midlands,University Hospitals Coventry and Warwickshire NHS Trust,University Hospital Coventry,Apr 2019-Mar 2020,821
+West Midlands,University Hospitals Coventry and Warwickshire NHS Trust,University Hospital Coventry,Apr 2020-Mar 2021,750
+West Midlands,University Hospitals Coventry and Warwickshire NHS Trust,University Hospital Coventry,Apr 2021-Mar 2022,895
+West Midlands,University Hospitals Coventry and Warwickshire NHS Trust,University Hospital Coventry,Apr 2022-Mar 2023,1130
+West Midlands,University Hospitals Coventry and Warwickshire NHS Trust,University Hospital Coventry,Apr 2023-Mar 2024,1258
+West Midlands,Worcestershire Acute Hospitals NHS Trust,Worcestershire Royal Hospital,Apr 2019-Mar 2020,865
+West Midlands,Worcestershire Acute Hospitals NHS Trust,Worcestershire Royal Hospital,Apr 2020-Mar 2021,811
+West Midlands,Worcestershire Acute Hospitals NHS Trust,Worcestershire Royal Hospital,Apr 2021-Mar 2022,739
+West Midlands,Worcestershire Acute Hospitals NHS Trust,Worcestershire Royal Hospital,Apr 2022-Mar 2023,812
+West Midlands,Worcestershire Acute Hospitals NHS Trust,Worcestershire Royal Hospital,Apr 2023-Mar 2024,827
+West Midlands,Wye Valley NHS Trust,Hereford County Hospital,Apr 2019-Mar 2020,539
+West Midlands,Wye Valley NHS Trust,Hereford County Hospital,Apr 2020-Mar 2021,465
+West Midlands,Wye Valley NHS Trust,Hereford County Hospital,Apr 2021-Mar 2022,522
+West Midlands,Wye Valley NHS Trust,Hereford County Hospital,Apr 2022-Mar 2023,564
+West Midlands,Wye Valley NHS Trust,Hereford County Hospital,Apr 2023-Mar 2024,520
+Cheshire and Mersey,Countess of Chester Hospital NHS Foundation Trust,Countess of Chester Hospital,Apr 2019-Mar 2020,399
+Cheshire and Mersey,Countess of Chester Hospital NHS Foundation Trust,Countess of Chester Hospital,Apr 2020-Mar 2021,414
+Cheshire and Mersey,Countess of Chester Hospital NHS Foundation Trust,Countess of Chester Hospital,Apr 2021-Mar 2022,462
+Cheshire and Mersey,Countess of Chester Hospital NHS Foundation Trust,Countess of Chester Hospital,Apr 2022-Mar 2023,428
+Cheshire and Mersey,Countess of Chester Hospital NHS Foundation Trust,Countess of Chester Hospital,Apr 2023-Mar 2024,433
+Cheshire and Mersey,Liverpool University Hospitals NHS Foundation Trust,University Hospital Aintree,Apr 2019-Mar 2020,534
+Cheshire and Mersey,Liverpool University Hospitals NHS Foundation Trust,University Hospital Aintree,Apr 2020-Mar 2021,426
+Cheshire and Mersey,Liverpool University Hospitals NHS Foundation Trust,University Hospital Aintree,Apr 2021-Mar 2022,530
+Cheshire and Mersey,Liverpool University Hospitals NHS Foundation Trust,University Hospital Aintree,Apr 2022-Mar 2023,992
+Cheshire and Mersey,Liverpool University Hospitals NHS Foundation Trust,University Hospital Aintree,Apr 2023-Mar 2024,1476
+Cheshire and Mersey,St Helens and Knowsley Teaching Hospitals NHS Trust,Whiston Hospital HASU,Apr 2019-Mar 2020,1084
+Cheshire and Mersey,St Helens and Knowsley Teaching Hospitals NHS Trust,Whiston Hospital HASU,Apr 2020-Mar 2021,979
+Cheshire and Mersey,St Helens and Knowsley Teaching Hospitals NHS Trust,Whiston Hospital HASU,Apr 2021-Mar 2022,1040
+Cheshire and Mersey,St Helens and Knowsley Teaching Hospitals NHS Trust,Whiston Hospital HASU,Apr 2022-Mar 2023,1151
+Cheshire and Mersey,Mersey and West Lancashire Teaching Hospitals NHS Trust,Whiston Hospital HASU,Apr 2023-Mar 2024,1170
+Cheshire and Mersey,Walton Centre NHS Foundation Trust,Walton Centre Stroke Team,Apr 2019-Mar 2020,.
+Cheshire and Mersey,Walton Centre NHS Foundation Trust,Walton Centre Stroke Team,Apr 2020-Mar 2021,233
+Cheshire and Mersey,Walton Centre NHS Foundation Trust,Walton Centre Stroke Team,Apr 2021-Mar 2022,.
+Cheshire and Mersey,Walton Centre NHS Foundation Trust,Walton Centre Stroke Team,Apr 2022-Mar 2023,.
+Cheshire and Mersey,Walton Centre NHS Foundation Trust,Walton Centre Stroke Team,Apr 2023-Mar 2024,.
+Cheshire and Mersey,Wirral University Teaching Hospital NHS Foundation Trust,Arrowe Park Hospital,Apr 2019-Mar 2020,630
+Cheshire and Mersey,Wirral University Teaching Hospital NHS Foundation Trust,Arrowe Park Hospital,Apr 2020-Mar 2021,619
+Cheshire and Mersey,Wirral University Teaching Hospital NHS Foundation Trust,Wirral Arrowe Park Hospital,Apr 2021-Mar 2022,664
+Cheshire and Mersey,Wirral University Teaching Hospital NHS Foundation Trust,Wirral Arrowe Park Hospital,Apr 2022-Mar 2023,645
+Cheshire and Mersey,Wirral University Teaching Hospital NHS Foundation Trust,Wirral Arrowe Park Hospital,Apr 2023-Mar 2024,669
+East Midlands,Chesterfield Royal Hospital NHS Foundation Trust,Chesterfield Royal,Apr 2019-Mar 2020,567
+East Midlands,Chesterfield Royal Hospital NHS Foundation Trust,Chesterfield Royal,Apr 2020-Mar 2021,626
+East Midlands,Chesterfield Royal Hospital NHS Foundation Trust,Chesterfield Royal,Apr 2021-Mar 2022,671
+East Midlands,Chesterfield Royal Hospital NHS Foundation Trust,Chesterfield Royal,Apr 2022-Mar 2023,649
+East Midlands,Chesterfield Royal Hospital NHS Foundation Trust,Chesterfield Royal,Apr 2023-Mar 2024,659
+Greater Manchester,Northern Care Alliance NHS Foundation Trust,Fairfield General Hospital,Apr 2019-Mar 2020,1049
+Greater Manchester,Northern Care Alliance NHS Foundation Trust,Fairfield General Hospital,Apr 2020-Mar 2021,987
+Greater Manchester,Northern Care Alliance NHS Foundation Trust,Fairfield General Hospital,Apr 2021-Mar 2022,975
+Greater Manchester,Northern Care Alliance NHS Foundation Trust,Fairfield General Hospital,Apr 2022-Mar 2023,968
+Greater Manchester,Northern Care Alliance NHS Foundation Trust,Fairfield General Hospital,Apr 2023-Mar 2024,978
+Greater Manchester,Northern Care Alliance NHS Foundation Trust,Salford Royal Hospital,Apr 2019-Mar 2020,2060
+Greater Manchester,Northern Care Alliance NHS Foundation Trust,Salford Royal Hospital,Apr 2020-Mar 2021,1961
+Greater Manchester,Northern Care Alliance NHS Foundation Trust,Salford Royal Hospital,Apr 2021-Mar 2022,1941
+Greater Manchester,Northern Care Alliance NHS Foundation Trust,Salford Royal Hospital,Apr 2022-Mar 2023,1937
+Greater Manchester,Northern Care Alliance NHS Foundation Trust,Salford Royal Hospital,Apr 2023-Mar 2024,2098
+Greater Manchester,Stockport NHS Foundation Trust,Stepping Hill Hospital,Apr 2019-Mar 2020,1199
+Greater Manchester,Stockport NHS Foundation Trust,Stepping Hill Hospital,Apr 2020-Mar 2021,1140
+Greater Manchester,Stockport NHS Foundation Trust,Stepping Hill Hospital,Apr 2021-Mar 2022,1287
+Greater Manchester,Stockport NHS Foundation Trust,Stepping Hill Hospital,Apr 2022-Mar 2023,1168
+Greater Manchester,Stockport NHS Foundation Trust,Stepping Hill Hospital,Apr 2023-Mar 2024,1186
+Humber Coast and Vale,Hull University Teaching Hospitals NHS Trust,Hull Royal Infirmary,Apr 2019-Mar 2020,836
+Humber Coast and Vale,Hull University Teaching Hospitals NHS Trust,Hull Royal Infirmary,Apr 2020-Mar 2021,935
+Humber Coast and Vale,Hull University Teaching Hospitals NHS Trust,Hull Royal Infirmary,Apr 2021-Mar 2022,948
+Humber Coast and Vale,Hull University Teaching Hospitals NHS Trust,Hull Royal Infirmary,Apr 2022-Mar 2023,1039
+Humber Coast and Vale,Hull University Teaching Hospitals NHS Trust,Hull Royal Infirmary,Apr 2023-Mar 2024,1049
+Humber Coast and Vale,Northern Lincolnshire and Goole Hospitals NHS Foundation Trust,Scunthorpe General Hospital,Apr 2019-Mar 2020,609
+Humber Coast and Vale,Northern Lincolnshire and Goole Hospitals NHS Foundation Trust,Scunthorpe General Hospital,Apr 2020-Mar 2021,709
+Humber Coast and Vale,Northern Lincolnshire and Goole Hospitals NHS Foundation Trust,Scunthorpe General Hospital,Apr 2021-Mar 2022,651
+Humber Coast and Vale,Northern Lincolnshire and Goole Hospitals NHS Foundation Trust,Scunthorpe General Hospital,Apr 2022-Mar 2023,648
+Humber Coast and Vale,Northern Lincolnshire and Goole Hospitals NHS Foundation Trust,Scunthorpe General Hospital,Apr 2023-Mar 2024,849
+Humber Coast and Vale,York and Scarborough Teaching Hospitals NHS Foundation Trust,York Hospital,Apr 2019-Mar 2020,1006
+Humber Coast and Vale,York and Scarborough Teaching Hospitals NHS Foundation Trust,York Hospital,Apr 2020-Mar 2021,738
+Humber Coast and Vale,York and Scarborough Teaching Hospitals NHS Foundation Trust,York Hospital,Apr 2021-Mar 2022,978
+Humber Coast and Vale,York and Scarborough Teaching Hospitals NHS Foundation Trust,York Hospital,Apr 2022-Mar 2023,1054
+Humber Coast and Vale,York and Scarborough Teaching Hospitals NHS Foundation Trust,York Hospital,Apr 2023-Mar 2024,1224
+Lancashire and South Cumbria,Blackpool Teaching Hospitals NHS Foundation Trust,Blackpool Victoria Hospital,Apr 2019-Mar 2020,488
+Lancashire and South Cumbria,Blackpool Teaching Hospitals NHS Foundation Trust,Blackpool Victoria Hospital,Apr 2020-Mar 2021,526
+Lancashire and South Cumbria,Blackpool Teaching Hospitals NHS Foundation Trust,Blackpool Victoria Hospital,Apr 2021-Mar 2022,697
+Lancashire and South Cumbria,Blackpool Teaching Hospitals NHS Foundation Trust,Blackpool Victoria Hospital,Apr 2022-Mar 2023,614
+Lancashire and South Cumbria,Blackpool Teaching Hospitals NHS Foundation Trust,Blackpool Victoria Hospital,Apr 2023-Mar 2024,655
+Lancashire and South Cumbria,East Lancashire Hospitals NHS Trust,Royal Blackburn Hospital,Apr 2019-Mar 2020,659
+Lancashire and South Cumbria,East Lancashire Hospitals NHS Trust,Royal Blackburn Hospital,Apr 2020-Mar 2021,772
+Lancashire and South Cumbria,East Lancashire Hospitals NHS Trust,Royal Blackburn Hospital,Apr 2021-Mar 2022,800
+Lancashire and South Cumbria,East Lancashire Hospitals NHS Trust,Royal Blackburn Hospital,Apr 2022-Mar 2023,825
+Lancashire and South Cumbria,East Lancashire Hospitals NHS Trust,Royal Blackburn Hospital,Apr 2023-Mar 2024,824
+Lancashire and South Cumbria,Lancashire Teaching Hospitals NHS Foundation Trust,Royal Preston Hospital,Apr 2019-Mar 2020,777
+Lancashire and South Cumbria,Lancashire Teaching Hospitals NHS Foundation Trust,Royal Preston Hospital,Apr 2020-Mar 2021,709
+Lancashire and South Cumbria,Lancashire Teaching Hospitals NHS Foundation Trust,Royal Preston Hospital,Apr 2021-Mar 2022,801
+Lancashire and South Cumbria,Lancashire Teaching Hospitals NHS Foundation Trust,Royal Preston Hospital,Apr 2022-Mar 2023,828
+Lancashire and South Cumbria,Lancashire Teaching Hospitals NHS Foundation Trust,Royal Preston Hospital,Apr 2023-Mar 2024,922
+Lancashire and South Cumbria,University Hospitals of Morecambe Bay NHS Foundation Trust,Furness General Hospital,Apr 2019-Mar 2020,216
+Lancashire and South Cumbria,University Hospitals of Morecambe Bay NHS Foundation Trust,Furness General Hospital,Apr 2020-Mar 2021,226
+Lancashire and South Cumbria,University Hospitals of Morecambe Bay NHS Foundation Trust,Furness General Hospital,Apr 2021-Mar 2022,226
+Lancashire and South Cumbria,University Hospitals of Morecambe Bay NHS Foundation Trust,Furness General Hospital,Apr 2022-Mar 2023,223
+Lancashire and South Cumbria,University Hospitals of Morecambe Bay NHS Foundation Trust,Furness General Hospital,Apr 2023-Mar 2024,238
+Lancashire and South Cumbria,University Hospitals of Morecambe Bay NHS Foundation Trust,Royal Lancaster Infirmary,Apr 2019-Mar 2020,363
+Lancashire and South Cumbria,University Hospitals of Morecambe Bay NHS Foundation Trust,Royal Lancaster Infirmary,Apr 2020-Mar 2021,401
+Lancashire and South Cumbria,University Hospitals of Morecambe Bay NHS Foundation Trust,Royal Lancaster Infirmary,Apr 2021-Mar 2022,508
+Lancashire and South Cumbria,University Hospitals of Morecambe Bay NHS Foundation Trust,Royal Lancaster Infirmary,Apr 2022-Mar 2023,503
+Lancashire and South Cumbria,University Hospitals of Morecambe Bay NHS Foundation Trust,Royal Lancaster Infirmary,Apr 2023-Mar 2024,518
+North East and North Cumbria,County Durham and Darlington NHS Foundation Trust,University Hospital of North Durham,Apr 2019-Mar 2020,937
+North East and North Cumbria,County Durham and Darlington NHS Foundation Trust,University Hospital of North Durham,Apr 2020-Mar 2021,917
+North East and North Cumbria,County Durham and Darlington NHS Foundation Trust,University Hospital of North Durham,Apr 2021-Mar 2022,1016
+North East and North Cumbria,County Durham and Darlington NHS Foundation Trust,University Hospital of North Durham,Apr 2022-Mar 2023,1066
+North East and North Cumbria,County Durham and Darlington NHS Foundation Trust,University Hospital of North Durham,Apr 2023-Mar 2024,1193
+North East and North Cumbria,Newcastle upon Tyne Hospitals NHS Foundation Trust,Royal Victoria Infirmary,Apr 2019-Mar 2020,989
+North East and North Cumbria,Newcastle upon Tyne Hospitals NHS Foundation Trust,Royal Victoria Infirmary,Apr 2020-Mar 2021,1011
+North East and North Cumbria,Newcastle upon Tyne Hospitals NHS Foundation Trust,Royal Victoria Infirmary,Apr 2021-Mar 2022,1145
+North East and North Cumbria,Newcastle upon Tyne Hospitals NHS Foundation Trust,Royal Victoria Infirmary,Apr 2022-Mar 2023,1208
+North East and North Cumbria,Newcastle upon Tyne Hospitals NHS Foundation Trust,Royal Victoria Infirmary,Apr 2023-Mar 2024,1160
+North East and North Cumbria,North Cumbria Integrated Care NHS Foundation Trust,Cumberland Infirmary,Apr 2019-Mar 2020,459
+North East and North Cumbria,North Cumbria Integrated Care NHS Foundation Trust,Cumberland Infirmary,Apr 2020-Mar 2021,540
+North East and North Cumbria,North Cumbria Integrated Care NHS Foundation Trust,Cumberland Infirmary,Apr 2021-Mar 2022,543
+North East and North Cumbria,North Cumbria Integrated Care NHS Foundation Trust,Cumberland Infirmary,Apr 2022-Mar 2023,638
+North East and North Cumbria,North Cumbria Integrated Care NHS Foundation Trust,Cumberland Infirmary,Apr 2023-Mar 2024,719
+North East and North Cumbria,North Tees and Hartlepool NHS Foundation Trust,University Hospitals of North Tees and Hartlepool,Apr 2019-Mar 2020,663
+North East and North Cumbria,North Tees and Hartlepool NHS Foundation Trust,University Hospitals of North Tees and Hartlepool,Apr 2020-Mar 2021,551
+North East and North Cumbria,North Tees and Hartlepool NHS Foundation Trust,University Hospitals of North Tees and Hartlepool,Apr 2021-Mar 2022,653
+North East and North Cumbria,North Tees and Hartlepool NHS Foundation Trust,University Hospitals of North Tees and Hartlepool,Apr 2022-Mar 2023,669
+North East and North Cumbria,North Tees and Hartlepool NHS Foundation Trust,University Hospitals of North Tees and Hartlepool,Apr 2023-Mar 2024,607
+North East and North Cumbria,Northumbria Healthcare NHS Foundation Trust,Northumbria Specialist Emergency Care Hospital HASU,Apr 2019-Mar 2020,1111
+North East and North Cumbria,Northumbria Healthcare NHS Foundation Trust,Northumbria Specialist Emergency Care Hospital HASU,Apr 2020-Mar 2021,999
+North East and North Cumbria,Northumbria Healthcare NHS Foundation Trust,Northumbria Specialist Emergency Care Hospital HASU,Apr 2021-Mar 2022,1136
+North East and North Cumbria,Northumbria Healthcare NHS Foundation Trust,Northumbria Specialist Emergency Care Hospital HASU,Apr 2022-Mar 2023,1074
+North East and North Cumbria,Northumbria Healthcare NHS Foundation Trust,Northumbria Specialist Emergency Care Hospital HASU,Apr 2023-Mar 2024,1020
+North East and North Cumbria,South Tees Hospitals NHS Foundation Trust,James Cook University Hospital,Apr 2019-Mar 2020,717
+North East and North Cumbria,South Tees Hospitals NHS Foundation Trust,James Cook University Hospital,Apr 2020-Mar 2021,557
+North East and North Cumbria,South Tees Hospitals NHS Foundation Trust,James Cook University Hospital,Apr 2021-Mar 2022,781
+North East and North Cumbria,South Tees Hospitals NHS Foundation Trust,James Cook University Hospital,Apr 2022-Mar 2023,754
+North East and North Cumbria,South Tees Hospitals NHS Foundation Trust,James Cook University Hospital,Apr 2023-Mar 2024,802
+North East and North Cumbria,South Tyneside and Sunderland NHS Foundation Trust,Sunderland Royal Hospital,Apr 2019-Mar 2020,693
+North East and North Cumbria,South Tyneside and Sunderland NHS Foundation Trust,Sunderland Royal Hospital,Apr 2020-Mar 2021,735
+North East and North Cumbria,South Tyneside and Sunderland NHS Foundation Trust,Sunderland Royal Hospital,Apr 2021-Mar 2022,728
+North East and North Cumbria,South Tyneside and Sunderland NHS Foundation Trust,Sunderland Royal Hospital,Apr 2022-Mar 2023,804
+North East and North Cumbria,South Tyneside and Sunderland NHS Foundation Trust,Sunderland Royal Hospital,Apr 2023-Mar 2024,852
+North Midlands,Mid Cheshire Hospitals NHS Foundation Trust,Leighton Hospital,Apr 2019-Mar 2020,637
+North Midlands,Mid Cheshire Hospitals NHS Foundation Trust,Leighton Hospital,Apr 2020-Mar 2021,487
+North Midlands,Mid Cheshire Hospitals NHS Foundation Trust,Leighton Hospital,Apr 2021-Mar 2022,594
+North Midlands,Mid Cheshire Hospitals NHS Foundation Trust,Leighton Hospital,Apr 2022-Mar 2023,545
+North Midlands,Mid Cheshire Hospitals NHS Foundation Trust,Leighton Hospital,Apr 2023-Mar 2024,614
+South Yorkshire and Bassetlaw,Doncaster and Bassetlaw Teaching Hospitals NHS Foundation Trust,Doncaster Royal Infirmary,Apr 2019-Mar 2020,739
+South Yorkshire and Bassetlaw,Doncaster and Bassetlaw Teaching Hospitals NHS Foundation Trust,Doncaster Royal Infirmary,Apr 2020-Mar 2021,670
+South Yorkshire and Bassetlaw,Doncaster and Bassetlaw Teaching Hospitals NHS Foundation Trust,Doncaster Royal Infirmary,Apr 2021-Mar 2022,730
+South Yorkshire and Bassetlaw,Doncaster and Bassetlaw Teaching Hospitals NHS Foundation Trust,Doncaster Royal Infirmary,Apr 2022-Mar 2023,730
+South Yorkshire and Bassetlaw,Doncaster and Bassetlaw Teaching Hospitals NHS Foundation Trust,Doncaster Royal Infirmary,Apr 2023-Mar 2024,705
+South Yorkshire and Bassetlaw,Sheffield Teaching Hospitals NHS Foundation Trust,Royal Hallamshire Hospital,Apr 2019-Mar 2020,1297
+South Yorkshire and Bassetlaw,Sheffield Teaching Hospitals NHS Foundation Trust,Royal Hallamshire Hospital,Apr 2020-Mar 2021,1328
+South Yorkshire and Bassetlaw,Sheffield Teaching Hospitals NHS Foundation Trust,Royal Hallamshire Hospital,Apr 2021-Mar 2022,1408
+South Yorkshire and Bassetlaw,Sheffield Teaching Hospitals NHS Foundation Trust,Royal Hallamshire Hospital,Apr 2022-Mar 2023,1468
+South Yorkshire and Bassetlaw,Sheffield Teaching Hospitals NHS Foundation Trust,Royal Hallamshire Hospital,Apr 2023-Mar 2024,1466
+West Yorkshire and Harrogate,Bradford Teaching Hospitals NHS Foundation Trust,Bradford and Airedale SU,Apr 2019-Mar 2020,752
+West Yorkshire and Harrogate,Bradford Teaching Hospitals NHS Foundation Trust,Bradford and Airedale SU,Apr 2020-Mar 2021,794
+West Yorkshire and Harrogate,Bradford Teaching Hospitals NHS Foundation Trust,Bradford and Airedale SU,Apr 2021-Mar 2022,784
+West Yorkshire and Harrogate,Bradford Teaching Hospitals NHS Foundation Trust,Bradford and Airedale SU,Apr 2022-Mar 2023,780
+West Yorkshire and Harrogate,Bradford Teaching Hospitals NHS Foundation Trust,Bradford and Airedale SU,Apr 2023-Mar 2024,865
+West Yorkshire and Harrogate,Calderdale and Huddersfield NHS Foundation Trust,Calderdale Royal Hospital,Apr 2019-Mar 2020,663
+West Yorkshire and Harrogate,Calderdale and Huddersfield NHS Foundation Trust,Calderdale Royal Hospital,Apr 2020-Mar 2021,715
+West Yorkshire and Harrogate,Calderdale and Huddersfield NHS Foundation Trust,Calderdale Royal Hospital,Apr 2021-Mar 2022,724
+West Yorkshire and Harrogate,Calderdale and Huddersfield NHS Foundation Trust,Calderdale Royal Hospital,Apr 2022-Mar 2023,830
+West Yorkshire and Harrogate,Calderdale and Huddersfield NHS Foundation Trust,Calderdale Royal Hospital,Apr 2023-Mar 2024,834
+West Yorkshire and Harrogate,Leeds Teaching Hospitals NHS Trust,Leeds General Infirmary,Apr 2019-Mar 2020,538
+West Yorkshire and Harrogate,Leeds Teaching Hospitals NHS Trust,Leeds General Infirmary,Apr 2020-Mar 2021,998
+West Yorkshire and Harrogate,Leeds Teaching Hospitals NHS Trust,Leeds General Infirmary,Apr 2021-Mar 2022,1374
+West Yorkshire and Harrogate,Leeds Teaching Hospitals NHS Trust,Leeds General Infirmary,Apr 2022-Mar 2023,1382
+West Yorkshire and Harrogate,Leeds Teaching Hospitals NHS Trust,Leeds General Infirmary,Apr 2023-Mar 2024,1408
+West Yorkshire and Harrogate,Mid Yorkshire Hospitals NHS Trust,Pinderfields Hospital,Apr 2019-Mar 2020,1074
+West Yorkshire and Harrogate,Mid Yorkshire Hospitals NHS Trust,Pinderfields Hospital,Apr 2020-Mar 2021,1174
+West Yorkshire and Harrogate,Mid Yorkshire Hospitals NHS Trust,Pinderfields Hospital,Apr 2021-Mar 2022,1099
+West Yorkshire and Harrogate,Mid Yorkshire Hospitals NHS Trust,Pinderfields Hospital,Apr 2022-Mar 2023,1221
+West Yorkshire and Harrogate,Mid Yorkshire Teaching NHS Trust,Pinderfields Hospital,Apr 2023-Mar 2024,1251
+East of England (South),Milton Keynes University Hospital NHS Foundation Trust,Milton Keynes General Hospital,Apr 2019-Mar 2020,238
+East of England (South),Milton Keynes University Hospital NHS Foundation Trust,Milton Keynes General Hospital,Apr 2020-Mar 2021,184
+East of England (South),Milton Keynes University Hospital NHS Foundation Trust,Milton Keynes General Hospital,Apr 2021-Mar 2022,277
+East of England (South),Milton Keynes University Hospital NHS Foundation Trust,Milton Keynes General Hospital,Apr 2022-Mar 2023,290
+East of England (South),Milton Keynes University Hospital NHS Foundation Trust,Milton Keynes General Hospital,Apr 2023-Mar 2024,307
+Frimley ICS and Surrey Heartlands,Ashford and St Peter's Hospitals NHS Foundation Trust,St Peter's Hospital,Apr 2019-Mar 2020,546
+Frimley ICS and Surrey Heartlands,Ashford and St Peter's Hospitals NHS Foundation Trust,St Peter's Hospital,Apr 2020-Mar 2021,551
+Frimley ICS and Surrey Heartlands,Ashford and St Peter's Hospitals NHS Foundation Trust,St Peter's Hospital,Apr 2021-Mar 2022,644
+Frimley ICS and Surrey Heartlands,Ashford and St Peter's Hospitals NHS Foundation Trust,St Peter's Hospital,Apr 2022-Mar 2023,635
+Frimley ICS and Surrey Heartlands,Ashford and St Peter's Hospitals NHS Foundation Trust,St Peter's Hospital,Apr 2023-Mar 2024,658
+Frimley ICS and Surrey Heartlands,Epsom and St Helier University Hospitals NHS Trust,Epsom Hospital,Apr 2019-Mar 2020,299
+Frimley ICS and Surrey Heartlands,Epsom and St Helier University Hospitals NHS Trust,Epsom Hospital,Apr 2020-Mar 2021,330
+Frimley ICS and Surrey Heartlands,Epsom and St Helier University Hospitals NHS Trust,Epsom Hospital,Apr 2021-Mar 2022,338
+Frimley ICS and Surrey Heartlands,Epsom and St Helier University Hospitals NHS Trust,Epsom Hospital,Apr 2022-Mar 2023,362
+Frimley ICS and Surrey Heartlands,Epsom and St Helier University Hospitals NHS Trust,Epsom Hospital,Apr 2023-Mar 2024,360
+Frimley ICS and Surrey Heartlands,Frimley Health NHS Foundation Trust,Frimley Park Hospital,Apr 2019-Mar 2020,819
+Frimley ICS and Surrey Heartlands,Frimley Health NHS Foundation Trust,Frimley Park Hospital,Apr 2020-Mar 2021,633
+Frimley ICS and Surrey Heartlands,Frimley Health NHS Foundation Trust,Frimley Park Hospital,Apr 2021-Mar 2022,703
+Frimley ICS and Surrey Heartlands,Frimley Health NHS Foundation Trust,Frimley Park Hospital,Apr 2022-Mar 2023,648
+Frimley ICS and Surrey Heartlands,Frimley Health NHS Foundation Trust,Frimley Park Hospital,Apr 2023-Mar 2024,842
+Frimley ICS and Surrey Heartlands,Surrey and Sussex Healthcare NHS Trust,East Surrey Hospital,Apr 2019-Mar 2020,776
+Frimley ICS and Surrey Heartlands,Surrey and Sussex Healthcare NHS Trust,East Surrey Hospital,Apr 2020-Mar 2021,713
+Frimley ICS and Surrey Heartlands,Surrey and Sussex Healthcare NHS Trust,East Surrey Hospital,Apr 2021-Mar 2022,748
+Frimley ICS and Surrey Heartlands,Surrey and Sussex Healthcare NHS Trust,East Surrey Hospital,Apr 2022-Mar 2023,746
+Frimley ICS and Surrey Heartlands,Surrey and Sussex Healthcare NHS Trust,East Surrey Hospital,Apr 2023-Mar 2024,759
+Kent and Medway,Dartford and Gravesham NHS Trust,Darent Valley Hospital,Apr 2019-Mar 2020,515
+Kent and Medway,Dartford and Gravesham NHS Trust,Darent Valley Hospital,Apr 2020-Mar 2021,300
+Kent and Medway,Dartford and Gravesham NHS Trust,Darent Valley Hospital,Apr 2021-Mar 2022,621
+Kent and Medway,Dartford and Gravesham NHS Trust,Darent Valley Hospital,Apr 2022-Mar 2023,557
+Kent and Medway,Dartford and Gravesham NHS Trust,Darent Valley Hospital,Apr 2023-Mar 2024,596
+Kent and Medway,East Kent Hospitals University NHS Foundation Trust,Invicta Ward Kent and Canterbury Hospital,Apr 2019-Mar 2020,Too few to report
+Kent and Medway,East Kent Hospitals University NHS Foundation Trust,Invicta Ward Kent and Canterbury Hospital,Apr 2020-Mar 2021,668
+Kent and Medway,East Kent Hospitals University NHS Foundation Trust,Invicta Ward Kent and Canterbury Hospital,Apr 2021-Mar 2022,802
+Kent and Medway,East Kent Hospitals University NHS Foundation Trust,Invicta Ward Kent and Canterbury Hospital,Apr 2022-Mar 2023,898
+Kent and Medway,East Kent Hospitals University NHS Foundation Trust,Invicta Ward Kent and Canterbury Hospital,Apr 2023-Mar 2024,1094
+Kent and Medway,Maidstone and Tunbridge Wells NHS Trust,Maidstone District General Hospital,Apr 2019-Mar 2020,559
+Kent and Medway,Maidstone and Tunbridge Wells NHS Trust,Maidstone District General Hospital,Apr 2020-Mar 2021,984
+Kent and Medway,Maidstone and Tunbridge Wells NHS Trust,Maidstone District General Hospital,Apr 2021-Mar 2022,1041
+Kent and Medway,Maidstone and Tunbridge Wells NHS Trust,Maidstone District General Hospital,Apr 2022-Mar 2023,1002
+Kent and Medway,Maidstone and Tunbridge Wells NHS Trust,Maidstone District General Hospital,Apr 2023-Mar 2024,1083
+SW Peninsula,Royal Cornwall Hospitals NHS Trust,Royal Cornwall Hospital,Apr 2019-Mar 2020,886
+SW Peninsula,Royal Cornwall Hospitals NHS Trust,Royal Cornwall Hospital,Apr 2020-Mar 2021,869
+SW Peninsula,Royal Cornwall Hospitals NHS Trust,Royal Cornwall Hospital,Apr 2021-Mar 2022,906
+SW Peninsula,Royal Cornwall Hospitals NHS Trust,Royal Cornwall Hospital,Apr 2022-Mar 2023,980
+SW Peninsula,Royal Cornwall Hospitals NHS Trust,Royal Cornwall Hospital,Apr 2023-Mar 2024,995
+SW Peninsula,Royal Devon University Healthcare NHS Foundation Trust,North Devon District Hospital,Apr 2019-Mar 2020,419
+SW Peninsula,Royal Devon University Healthcare NHS Foundation Trust,North Devon District Hospital,Apr 2020-Mar 2021,439
+SW Peninsula,Royal Devon University Healthcare NHS Foundation Trust,North Devon District Hospital,Apr 2021-Mar 2022,407
+SW Peninsula,Royal Devon University Healthcare NHS Foundation Trust,North Devon District Hospital,Apr 2022-Mar 2023,393
+SW Peninsula,Royal Devon University Healthcare NHS Foundation Trust,North Devon District Hospital,Apr 2023-Mar 2024,470
+SW Peninsula,Royal Devon University Healthcare NHS Foundation Trust,Royal Devon and Exeter Hospital,Apr 2019-Mar 2020,861
+SW Peninsula,Royal Devon University Healthcare NHS Foundation Trust,Royal Devon and Exeter Hospital,Apr 2020-Mar 2021,814
+SW Peninsula,Royal Devon University Healthcare NHS Foundation Trust,Royal Devon and Exeter Hospital,Apr 2021-Mar 2022,867
+SW Peninsula,Royal Devon University Healthcare NHS Foundation Trust,Royal Devon and Exeter Hospital,Apr 2022-Mar 2023,823
+SW Peninsula,Royal Devon University Healthcare NHS Foundation Trust,Royal Devon and Exeter Hospital,Apr 2023-Mar 2024,925
+SW Peninsula,Torbay and South Devon NHS Foundation Trust,Torbay Hospital,Apr 2019-Mar 2020,604
+SW Peninsula,Torbay and South Devon NHS Foundation Trust,Torbay Hospital,Apr 2020-Mar 2021,563
+SW Peninsula,Torbay and South Devon NHS Foundation Trust,Torbay Hospital,Apr 2021-Mar 2022,609
+SW Peninsula,Torbay and South Devon NHS Foundation Trust,Torbay Hospital,Apr 2022-Mar 2023,617
+SW Peninsula,Torbay and South Devon NHS Foundation Trust,Torbay Hospital,Apr 2023-Mar 2024,733
+SW Peninsula,University Hospitals Plymouth NHS Trust,Derriford Hospital,Apr 2019-Mar 2020,803
+SW Peninsula,University Hospitals Plymouth NHS Trust,Derriford Hospital,Apr 2020-Mar 2021,856
+SW Peninsula,University Hospitals Plymouth NHS Trust,Derriford Hospital,Apr 2021-Mar 2022,851
+SW Peninsula,University Hospitals Plymouth NHS Trust,Derriford Hospital,Apr 2022-Mar 2023,806
+SW Peninsula,University Hospitals Plymouth NHS Trust,Derriford Hospital,Apr 2023-Mar 2024,983
+Sussex,East Sussex Healthcare NHS Trust,Eastbourne District General Hospital,Apr 2019-Mar 2020,807
+Sussex,East Sussex Healthcare NHS Trust,Eastbourne District General Hospital,Apr 2020-Mar 2021,717
+Sussex,East Sussex Healthcare NHS Trust,Eastbourne District General Hospital,Apr 2021-Mar 2022,778
+Sussex,East Sussex Healthcare NHS Trust,Eastbourne District General Hospital,Apr 2022-Mar 2023,823
+Sussex,East Sussex Healthcare NHS Trust,Eastbourne District General Hospital,Apr 2023-Mar 2024,901
+Sussex,University Hospitals Sussex NHS Foundation Trust,Royal Sussex County Hospital,Apr 2019-Mar 2020,580
+Sussex,University Hospitals Sussex NHS Foundation Trust,Royal Sussex County Hospital,Apr 2020-Mar 2021,520
+Sussex,University Hospitals Sussex NHS Foundation Trust,Royal Sussex County Hospital,Apr 2021-Mar 2022,583
+Sussex,University Hospitals Sussex NHS Foundation Trust,Royal Sussex County Hospital,Apr 2022-Mar 2023,630
+Sussex,University Hospitals Sussex NHS Foundation Trust,Royal Sussex County Hospital,Apr 2023-Mar 2024,669
+Sussex,University Hospitals Sussex NHS Foundation Trust,St Richards Hospital,Apr 2019-Mar 2020,447
+Sussex,University Hospitals Sussex NHS Foundation Trust,St Richards Hospital,Apr 2020-Mar 2021,458
+Sussex,University Hospitals Sussex NHS Foundation Trust,St Richards Hospital,Apr 2021-Mar 2022,491
+Sussex,University Hospitals Sussex NHS Foundation Trust,St Richards Hospital,Apr 2022-Mar 2023,465
+Sussex,University Hospitals Sussex NHS Foundation Trust,St Richards Hospital,Apr 2023-Mar 2024,507
+Sussex,University Hospitals Sussex NHS Foundation Trust,Worthing Hospital,Apr 2019-Mar 2020,545
+Sussex,University Hospitals Sussex NHS Foundation Trust,Worthing Hospital,Apr 2020-Mar 2021,538
+Sussex,University Hospitals Sussex NHS Foundation Trust,Worthing Hospital,Apr 2021-Mar 2022,557
+Sussex,University Hospitals Sussex NHS Foundation Trust,Worthing Hospital,Apr 2022-Mar 2023,492
+Sussex,University Hospitals Sussex NHS Foundation Trust,Worthing Hospital,Apr 2023-Mar 2024,529
+Thames Valley (BOB),Buckinghamshire Healthcare NHS Trust,Wycombe General Hospital,Apr 2019-Mar 2020,796
+Thames Valley (BOB),Buckinghamshire Healthcare NHS Trust,Wycombe General Hospital,Apr 2020-Mar 2021,835
+Thames Valley (BOB),Buckinghamshire Healthcare NHS Trust,Wycombe General Hospital,Apr 2021-Mar 2022,935
+Thames Valley (BOB),Buckinghamshire Healthcare NHS Trust,Wycombe General Hospital,Apr 2022-Mar 2023,824
+Thames Valley (BOB),Buckinghamshire Healthcare NHS Trust,Wycombe General Hospital,Apr 2023-Mar 2024,796
+Thames Valley (BOB),Oxford University Hospitals NHS Foundation Trust,John Radcliffe Hospital,Apr 2019-Mar 2020,667
+Thames Valley (BOB),Oxford University Hospitals NHS Foundation Trust,John Radcliffe Hospital,Apr 2020-Mar 2021,705
+Thames Valley (BOB),Oxford University Hospitals NHS Foundation Trust,John Radcliffe Hospital,Apr 2021-Mar 2022,844
+Thames Valley (BOB),Oxford University Hospitals NHS Foundation Trust,John Radcliffe Hospital,Apr 2022-Mar 2023,913
+Thames Valley (BOB),Oxford University Hospitals NHS Foundation Trust,John Radcliffe Hospital,Apr 2023-Mar 2024,954
+Thames Valley (BOB),Royal Berkshire NHS Foundation Trust,Royal Berkshire Hospital,Apr 2019-Mar 2020,742
+Thames Valley (BOB),Royal Berkshire NHS Foundation Trust,Royal Berkshire Hospital,Apr 2020-Mar 2021,759
+Thames Valley (BOB),Royal Berkshire NHS Foundation Trust,Royal Berkshire Hospital,Apr 2021-Mar 2022,733
+Thames Valley (BOB),Royal Berkshire NHS Foundation Trust,Royal Berkshire Hospital,Apr 2022-Mar 2023,696
+Thames Valley (BOB),Royal Berkshire NHS Foundation Trust,Royal Berkshire Hospital,Apr 2023-Mar 2024,696
+Wessex,Dorset County Hospital NHS Foundation Trust,Dorset County Hospital,Apr 2019-Mar 2020,425
+Wessex,Dorset County Hospital NHS Foundation Trust,Dorset County Hospital,Apr 2020-Mar 2021,405
+Wessex,Dorset County Hospital NHS Foundation Trust,Dorset County Hospital,Apr 2021-Mar 2022,550
+Wessex,Dorset County Hospital NHS Foundation Trust,Dorset County Hospital,Apr 2022-Mar 2023,444
+Wessex,Dorset County Hospital NHS Foundation Trust,Dorset County Hospital,Apr 2023-Mar 2024,513
+Wessex,Hampshire Hospitals NHS Foundation Trust,Royal Hampshire County Hospital,Apr 2019-Mar 2020,619
+Wessex,Hampshire Hospitals NHS Foundation Trust,Royal Hampshire County Hospital,Apr 2020-Mar 2021,641
+Wessex,Hampshire Hospitals NHS Foundation Trust,Royal Hampshire County Hospital,Apr 2021-Mar 2022,710
+Wessex,Hampshire Hospitals NHS Foundation Trust,Royal Hampshire County Hospital,Apr 2022-Mar 2023,744
+Wessex,Hampshire Hospitals NHS Foundation Trust,Royal Hampshire County Hospital,Apr 2023-Mar 2024,792
+Wessex,Isle of Wight NHS Trust,St Mary's Hospital Newport,Apr 2019-Mar 2020,296
+Wessex,Isle of Wight NHS Trust,St Mary's Hospital Newport,Apr 2020-Mar 2021,311
+Wessex,Isle of Wight NHS Trust,St Mary's Hospital Newport,Apr 2021-Mar 2022,319
+Wessex,Isle of Wight NHS Trust,St Mary's Hospital Newport,Apr 2022-Mar 2023,340
+Wessex,Isle of Wight NHS Trust,St Mary's Hospital Newport,Apr 2023-Mar 2024,336
+Wessex,Portsmouth Hospitals University National Health Service Trust,Queen Alexandra Hospital Portsmouth,Apr 2019-Mar 2020,1102
+Wessex,Portsmouth Hospitals University National Health Service Trust,Queen Alexandra Hospital Portsmouth,Apr 2020-Mar 2021,1092
+Wessex,Portsmouth Hospitals University National Health Service Trust,Queen Alexandra Hospital Portsmouth,Apr 2021-Mar 2022,1068
+Wessex,Portsmouth Hospitals University National Health Service Trust,Queen Alexandra Hospital Portsmouth,Apr 2022-Mar 2023,1031
+Wessex,Portsmouth Hospitals University National Health Service Trust,Queen Alexandra Hospital Portsmouth,Apr 2023-Mar 2024,1090
+Wessex,University Hospital Southampton NHS Foundation Trust,Southampton General Hospital,Apr 2019-Mar 2020,915
+Wessex,University Hospital Southampton NHS Foundation Trust,Southampton General Hospital,Apr 2020-Mar 2021,844
+Wessex,University Hospital Southampton NHS Foundation Trust,Southampton General Hospital,Apr 2021-Mar 2022,977
+Wessex,University Hospital Southampton NHS Foundation Trust,Southampton General Hospital,Apr 2022-Mar 2023,1049
+Wessex,University Hospital Southampton NHS Foundation Trust,Southampton General Hospital,Apr 2023-Mar 2024,1180
+Wessex,University Hospitals Dorset NHS Foundation Trust,Bournemouth and Poole HASU,Apr 2019-Mar 2020,.
+Wessex,University Hospitals Dorset NHS Foundation Trust,Bournemouth and Poole HASU,Apr 2020-Mar 2021,587
+Wessex,University Hospitals Dorset NHS Foundation Trust,University Hospitals Dorset HASU,Apr 2021-Mar 2022,1196
+Wessex,University Hospitals Dorset NHS Foundation Trust,University Hospitals Dorset Stroke Service,Apr 2022-Mar 2023,1271
+Wessex,University Hospitals Dorset NHS Foundation Trust,University Hospitals Dorset Stroke Service,Apr 2023-Mar 2024,1383
+West of England,Gloucestershire Hospitals NHS Foundation Trust,Gloucestershire Royal Hospital,Apr 2019-Mar 2020,957
+West of England,Gloucestershire Hospitals NHS Foundation Trust,Gloucestershire Royal Hospital,Apr 2020-Mar 2021,657
+West of England,Gloucestershire Hospitals NHS Foundation Trust,Gloucestershire Royal Hospital,Apr 2021-Mar 2022,892
+West of England,Gloucestershire Hospitals NHS Foundation Trust,Gloucestershire Royal Hospital,Apr 2022-Mar 2023,982
+West of England,Gloucestershire Hospitals NHS Foundation Trust,Gloucestershire Royal Hospital,Apr 2023-Mar 2024,971
+West of England,Great Western Hospitals NHS Foundation Trust,Great Western Hospital Swindon,Apr 2019-Mar 2020,568
+West of England,Great Western Hospitals NHS Foundation Trust,Great Western Hospital Swindon,Apr 2020-Mar 2021,574
+West of England,Great Western Hospitals NHS Foundation Trust,Great Western Hospital Swindon,Apr 2021-Mar 2022,667
+West of England,Great Western Hospitals NHS Foundation Trust,Great Western Hospital Swindon,Apr 2022-Mar 2023,600
+West of England,Great Western Hospitals NHS Foundation Trust,Great Western Hospital Swindon,Apr 2023-Mar 2024,688
+West of England,North Bristol NHS Trust,North Bristol Hospitals,Apr 2019-Mar 2020,929
+West of England,North Bristol NHS Trust,North Bristol Hospitals,Apr 2020-Mar 2021,902
+West of England,North Bristol NHS Trust,North Bristol Hospitals,Apr 2021-Mar 2022,1013
+West of England,North Bristol NHS Trust,North Bristol Hospitals,Apr 2022-Mar 2023,999
+West of England,North Bristol NHS Trust,Bristol and Weston SU,Apr 2023-Mar 2024,1532
+West of England,Royal United Hospitals Bath NHS Foundation Trust,Royal United Hospital Bath,Apr 2019-Mar 2020,692
+West of England,Royal United Hospitals Bath NHS Foundation Trust,Royal United Hospital Bath,Apr 2020-Mar 2021,652
+West of England,Royal United Hospitals Bath NHS Foundation Trust,Royal United Hospital Bath,Apr 2021-Mar 2022,695
+West of England,Royal United Hospitals Bath NHS Foundation Trust,Royal United Hospital Bath,Apr 2022-Mar 2023,710
+West of England,Royal United Hospitals Bath NHS Foundation Trust,Royal United Hospital Bath,Apr 2023-Mar 2024,746
+West of England,Salisbury NHS Foundation Trust,Salisbury District Hospital,Apr 2019-Mar 2020,396
+West of England,Salisbury NHS Foundation Trust,Salisbury District Hospital,Apr 2020-Mar 2021,374
+West of England,Salisbury NHS Foundation Trust,Salisbury District Hospital,Apr 2021-Mar 2022,360
+West of England,Salisbury NHS Foundation Trust,Salisbury District Hospital,Apr 2022-Mar 2023,341
+West of England,Salisbury NHS Foundation Trust,Salisbury District Hospital,Apr 2023-Mar 2024,367
+West of England,Somerset NHS Foundation Trust,Musgrove Park Hospital,Apr 2019-Mar 2020,691
+West of England,Somerset NHS Foundation Trust,Musgrove Park Hospital,Apr 2020-Mar 2021,536
+West of England,Somerset NHS Foundation Trust,Musgrove Park Hospital,Apr 2021-Mar 2022,705
+West of England,Somerset NHS Foundation Trust,Musgrove Park Hospital,Apr 2022-Mar 2023,734
+West of England,Somerset NHS Foundation Trust,Musgrove Park Hospital,Apr 2023-Mar 2024,760
+West of England,Yeovil District Hospital NHS Foundation Trust,Yeovil District Hospital,Apr 2019-Mar 2020,446
+West of England,Yeovil District Hospital NHS Foundation Trust,Yeovil District Hospital,Apr 2020-Mar 2021,419
+West of England,Yeovil District Hospital NHS Foundation Trust,Yeovil District Hospital,Apr 2021-Mar 2022,457
+West of England,Yeovil District Hospital NHS Foundation Trust,Yeovil District Hospital,Apr 2022-Mar 2023,415
+West of England,Somerset NHS Foundation Trust,Yeovil District Hospital,Apr 2023-Mar 2024,455
+Wales,Aneurin Bevan University Health Board,Grange University Hospital,Apr 2019-Mar 2020,.
+Wales,Aneurin Bevan University Health Board,Grange University Hospital,Apr 2020-Mar 2021,278
+Wales,Aneurin Bevan University Health Board,Grange University Hospital,Apr 2021-Mar 2022,743
+Wales,Aneurin Bevan University Health Board,Grange University Hospital,Apr 2022-Mar 2023,694
+Wales,Aneurin Bevan University Health Board,Grange University Hospital,Apr 2023-Mar 2024,792
+Wales,Betsi Cadwaladr University Health Board,Glan Clwyd District General Hospital,Apr 2019-Mar 2020,442
+Wales,Betsi Cadwaladr University Health Board,Glan Clwyd District General Hospital,Apr 2020-Mar 2021,354
+Wales,Betsi Cadwaladr University Health Board,Glan Clwyd District General Hospital,Apr 2021-Mar 2022,407
+Wales,Betsi Cadwaladr University Health Board,Glan Clwyd District General Hospital,Apr 2022-Mar 2023,390
+Wales,Betsi Cadwaladr University Health Board,Glan Clwyd District General Hospital,Apr 2023-Mar 2024,473
+Wales,Betsi Cadwaladr University Health Board,Maelor Hospital,Apr 2019-Mar 2020,481
+Wales,Betsi Cadwaladr University Health Board,Maelor Hospital,Apr 2020-Mar 2021,389
+Wales,Betsi Cadwaladr University Health Board,Maelor Hospital,Apr 2021-Mar 2022,382
+Wales,Betsi Cadwaladr University Health Board,Maelor Hospital,Apr 2022-Mar 2023,356
+Wales,Betsi Cadwaladr University Health Board,Maelor Hospital,Apr 2023-Mar 2024,428
+Wales,Betsi Cadwaladr University Health Board,Ysbyty Gwynedd,Apr 2019-Mar 2020,333
+Wales,Betsi Cadwaladr University Health Board,Ysbyty Gwynedd,Apr 2020-Mar 2021,350
+Wales,Betsi Cadwaladr University Health Board,Ysbyty Gwynedd,Apr 2021-Mar 2022,335
+Wales,Betsi Cadwaladr University Health Board,Ysbyty Gwynedd,Apr 2022-Mar 2023,264
+Wales,Betsi Cadwaladr University Health Board,Ysbyty Gwynedd,Apr 2023-Mar 2024,371
+Wales,Cardiff and Vale University Health Board,University Hospital of Wales,Apr 2019-Mar 2020,643
+Wales,Cardiff and Vale University Health Board,University Hospital of Wales,Apr 2020-Mar 2021,656
+Wales,Cardiff and Vale University Health Board,University Hospital of Wales,Apr 2021-Mar 2022,772
+Wales,Cardiff and Vale University Health Board,University Hospital of Wales,Apr 2022-Mar 2023,753
+Wales,Cardiff and Vale University Health Board,University Hospital of Wales,Apr 2023-Mar 2024,698
+Wales,Cwm Taf Morgannwg University Local Health Board,Prince Charles Hospital,Apr 2019-Mar 2020,608
+Wales,Cwm Taf Morgannwg University Local Health Board,Prince Charles Hospital,Apr 2020-Mar 2021,583
+Wales,Cwm Taf Morgannwg University Local Health Board,Prince Charles Hospital,Apr 2021-Mar 2022,569
+Wales,Cwm Taf Morgannwg University Local Health Board,Prince Charles Hospital,Apr 2022-Mar 2023,515
+Wales,Cwm Taf Morgannwg University Local Health Board,Prince Charles Hospital,Apr 2023-Mar 2024,576
+Wales,Cwm Taf Morgannwg University Local Health Board,Princess Of Wales Hospital,Apr 2019-Mar 2020,358
+Wales,Cwm Taf Morgannwg University Local Health Board,Princess Of Wales Hospital,Apr 2020-Mar 2021,256
+Wales,Cwm Taf Morgannwg University Local Health Board,Princess Of Wales Hospital,Apr 2021-Mar 2022,365
+Wales,Cwm Taf Morgannwg University Local Health Board,Princess Of Wales Hospital,Apr 2022-Mar 2023,332
+Wales,Cwm Taf Morgannwg University Local Health Board,Princess Of Wales Hospital,Apr 2023-Mar 2024,364
+Wales,Cwm Taf Morgannwg University Local Health Board,Royal Glamorgan,Apr 2019-Mar 2020,.
+Wales,Cwm Taf Morgannwg University Local Health Board,Royal Glamorgan,Apr 2020-Mar 2021,.
+Wales,Cwm Taf Morgannwg University Local Health Board,Royal Glamorgan,Apr 2021-Mar 2022,.
+Wales,Cwm Taf Morgannwg University Local Health Board,Royal Glamorgan,Apr 2022-Mar 2023,.
+Wales,Cwm Taf Morgannwg University Local Health Board,Royal Glamorgan,Apr 2023-Mar 2024,134
+Wales,Hywel Dda Health Board,Bronglais Hospital,Apr 2019-Mar 2020,145
+Wales,Hywel Dda Health Board,Bronglais Hospital,Apr 2020-Mar 2021,121
+Wales,Hywel Dda Health Board,Bronglais Hospital,Apr 2021-Mar 2022,132
+Wales,Hywel Dda Health Board,Bronglais Hospital,Apr 2022-Mar 2023,136
+Wales,Hywel Dda Health Board,Bronglais Hospital,Apr 2023-Mar 2024,171
+Wales,Hywel Dda Health Board,Prince Philip Hospital,Apr 2019-Mar 2020,184
+Wales,Hywel Dda Health Board,Prince Philip Hospital,Apr 2020-Mar 2021,163
+Wales,Hywel Dda Health Board,Prince Philip Hospital,Apr 2021-Mar 2022,173
+Wales,Hywel Dda Health Board,Prince Philip Hospital,Apr 2022-Mar 2023,130
+Wales,Hywel Dda Health Board,Prince Philip Hospital,Apr 2023-Mar 2024,163
+Wales,Hywel Dda Health Board,West Wales General,Apr 2019-Mar 2020,206
+Wales,Hywel Dda Health Board,West Wales General,Apr 2020-Mar 2021,211
+Wales,Hywel Dda Health Board,West Wales General,Apr 2021-Mar 2022,210
+Wales,Hywel Dda Health Board,West Wales General,Apr 2022-Mar 2023,228
+Wales,Hywel Dda Health Board,West Wales General,Apr 2023-Mar 2024,247
+Wales,Hywel Dda Health Board,Withybush General Hospital,Apr 2019-Mar 2020,230
+Wales,Hywel Dda Health Board,Withybush General Hospital,Apr 2020-Mar 2021,196
+Wales,Hywel Dda Health Board,Withybush General Hospital,Apr 2021-Mar 2022,210
+Wales,Hywel Dda Health Board,Withybush General Hospital,Apr 2022-Mar 2023,224
+Wales,Hywel Dda Health Board,Withybush General Hospital,Apr 2023-Mar 2024,225
+Wales,Swansea Bay University Local Health Board,Morriston Hospital,Apr 2019-Mar 2020,582
+Wales,Swansea Bay University Local Health Board,Morriston Hospital,Apr 2020-Mar 2021,508
+Wales,Swansea Bay University Local Health Board,Morriston Hospital,Apr 2021-Mar 2022,625
+Wales,Swansea Bay University Local Health Board,Morriston Hospital,Apr 2022-Mar 2023,630
+Wales,Swansea Bay University Local Health Board,Morriston Hospital,Apr 2023-Mar 2024,645
+Northern Ireland,Belfast Health and Social Care Trust,Royal Victoria Hospital Belfast,Apr 2019-Mar 2020,764
+Northern Ireland,Belfast Health and Social Care Trust,Royal Victoria Hospital Belfast,Apr 2020-Mar 2021,750
+Northern Ireland,Belfast Health and Social Care Trust,Royal Victoria Hospital Belfast,Apr 2021-Mar 2022,695
+Northern Ireland,Belfast Health and Social Care Trust,Royal Victoria Hospital Belfast,Apr 2022-Mar 2023,872
+Northern Ireland,Belfast Health and Social Care Trust,Royal Victoria Hospital Belfast,Apr 2023-Mar 2024,813
+Northern Ireland,Northern Health and Social Care Trust,Antrim Area Hospital,Apr 2019-Mar 2020,448
+Northern Ireland,Northern Health and Social Care Trust,Antrim Area Hospital,Apr 2020-Mar 2021,492
+Northern Ireland,Northern Health and Social Care Trust,Antrim Area Hospital,Apr 2021-Mar 2022,551
+Northern Ireland,Northern Health and Social Care Trust,Antrim Area Hospital,Apr 2022-Mar 2023,509
+Northern Ireland,Northern Health and Social Care Trust,Antrim Area Hospital,Apr 2023-Mar 2024,514
+Northern Ireland,Northern Health and Social Care Trust,Causeway Hospital,Apr 2019-Mar 2020,211
+Northern Ireland,Northern Health and Social Care Trust,Causeway Hospital,Apr 2020-Mar 2021,184
+Northern Ireland,Northern Health and Social Care Trust,Causeway Hospital,Apr 2021-Mar 2022,189
+Northern Ireland,Northern Health and Social Care Trust,Causeway Hospital,Apr 2022-Mar 2023,215
+Northern Ireland,Northern Health and Social Care Trust,Causeway Hospital,Apr 2023-Mar 2024,250
+Northern Ireland,South Eastern Health and Social Care Trust,Ulster Hospital,Apr 2019-Mar 2020,441
+Northern Ireland,South Eastern Health and Social Care Trust,Ulster Hospital,Apr 2020-Mar 2021,507
+Northern Ireland,South Eastern Health and Social Care Trust,Ulster Hospital,Apr 2021-Mar 2022,530
+Northern Ireland,South Eastern Health and Social Care Trust,Ulster Hospital,Apr 2022-Mar 2023,540
+Northern Ireland,South Eastern Health and Social Care Trust,Ulster Hospital,Apr 2023-Mar 2024,565
+Northern Ireland,Southern Health and Social Care Trust,Craigavon Area Hospital,Apr 2019-Mar 2020,378
+Northern Ireland,Southern Health and Social Care Trust,Craigavon Area Hospital,Apr 2020-Mar 2021,449
+Northern Ireland,Southern Health and Social Care Trust,Craigavon Area Hospital,Apr 2021-Mar 2022,399
+Northern Ireland,Southern Health and Social Care Trust,Craigavon Area Hospital,Apr 2022-Mar 2023,420
+Northern Ireland,Southern Health and Social Care Trust,Craigavon Area Hospital,Apr 2023-Mar 2024,582
+Northern Ireland,Southern Health and Social Care Trust,Daisy Hill Hospital,Apr 2019-Mar 2020,183
+Northern Ireland,Southern Health and Social Care Trust,Daisy Hill Hospital,Apr 2020-Mar 2021,115
+Northern Ireland,Southern Health and Social Care Trust,Daisy Hill Hospital,Apr 2021-Mar 2022,185
+Northern Ireland,Southern Health and Social Care Trust,Daisy Hill Hospital,Apr 2022-Mar 2023,197
+Northern Ireland,Southern Health and Social Care Trust,Daisy Hill Hospital,Apr 2023-Mar 2024,164
+Northern Ireland,Western Health and Social Care Trust,Altnagelvin Hospital,Apr 2019-Mar 2020,209
+Northern Ireland,Western Health and Social Care Trust,Altnagelvin Hospital,Apr 2020-Mar 2021,160
+Northern Ireland,Western Health and Social Care Trust,Altnagelvin Hospital,Apr 2021-Mar 2022,219
+Northern Ireland,Western Health and Social Care Trust,Altnagelvin Hospital,Apr 2022-Mar 2023,270
+Northern Ireland,Western Health and Social Care Trust,Altnagelvin Hospital,Apr 2023-Mar 2024,301
+Northern Ireland,Western Health and Social Care Trust,South West Acute Hospital,Apr 2019-Mar 2020,191
+Northern Ireland,Western Health and Social Care Trust,South West Acute Hospital,Apr 2020-Mar 2021,139
+Northern Ireland,Western Health and Social Care Trust,South West Acute Hospital,Apr 2021-Mar 2022,170
+Northern Ireland,Western Health and Social Care Trust,South West Acute Hospital,Apr 2022-Mar 2023,205
+Northern Ireland,Western Health and Social Care Trust,South West Acute Hospital,Apr 2023-Mar 2024,190
+Islands,Manx Care,Noble's Hospital,Apr 2019-Mar 2020,157
+Islands,Manx Care,Noble's Hospital,Apr 2020-Mar 2021,161
+Islands,Manx Care,Noble's Hospital,Apr 2021-Mar 2022,176
+Islands,Manx Care,Noble's Hospital,Apr 2022-Mar 2023,178
+Islands,Manx Care,Noble's Hospital,Apr 2023-Mar 2024,161
+Islands,States of Jersey Health and Social Services,Jersey Health & Community Services Acute Episode,Apr 2019-Mar 2020,152
+Islands,States of Jersey Health and Social Services,Jersey Health & Community Services Acute Episode,Apr 2020-Mar 2021,140
+Islands,States of Jersey Health and Social Services,Jersey Health & Community Services Acute Episode,Apr 2021-Mar 2022,133
+Islands,States of Jersey Health and Social Services,Jersey Health & Community Services Acute Episode,Apr 2022-Mar 2023,136
+Islands,States of Jersey Health and Social Services,Jersey Health & Community Services Acute Episode,Apr 2023-Mar 2024,47
+London,"Barking, Havering and Redbridge University Hospitals NHS Trust",Queens Hospital Romford SU,Apr 2019-Mar 2020,706
+London,"Barking, Havering and Redbridge University Hospitals NHS Trust",Queens Hospital Romford SU,Apr 2020-Mar 2021,489
+London,"Barking, Havering and Redbridge University Hospitals NHS Trust",Queens Hospital Romford SU,Apr 2021-Mar 2022,496
+London,"Barking, Havering and Redbridge University Hospitals NHS Trust",Queens Hospital Romford SU,Apr 2022-Mar 2023,447
+London,"Barking, Havering and Redbridge University Hospitals NHS Trust",Queens Hospital Romford SU,Apr 2023-Mar 2024,416
+London,Barts Health NHS Trust,Newham General Hospital,Apr 2019-Mar 2020,173
+London,Barts Health NHS Trust,Newham General Hospital,Apr 2020-Mar 2021,161
+London,Barts Health NHS Trust,Newham General Hospital,Apr 2021-Mar 2022,149
+London,Barts Health NHS Trust,Newham General Hospital,Apr 2022-Mar 2023,147
+London,Barts Health NHS Trust,Newham General Hospital,Apr 2023-Mar 2024,119
+London,Barts Health NHS Trust,Royal London Hospital SU,Apr 2019-Mar 2020,502
+London,Barts Health NHS Trust,Royal London Hospital SU,Apr 2020-Mar 2021,494
+London,Barts Health NHS Trust,Royal London Hospital SU,Apr 2021-Mar 2022,409
+London,Barts Health NHS Trust,Royal London Hospital SU,Apr 2022-Mar 2023,480
+London,Barts Health NHS Trust,Royal London Hospital SU,Apr 2023-Mar 2024,465
+London,Barts Health NHS Trust,Whipps Cross University Hospital,Apr 2019-Mar 2020,159
+London,Barts Health NHS Trust,Whipps Cross University Hospital,Apr 2020-Mar 2021,168
+London,Barts Health NHS Trust,Whipps Cross University Hospital,Apr 2021-Mar 2022,199
+London,Barts Health NHS Trust,Whipps Cross University Hospital,Apr 2022-Mar 2023,186
+London,Barts Health NHS Trust,Whipps Cross University Hospital,Apr 2023-Mar 2024,179
+London,Chelsea and Westminster Hospital NHS Foundation Trust,Chelsea and Westminster Hospital,Apr 2019-Mar 2020,186
+London,Chelsea and Westminster Hospital NHS Foundation Trust,Chelsea and Westminster Hospital,Apr 2020-Mar 2021,193
+London,Chelsea and Westminster Hospital NHS Foundation Trust,Chelsea and Westminster Hospital,Apr 2021-Mar 2022,138
+London,Chelsea and Westminster Hospital NHS Foundation Trust,Chelsea and Westminster Hospital,Apr 2022-Mar 2023,145
+London,Chelsea and Westminster Hospital NHS Foundation Trust,Chelsea and Westminster Hospital,Apr 2023-Mar 2024,160
+London,Chelsea and Westminster Hospital NHS Foundation Trust,West Middlesex University Hospital,Apr 2019-Mar 2020,208
+London,Chelsea and Westminster Hospital NHS Foundation Trust,West Middlesex University Hospital,Apr 2020-Mar 2021,167
+London,Chelsea and Westminster Hospital NHS Foundation Trust,West Middlesex University Hospital,Apr 2021-Mar 2022,199
+London,Chelsea and Westminster Hospital NHS Foundation Trust,West Middlesex University Hospital,Apr 2022-Mar 2023,184
+London,Chelsea and Westminster Hospital NHS Foundation Trust,West Middlesex University Hospital,Apr 2023-Mar 2024,212
+London,Croydon Health Services NHS Trust,Croydon University Hospital,Apr 2019-Mar 2020,239
+London,Croydon Health Services NHS Trust,Croydon University Hospital,Apr 2020-Mar 2021,233
+London,Croydon Health Services NHS Trust,Croydon University Hospital,Apr 2021-Mar 2022,266
+London,Croydon Health Services NHS Trust,Croydon University Hospital,Apr 2022-Mar 2023,338
+London,Croydon Health Services NHS Trust,Croydon University Hospital,Apr 2023-Mar 2024,307
+London,Epsom and St Helier University Hospitals NHS Trust,St Helier Hospital,Apr 2019-Mar 2020,184
+London,Epsom and St Helier University Hospitals NHS Trust,St Helier Hospital,Apr 2020-Mar 2021,192
+London,Epsom and St Helier University Hospitals NHS Trust,St Helier Hospital,Apr 2021-Mar 2022,184
+London,Epsom and St Helier University Hospitals NHS Trust,St Helier Hospital,Apr 2022-Mar 2023,194
+London,Epsom and St Helier University Hospitals NHS Trust,St Helier Hospital,Apr 2023-Mar 2024,207
+London,Guy's and St Thomas' NHS Foundation Trust,St Thomas Hospital,Apr 2019-Mar 2020,200
+London,Guy's and St Thomas' NHS Foundation Trust,St Thomas Hospital,Apr 2020-Mar 2021,163
+London,Guy's and St Thomas' NHS Foundation Trust,St Thomas Hospital,Apr 2021-Mar 2022,194
+London,Guy's and St Thomas' NHS Foundation Trust,St Thomas Hospital,Apr 2022-Mar 2023,194
+London,Guy's and St Thomas' NHS Foundation Trust,St Thomas Hospital,Apr 2023-Mar 2024,210
+London,Hillingdon Hospitals NHS Foundation Trust,Hillingdon Hospital,Apr 2019-Mar 2020,210
+London,Hillingdon Hospitals NHS Foundation Trust,Hillingdon Hospital,Apr 2020-Mar 2021,155
+London,Hillingdon Hospitals NHS Foundation Trust,Hillingdon Hospital,Apr 2021-Mar 2022,133
+London,Hillingdon Hospitals NHS Foundation Trust,Hillingdon Hospital,Apr 2022-Mar 2023,187
+London,Hillingdon Hospitals NHS Foundation Trust,Hillingdon Hospital,Apr 2023-Mar 2024,242
+London,Homerton Healthcare NHS Foundation Trust,Homerton University Hospital,Apr 2019-Mar 2020,175
+London,Homerton Healthcare NHS Foundation Trust,Homerton University Hospital,Apr 2020-Mar 2021,152
+London,Homerton Healthcare NHS Foundation Trust,Homerton University Hospital,Apr 2021-Mar 2022,114
+London,Homerton Healthcare NHS Foundation Trust,Homerton University Hospital,Apr 2022-Mar 2023,131
+London,Homerton Healthcare NHS Foundation Trust,Homerton University Hospital,Apr 2023-Mar 2024,141
+London,Imperial College Healthcare NHS Trust,Charing Cross Hospital SU - Nine South Ward,Apr 2019-Mar 2020,318
+London,Imperial College Healthcare NHS Trust,Charing Cross Hospital SU - Nine South Ward,Apr 2020-Mar 2021,301
+London,Imperial College Healthcare NHS Trust,Charing Cross Hospital SU - Nine South Ward,Apr 2021-Mar 2022,350
+London,Imperial College Healthcare NHS Trust,Charing Cross Hospital SU - Nine South Ward,Apr 2022-Mar 2023,289
+London,Imperial College Healthcare NHS Trust,Charing Cross Hospital SU - Nine South Ward,Apr 2023-Mar 2024,304
+London,King's College Hospital NHS Foundation Trust,King's College Hospital SU,Apr 2019-Mar 2020,117
+London,King's College Hospital NHS Foundation Trust,King's College Hospital SU,Apr 2020-Mar 2021,121
+London,King's College Hospital NHS Foundation Trust,King's College Hospital SU,Apr 2021-Mar 2022,107
+London,King's College Hospital NHS Foundation Trust,King's College Hospital SU,Apr 2022-Mar 2023,154
+London,King's College Hospital NHS Foundation Trust,King's College Hospital SU,Apr 2023-Mar 2024,161
+London,King's College Hospital NHS Foundation Trust,Princess Royal University Hospital SU,Apr 2019-Mar 2020,401
+London,King's College Hospital NHS Foundation Trust,Princess Royal University Hospital SU,Apr 2020-Mar 2021,388
+London,King's College Hospital NHS Foundation Trust,Princess Royal University Hospital SU,Apr 2021-Mar 2022,412
+London,King's College Hospital NHS Foundation Trust,Princess Royal University Hospital SU,Apr 2022-Mar 2023,456
+London,King's College Hospital NHS Foundation Trust,Princess Royal University Hospital SU,Apr 2023-Mar 2024,518
+London,Kingston Hospital NHS Foundation Trust,Kingston Hospital,Apr 2019-Mar 2020,251
+London,Kingston Hospital NHS Foundation Trust,Kingston Hospital,Apr 2020-Mar 2021,233
+London,Kingston Hospital NHS Foundation Trust,Kingston Hospital,Apr 2021-Mar 2022,229
+London,Kingston Hospital NHS Foundation Trust,Kingston Hospital,Apr 2022-Mar 2023,249
+London,Kingston Hospital NHS Foundation Trust,Kingston Hospital,Apr 2023-Mar 2024,231
+London,Lewisham and Greenwich NHS Trust,University Hospital Lewisham,Apr 2019-Mar 2020,349
+London,Lewisham and Greenwich NHS Trust,University Hospital Lewisham,Apr 2020-Mar 2021,359
+London,Lewisham and Greenwich NHS Trust,University Hospital Lewisham,Apr 2021-Mar 2022,375
+London,Lewisham and Greenwich NHS Trust,University Hospital Lewisham,Apr 2022-Mar 2023,440
+London,Lewisham and Greenwich NHS Trust,University Hospital Lewisham,Apr 2023-Mar 2024,495
+London,London North West University Healthcare NHS Trust,Northwick Park Hospital SU,Apr 2019-Mar 2020,701
+London,London North West University Healthcare NHS Trust,Northwick Park Hospital SU,Apr 2020-Mar 2021,603
+London,London North West University Healthcare NHS Trust,Northwick Park Hospital SU,Apr 2021-Mar 2022,806
+London,London North West University Healthcare NHS Trust,Northwick Park Hospital SU,Apr 2022-Mar 2023,848
+London,London North West University Healthcare NHS Trust,Northwick Park Hospital SU,Apr 2023-Mar 2024,869
+London,North Middlesex University Hospital NHS Trust,North Middlesex Hospital,Apr 2019-Mar 2020,170
+London,North Middlesex University Hospital NHS Trust,North Middlesex Hospital,Apr 2020-Mar 2021,186
+London,North Middlesex University Hospital NHS Trust,North Middlesex Hospital,Apr 2021-Mar 2022,237
+London,North Middlesex University Hospital NHS Trust,North Middlesex Hospital,Apr 2022-Mar 2023,271
+London,North Middlesex University Hospital NHS Trust,North Middlesex Hospital,Apr 2023-Mar 2024,247
+London,Royal Free London NHS Foundation Trust,Barnet General Hospital,Apr 2019-Mar 2020,143
+London,Royal Free London NHS Foundation Trust,Barnet General Hospital,Apr 2020-Mar 2021,163
+London,Royal Free London NHS Foundation Trust,Barnet General Hospital,Apr 2021-Mar 2022,176
+London,Royal Free London NHS Foundation Trust,Barnet General Hospital,Apr 2022-Mar 2023,154
+London,Royal Free London NHS Foundation Trust,Barnet General Hospital,Apr 2023-Mar 2024,175
+London,Royal Free London NHS Foundation Trust,Royal Free Hospital,Apr 2019-Mar 2020,277
+London,Royal Free London NHS Foundation Trust,Royal Free Hospital,Apr 2020-Mar 2021,224
+London,Royal Free London NHS Foundation Trust,Royal Free Hospital,Apr 2021-Mar 2022,203
+London,Royal Free London NHS Foundation Trust,Royal Free Hospital,Apr 2022-Mar 2023,211
+London,Royal Free London NHS Foundation Trust,Royal Free Hospital,Apr 2023-Mar 2024,237
+London,St George's University Hospitals NHS Foundation Trust,St George's Hospital SU,Apr 2019-Mar 2020,184
+London,St George's University Hospitals NHS Foundation Trust,St George's Hospital SU,Apr 2020-Mar 2021,219
+London,St George's University Hospitals NHS Foundation Trust,St George's Hospital SU,Apr 2021-Mar 2022,157
+London,St George's University Hospitals NHS Foundation Trust,St George's Hospital SU,Apr 2022-Mar 2023,155
+London,St George's University Hospitals NHS Foundation Trust,St George's Hospital SU,Apr 2023-Mar 2024,145
+London,University College London Hospitals NHS Foundation Trust,University College Hospital SU,Apr 2019-Mar 2020,237
+London,University College London Hospitals NHS Foundation Trust,University College Hospital SU,Apr 2020-Mar 2021,177
+London,University College London Hospitals NHS Foundation Trust,University College Hospital SU,Apr 2021-Mar 2022,138
+London,University College London Hospitals NHS Foundation Trust,University College Hospital SU,Apr 2022-Mar 2023,139
+London,University College London Hospitals NHS Foundation Trust,University College Hospital SU,Apr 2023-Mar 2024,118
+East Midlands,United Lincolnshire Hospitals NHS Trust,Pilgrim Hospital,Apr 2019-Mar 2020,465
+East Midlands,United Lincolnshire Hospitals NHS Trust,Pilgrim Hospital,Apr 2020-Mar 2021,337
+East Midlands,United Lincolnshire Hospitals NHS Trust,Pilgrim Hospital,Apr 2021-Mar 2022,263
+East Midlands,United Lincolnshire Hospitals NHS Trust,Pilgrim Hospital,Apr 2022-Mar 2023,212
+East Midlands,United Lincolnshire Hospitals NHS Trust,Pilgrim Hospital,Apr 2023-Mar 2024,75
+East Midlands,University Hospitals of Derby and Burton NHS Foundation Trust,Queens Hospital Burton upon Trent,Apr 2019-Mar 2020,381
+East Midlands,University Hospitals of Derby and Burton NHS Foundation Trust,Queens Hospital Burton upon Trent,Apr 2020-Mar 2021,222
+East Midlands,University Hospitals of Derby and Burton NHS Foundation Trust,Queens Hospital Burton upon Trent,Apr 2021-Mar 2022,199
+East Midlands,University Hospitals of Derby and Burton NHS Foundation Trust,Queens Hospital Burton upon Trent,Apr 2022-Mar 2023,234
+East Midlands,University Hospitals of Derby and Burton NHS Foundation Trust,Queens Hospital Burton upon Trent,Apr 2023-Mar 2024,256
+East of England (North),North West Anglia NHS Foundation Trust,Hinchingbrooke Hospital,Apr 2019-Mar 2020,162
+East of England (North),North West Anglia NHS Foundation Trust,Hinchingbrooke Hospital,Apr 2020-Mar 2021,168
+East of England (North),North West Anglia NHS Foundation Trust,Hinchingbrooke Hospital,Apr 2021-Mar 2022,168
+East of England (North),North West Anglia NHS Foundation Trust,Hinchingbrooke Hospital,Apr 2022-Mar 2023,174
+East of England (North),North West Anglia NHS Foundation Trust,Hinchingbrooke Hospital,Apr 2023-Mar 2024,138
+East of England (South),Bedfordshire Hospitals NHS Foundation Trust,Bedford Hospital,Apr 2019-Mar 2020,107
+East of England (South),Bedfordshire Hospitals NHS Foundation Trust,Bedford Hospital,Apr 2020-Mar 2021,90
+East of England (South),Bedfordshire Hospitals NHS Foundation Trust,Bedford Hospital,Apr 2021-Mar 2022,209
+East of England (South),Bedfordshire Hospitals NHS Foundation Trust,Bedford Hospital,Apr 2022-Mar 2023,152
+East of England (South),Bedfordshire Hospitals NHS Foundation Trust,Bedford Hospital,Apr 2023-Mar 2024,171
+North Midlands,Shrewsbury and Telford Hospital NHS Trust,Royal Shrewsbury Hospital,Apr 2019-Mar 2020,60
+North Midlands,Shrewsbury and Telford Hospital NHS Trust,Royal Shrewsbury Hospital,Apr 2020-Mar 2021,44
+North Midlands,Shrewsbury and Telford Hospital NHS Trust,Royal Shrewsbury Hospital,Apr 2021-Mar 2022,52
+North Midlands,Shrewsbury and Telford Hospital NHS Trust,Royal Shrewsbury Hospital,Apr 2022-Mar 2023,83
+North Midlands,Shrewsbury and Telford Hospital NHS Trust,Royal Shrewsbury Hospital,Apr 2023-Mar 2024,67
+North Midlands,University Hospitals of North Midlands NHS Trust,County Hospital,Apr 2019-Mar 2020,33
+North Midlands,University Hospitals of North Midlands NHS Trust,County Hospital,Apr 2020-Mar 2021,.
+North Midlands,University Hospitals of North Midlands NHS Trust,County Hospital,Apr 2021-Mar 2022,.
+North Midlands,University Hospitals of North Midlands NHS Trust,County Hospital,Apr 2022-Mar 2023,Too few to report
+North Midlands,University Hospitals of North Midlands NHS Trust,County Hospital,Apr 2023-Mar 2024,Too few to report
+Cheshire and Mersey,Southport and Ormskirk Hospital NHS Trust,Southport and Formby District General,Apr 2019-Mar 2020,408
+Cheshire and Mersey,Southport and Ormskirk Hospital NHS Trust,Southport and Formby District General,Apr 2020-Mar 2021,253
+Cheshire and Mersey,Southport and Ormskirk Hospital NHS Trust,Southport and Formby District General,Apr 2021-Mar 2022,354
+Cheshire and Mersey,Southport and Ormskirk Hospital NHS Trust,Southport and Formby District General,Apr 2022-Mar 2023,360
+Cheshire and Mersey,Mersey and West Lancashire Teaching Hospitals NHS Trust,Southport and Formby District General,Apr 2023-Mar 2024,257
+Cheshire and Mersey,St Helens and Knowsley Teaching Hospitals NHS Trust,Whiston Hospital SU,Apr 2019-Mar 2020,364
+Cheshire and Mersey,St Helens and Knowsley Teaching Hospitals NHS Trust,Whiston Hospital SU,Apr 2020-Mar 2021,326
+Cheshire and Mersey,St Helens and Knowsley Teaching Hospitals NHS Trust,Whiston Hospital SU,Apr 2021-Mar 2022,317
+Cheshire and Mersey,St Helens and Knowsley Teaching Hospitals NHS Trust,Whiston Hospital SU,Apr 2022-Mar 2023,353
+Cheshire and Mersey,Mersey and West Lancashire Teaching Hospitals NHS Trust,Whiston Hospital SU,Apr 2023-Mar 2024,318
+Cheshire and Mersey,Warrington and Halton Hospitals NHS Foundation Trust,Warrington Hospital,Apr 2019-Mar 2020,218
+Cheshire and Mersey,Warrington and Halton Hospitals NHS Foundation Trust,Warrington Hospital,Apr 2020-Mar 2021,200
+Cheshire and Mersey,Warrington and Halton Hospitals NHS Foundation Trust,Warrington Hospital,Apr 2021-Mar 2022,173
+Cheshire and Mersey,Warrington and Halton Hospitals NHS Foundation Trust,Warrington Hospital,Apr 2022-Mar 2023,180
+Cheshire and Mersey,Warrington and Halton Hospitals NHS Foundation Trust,Warrington Hospital,Apr 2023-Mar 2024,219
+Cheshire and Mersey,Wirral University Teaching Hospital NHS Foundation Trust,Wirral Clatterbridge Rehabilitation Centre,Apr 2019-Mar 2020,.
+Cheshire and Mersey,Wirral University Teaching Hospital NHS Foundation Trust,Wirral Clatterbridge Rehabilitation Centre,Apr 2020-Mar 2021,Too few to report
+Cheshire and Mersey,Wirral University Teaching Hospital NHS Foundation Trust,Wirral Clatterbridge Rehabilitation Centre,Apr 2021-Mar 2022,133
+Cheshire and Mersey,Wirral University Teaching Hospital NHS Foundation Trust,Wirral Clatterbridge Rehabilitation Centre,Apr 2022-Mar 2023,115
+Cheshire and Mersey,Wirral University Teaching Hospital NHS Foundation Trust,Wirral Clatterbridge Rehabilitation Centre,Apr 2023-Mar 2024,125
+Greater Manchester,Bolton NHS Foundation Trust,Royal Bolton Hospital,Apr 2019-Mar 2020,270
+Greater Manchester,Bolton NHS Foundation Trust,Royal Bolton Hospital,Apr 2020-Mar 2021,268
+Greater Manchester,Bolton NHS Foundation Trust,Royal Bolton Hospital,Apr 2021-Mar 2022,242
+Greater Manchester,Bolton NHS Foundation Trust,Royal Bolton Hospital,Apr 2022-Mar 2023,273
+Greater Manchester,Bolton NHS Foundation Trust,Royal Bolton Hospital,Apr 2023-Mar 2024,270
+Greater Manchester,Manchester University NHS Foundation Trust,Manchester Royal Infirmary,Apr 2019-Mar 2020,219
+Greater Manchester,Manchester University NHS Foundation Trust,Manchester Royal Infirmary,Apr 2020-Mar 2021,233
+Greater Manchester,Manchester University NHS Foundation Trust,Manchester Royal Infirmary,Apr 2021-Mar 2022,264
+Greater Manchester,Manchester University NHS Foundation Trust,Manchester Royal Infirmary,Apr 2022-Mar 2023,193
+Greater Manchester,Manchester University NHS Foundation Trust,Manchester Royal Infirmary,Apr 2023-Mar 2024,237
+Greater Manchester,Manchester University NHS Foundation Trust,Trafford General Hospital,Apr 2019-Mar 2020,129
+Greater Manchester,Manchester University NHS Foundation Trust,Trafford General Hospital,Apr 2020-Mar 2021,278
+Greater Manchester,Manchester University NHS Foundation Trust,Trafford General Hospital,Apr 2021-Mar 2022,245
+Greater Manchester,Manchester University NHS Foundation Trust,Trafford General Hospital,Apr 2022-Mar 2023,211
+Greater Manchester,Manchester University NHS Foundation Trust,Trafford General Hospital,Apr 2023-Mar 2024,239
+Greater Manchester,Manchester University NHS Foundation Trust,Wythenshawe Hospital,Apr 2019-Mar 2020,249
+Greater Manchester,Manchester University NHS Foundation Trust,Wythenshawe Hospital,Apr 2020-Mar 2021,85
+Greater Manchester,Manchester University NHS Foundation Trust,Wythenshawe Hospital,Apr 2021-Mar 2022,133
+Greater Manchester,Manchester University NHS Foundation Trust,Wythenshawe Hospital,Apr 2022-Mar 2023,104
+Greater Manchester,Manchester University NHS Foundation Trust,Wythenshawe Hospital,Apr 2023-Mar 2024,146
+Greater Manchester,Northern Care Alliance NHS Foundation Trust,Salford Royal Rehab Unit,Apr 2019-Mar 2020,.
+Greater Manchester,Northern Care Alliance NHS Foundation Trust,Salford Royal Rehab Unit,Apr 2020-Mar 2021,.
+Greater Manchester,Northern Care Alliance NHS Foundation Trust,Salford Royal Rehab Unit,Apr 2021-Mar 2022,.
+Greater Manchester,Northern Care Alliance NHS Foundation Trust,Salford Royal Rehab Unit,Apr 2022-Mar 2023,.
+Greater Manchester,Northern Care Alliance NHS Foundation Trust,Salford Royal Rehab Unit,Apr 2023-Mar 2024,41
+Greater Manchester,Tameside and Glossop Integrated Care NHS Foundation Trust,Tameside General Hospital,Apr 2019-Mar 2020,260
+Greater Manchester,Tameside and Glossop Integrated Care NHS Foundation Trust,Tameside General Hospital,Apr 2020-Mar 2021,238
+Greater Manchester,Tameside and Glossop Integrated Care NHS Foundation Trust,Tameside General Hospital,Apr 2021-Mar 2022,210
+Greater Manchester,Tameside and Glossop Integrated Care NHS Foundation Trust,Tameside General Hospital,Apr 2022-Mar 2023,216
+Greater Manchester,Tameside and Glossop Integrated Care NHS Foundation Trust,Tameside General Hospital,Apr 2023-Mar 2024,253
+Greater Manchester,"Wrightington, Wigan and Leigh NHS Foundation Trust",Royal Albert Edward Infirmary,Apr 2019-Mar 2020,359
+Greater Manchester,"Wrightington, Wigan and Leigh NHS Foundation Trust",Royal Albert Edward Infirmary,Apr 2020-Mar 2021,285
+Greater Manchester,"Wrightington, Wigan and Leigh NHS Foundation Trust",Royal Albert Edward Infirmary,Apr 2021-Mar 2022,371
+Greater Manchester,"Wrightington, Wigan and Leigh NHS Foundation Trust",Royal Albert Edward Infirmary,Apr 2022-Mar 2023,355
+Greater Manchester,"Wrightington, Wigan and Leigh NHS Foundation Trust",Royal Albert Edward Infirmary,Apr 2023-Mar 2024,334
+Humber Coast and Vale,Northern Lincolnshire and Goole Hospitals NHS Foundation Trust,Diana Princess of Wales Hospital Grimsby,Apr 2019-Mar 2020,132
+Humber Coast and Vale,Northern Lincolnshire and Goole Hospitals NHS Foundation Trust,Diana Princess of Wales Hospital Grimsby,Apr 2020-Mar 2021,103
+Humber Coast and Vale,Northern Lincolnshire and Goole Hospitals NHS Foundation Trust,Diana Princess of Wales Hospital Grimsby,Apr 2021-Mar 2022,108
+Humber Coast and Vale,Northern Lincolnshire and Goole Hospitals NHS Foundation Trust,Diana Princess of Wales Hospital Grimsby,Apr 2022-Mar 2023,104
+Humber Coast and Vale,Northern Lincolnshire and Goole Hospitals NHS Foundation Trust,Diana Princess of Wales Hospital Grimsby,Apr 2023-Mar 2024,149
+Humber Coast and Vale,Northern Lincolnshire and Goole Hospitals NHS Foundation Trust,Goole District Hospital,Apr 2019-Mar 2020,21
+Humber Coast and Vale,Northern Lincolnshire and Goole Hospitals NHS Foundation Trust,Goole District Hospital,Apr 2020-Mar 2021,11
+Humber Coast and Vale,Northern Lincolnshire and Goole Hospitals NHS Foundation Trust,Goole District Hospital,Apr 2021-Mar 2022,26
+Humber Coast and Vale,Northern Lincolnshire and Goole Hospitals NHS Foundation Trust,Goole District Hospital,Apr 2022-Mar 2023,31
+Humber Coast and Vale,Northern Lincolnshire and Goole Hospitals NHS Foundation Trust,Goole District Hospital,Apr 2023-Mar 2024,40
+Humber Coast and Vale,York and Scarborough Teaching Hospitals NHS Foundation Trust,"Johnson Ward Stroke Rehab Unit, Bridlington Hospital",Apr 2019-Mar 2020,.
+Humber Coast and Vale,York and Scarborough Teaching Hospitals NHS Foundation Trust,"Johnson Ward Stroke Rehab Unit, Bridlington Hospital",Apr 2020-Mar 2021,.
+Humber Coast and Vale,York and Scarborough Teaching Hospitals NHS Foundation Trust,"Johnson Ward Stroke Rehab Unit, Bridlington Hospital",Apr 2021-Mar 2022,45
+Humber Coast and Vale,York and Scarborough Teaching Hospitals NHS Foundation Trust,"Johnson Ward Stroke Rehab Unit, Bridlington Hospital",Apr 2022-Mar 2023,104
+Humber Coast and Vale,York and Scarborough Teaching Hospitals NHS Foundation Trust,"Johnson Ward Stroke Rehab Unit, Bridlington Hospital",Apr 2023-Mar 2024,126
+Humber Coast and Vale,York and Scarborough Teaching Hospitals NHS Foundation Trust,White Cross Court Stroke Rehabilitation Unit,Apr 2019-Mar 2020,.
+Humber Coast and Vale,York and Scarborough Teaching Hospitals NHS Foundation Trust,White Cross Court Stroke Rehabilitation Unit,Apr 2020-Mar 2021,.
+Humber Coast and Vale,York and Scarborough Teaching Hospitals NHS Foundation Trust,White Cross Court Stroke Rehabilitation Unit,Apr 2021-Mar 2022,62
+Humber Coast and Vale,York and Scarborough Teaching Hospitals NHS Foundation Trust,White Cross Court Stroke Rehabilitation Unit,Apr 2022-Mar 2023,169
+Humber Coast and Vale,York and Scarborough Teaching Hospitals NHS Foundation Trust,White Cross Court Stroke Rehabilitation Unit,Apr 2023-Mar 2024,226
+North East and North Cumbria,Gateshead Health NHS Foundation Trust,Queen Elizabeth Hospital Gateshead,Apr 2019-Mar 2020,261
+North East and North Cumbria,Gateshead Health NHS Foundation Trust,Queen Elizabeth Hospital Gateshead,Apr 2020-Mar 2021,247
+North East and North Cumbria,Gateshead Health NHS Foundation Trust,Queen Elizabeth Hospital Gateshead,Apr 2021-Mar 2022,286
+North East and North Cumbria,Gateshead Health NHS Foundation Trust,Queen Elizabeth Hospital Gateshead,Apr 2022-Mar 2023,272
+North East and North Cumbria,Gateshead Health NHS Foundation Trust,Queen Elizabeth Hospital Gateshead,Apr 2023-Mar 2024,283
+North East and North Cumbria,Newcastle upon Tyne Hospitals NHS Foundation Trust,Freeman Hospital,Apr 2019-Mar 2020,.
+North East and North Cumbria,Newcastle upon Tyne Hospitals NHS Foundation Trust,Freeman Hospital,Apr 2020-Mar 2021,.
+North East and North Cumbria,Newcastle upon Tyne Hospitals NHS Foundation Trust,Freeman Hospital,Apr 2021-Mar 2022,.
+North East and North Cumbria,Newcastle upon Tyne Hospitals NHS Foundation Trust,Freeman Hospital,Apr 2022-Mar 2023,Too few to report
+North East and North Cumbria,Newcastle upon Tyne Hospitals NHS Foundation Trust,Freeman Hospital,Apr 2023-Mar 2024,154
+North East and North Cumbria,North Cumbria Integrated Care NHS Foundation Trust,West Cumberland Hospital,Apr 2019-Mar 2020,210
+North East and North Cumbria,North Cumbria Integrated Care NHS Foundation Trust,West Cumberland Hospital,Apr 2020-Mar 2021,156
+North East and North Cumbria,North Cumbria Integrated Care NHS Foundation Trust,West Cumberland Hospital,Apr 2021-Mar 2022,184
+North East and North Cumbria,North Cumbria Integrated Care NHS Foundation Trust,West Cumberland Hospital,Apr 2022-Mar 2023,211
+North East and North Cumbria,North Cumbria Integrated Care NHS Foundation Trust,West Cumberland Hospital,Apr 2023-Mar 2024,116
+North East and North Cumbria,Northumbria Healthcare NHS Foundation Trust,Hexham General Hospital,Apr 2019-Mar 2020,98
+North East and North Cumbria,Northumbria Healthcare NHS Foundation Trust,Hexham General Hospital,Apr 2020-Mar 2021,102
+North East and North Cumbria,Northumbria Healthcare NHS Foundation Trust,Hexham General Hospital,Apr 2021-Mar 2022,103
+North East and North Cumbria,Northumbria Healthcare NHS Foundation Trust,Hexham General Hospital,Apr 2022-Mar 2023,98
+North East and North Cumbria,Northumbria Healthcare NHS Foundation Trust,Hexham General Hospital,Apr 2023-Mar 2024,92
+North East and North Cumbria,Northumbria Healthcare NHS Foundation Trust,North Tyneside General Hospital,Apr 2019-Mar 2020,232
+North East and North Cumbria,Northumbria Healthcare NHS Foundation Trust,North Tyneside General Hospital,Apr 2020-Mar 2021,197
+North East and North Cumbria,Northumbria Healthcare NHS Foundation Trust,North Tyneside General Hospital,Apr 2021-Mar 2022,190
+North East and North Cumbria,Northumbria Healthcare NHS Foundation Trust,North Tyneside General Hospital,Apr 2022-Mar 2023,225
+North East and North Cumbria,Northumbria Healthcare NHS Foundation Trust,North Tyneside General Hospital,Apr 2023-Mar 2024,193
+North East and North Cumbria,Northumbria Healthcare NHS Foundation Trust,Wansbeck General Hospital,Apr 2019-Mar 2020,242
+North East and North Cumbria,Northumbria Healthcare NHS Foundation Trust,Wansbeck General Hospital,Apr 2020-Mar 2021,232
+North East and North Cumbria,Northumbria Healthcare NHS Foundation Trust,Wansbeck General Hospital,Apr 2021-Mar 2022,261
+North East and North Cumbria,Northumbria Healthcare NHS Foundation Trust,Wansbeck General Hospital,Apr 2022-Mar 2023,248
+North East and North Cumbria,Northumbria Healthcare NHS Foundation Trust,Wansbeck General Hospital,Apr 2023-Mar 2024,281
+South Yorkshire and Bassetlaw,Barnsley Hospital NHS Foundation Trust,Barnsley Hospital,Apr 2019-Mar 2020,445
+South Yorkshire and Bassetlaw,Barnsley Hospital NHS Foundation Trust,Barnsley Hospital,Apr 2020-Mar 2021,351
+South Yorkshire and Bassetlaw,Barnsley Hospital NHS Foundation Trust,Barnsley Hospital,Apr 2021-Mar 2022,373
+South Yorkshire and Bassetlaw,Barnsley Hospital NHS Foundation Trust,Barnsley Hospital,Apr 2022-Mar 2023,324
+South Yorkshire and Bassetlaw,Barnsley Hospital NHS Foundation Trust,Barnsley Hospital,Apr 2023-Mar 2024,262
+South Yorkshire and Bassetlaw,Rotherham NHS Foundation Trust,Rotherham Hospital,Apr 2019-Mar 2020,327
+South Yorkshire and Bassetlaw,Rotherham NHS Foundation Trust,Rotherham Hospital,Apr 2020-Mar 2021,296
+South Yorkshire and Bassetlaw,Rotherham NHS Foundation Trust,Rotherham Hospital,Apr 2021-Mar 2022,254
+South Yorkshire and Bassetlaw,Rotherham NHS Foundation Trust,Rotherham Hospital,Apr 2022-Mar 2023,269
+South Yorkshire and Bassetlaw,Rotherham NHS Foundation Trust,Rotherham Hospital,Apr 2023-Mar 2024,305
+West Yorkshire and Harrogate,Harrogate and District NHS Foundation Trust,Harrogate District Hospital,Apr 2019-Mar 2020,283
+West Yorkshire and Harrogate,Harrogate and District NHS Foundation Trust,Harrogate District Hospital,Apr 2020-Mar 2021,238
+West Yorkshire and Harrogate,Harrogate and District NHS Foundation Trust,Harrogate District Hospital,Apr 2021-Mar 2022,196
+West Yorkshire and Harrogate,Harrogate and District NHS Foundation Trust,Harrogate District Hospital,Apr 2022-Mar 2023,225
+West Yorkshire and Harrogate,Harrogate and District NHS Foundation Trust,Harrogate District Hospital,Apr 2023-Mar 2024,245
+Frimley ICS and Surrey Heartlands,Royal Surrey County Hospital NHS Foundation Trust,Royal Surrey County Hospital,Apr 2019-Mar 2020,135
+Frimley ICS and Surrey Heartlands,Royal Surrey County Hospital NHS Foundation Trust,Royal Surrey County Hospital,Apr 2020-Mar 2021,167
+Frimley ICS and Surrey Heartlands,Royal Surrey County Hospital NHS Foundation Trust,Royal Surrey County Hospital,Apr 2021-Mar 2022,171
+Frimley ICS and Surrey Heartlands,Royal Surrey County Hospital NHS Foundation Trust,Royal Surrey County Hospital,Apr 2022-Mar 2023,145
+Frimley ICS and Surrey Heartlands,Royal Surrey County Hospital NHS Foundation Trust,Royal Surrey County Hospital,Apr 2023-Mar 2024,187
+Kent and Medway,East Kent Hospitals University NHS Foundation Trust,Kent and Canterbury Hospital,Apr 2019-Mar 2020,92
+Kent and Medway,East Kent Hospitals University NHS Foundation Trust,Kent and Canterbury Hospital,Apr 2020-Mar 2021,334
+Kent and Medway,East Kent Hospitals University NHS Foundation Trust,Kent and Canterbury Hospital,Apr 2021-Mar 2022,322
+Kent and Medway,East Kent Hospitals University NHS Foundation Trust,Kent and Canterbury Hospital,Apr 2022-Mar 2023,311
+Kent and Medway,East Kent Hospitals University NHS Foundation Trust,Kent and Canterbury Hospital,Apr 2023-Mar 2024,421
+Kent and Medway,East Kent Hospitals University NHS Foundation Trust,Queen Elizabeth the Queen Mother Hospital,Apr 2019-Mar 2020,418
+Kent and Medway,East Kent Hospitals University NHS Foundation Trust,Queen Elizabeth the Queen Mother Hospital,Apr 2020-Mar 2021,113
+Kent and Medway,East Kent Hospitals University NHS Foundation Trust,Queen Elizabeth the Queen Mother Hospital,Apr 2021-Mar 2022,125
+Kent and Medway,East Kent Hospitals University NHS Foundation Trust,Queen Elizabeth the Queen Mother Hospital,Apr 2022-Mar 2023,74
+Kent and Medway,East Kent Hospitals University NHS Foundation Trust,Queen Elizabeth the Queen Mother Hospital,Apr 2023-Mar 2024,55
+Kent and Medway,East Kent Hospitals University NHS Foundation Trust,William Harvey Hospital,Apr 2019-Mar 2020,568
+Kent and Medway,East Kent Hospitals University NHS Foundation Trust,William Harvey Hospital,Apr 2020-Mar 2021,160
+Kent and Medway,East Kent Hospitals University NHS Foundation Trust,William Harvey Hospital,Apr 2021-Mar 2022,146
+Kent and Medway,East Kent Hospitals University NHS Foundation Trust,William Harvey Hospital,Apr 2022-Mar 2023,72
+Kent and Medway,East Kent Hospitals University NHS Foundation Trust,William Harvey Hospital,Apr 2023-Mar 2024,59
+Wales,Aneurin Bevan University Health Board,Nevill Hall Hospital,Apr 2019-Mar 2020,157
+Wales,Aneurin Bevan University Health Board,Nevill Hall Hospital,Apr 2020-Mar 2021,113
+Wales,Aneurin Bevan University Health Board,Nevill Hall Hospital,Apr 2021-Mar 2022,169
+Wales,Aneurin Bevan University Health Board,Nevill Hall Hospital,Apr 2022-Mar 2023,171
+Wales,Aneurin Bevan University Health Board,Nevill Hall Hospital,Apr 2023-Mar 2024,116
+Wales,Aneurin Bevan University Health Board,Royal Gwent Hospital,Apr 2019-Mar 2020,839
+Wales,Aneurin Bevan University Health Board,Royal Gwent Hospital,Apr 2020-Mar 2021,571
+Wales,Aneurin Bevan University Health Board,Royal Gwent Hospital,Apr 2021-Mar 2022,123
+Wales,Aneurin Bevan University Health Board,Royal Gwent Hospital,Apr 2022-Mar 2023,121
+Wales,Aneurin Bevan University Health Board,Royal Gwent Hospital,Apr 2023-Mar 2024,77
+Wales,Aneurin Bevan University Health Board,Ysbyty Ystrad Fawr,Apr 2019-Mar 2020,108
+Wales,Aneurin Bevan University Health Board,Ysbyty Ystrad Fawr,Apr 2020-Mar 2021,53
+Wales,Aneurin Bevan University Health Board,Ysbyty Ystrad Fawr,Apr 2021-Mar 2022,77
+Wales,Aneurin Bevan University Health Board,Ysbyty Ystrad Fawr,Apr 2022-Mar 2023,76
+Wales,Aneurin Bevan University Health Board,Ysbyty Ystrad Fawr,Apr 2023-Mar 2024,194
+Wales,Cardiff and Vale University Health Board,Llandough Hospital,Apr 2019-Mar 2020,256
+Wales,Cardiff and Vale University Health Board,Llandough Hospital,Apr 2020-Mar 2021,260
+Wales,Cardiff and Vale University Health Board,Llandough Hospital,Apr 2021-Mar 2022,279
+Wales,Cardiff and Vale University Health Board,Llandough Hospital,Apr 2022-Mar 2023,200
+Wales,Cardiff and Vale University Health Board,Llandough Hospital,Apr 2023-Mar 2024,227

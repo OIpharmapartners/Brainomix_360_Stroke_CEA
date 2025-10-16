@@ -1,0 +1,191 @@
+---
+title: "The cost-effectiveness of an AI stroke imaging tool (B360S) - Dynamic Report"
+author: "Nichola Naylor (OI Pharma Partners Ltd), GPT-4o & GPT-5, Brainomix Ltd"
+date: "2025 Analysis: 2023 Values"
+output:
+  pdf_document:
+    toc: true
+    toc_depth: 2
+    number_sections: true
+    latex_engine: xelatex
+header-includes:
+  - \usepackage{float}
+  - \usepackage{graphicx}   # needed for scale_down
+  - \usepackage{placeins}
+
+params:
+  level:
+    label: Results level
+    value: National
+    choices: [National, ISDN, Hospital]
+
+  hospital:
+    label: Hospital (used when level = Hospital)
+    value: "— Select —"
+    choices: ["— Select —", "Addenbrooke's Hospital", "Barnet General Hospital", "Barnsley Hospital", "Basildon University Hospital", "Bedford Hospital", "Birmingham Heartlands Hospital", "Blackpool Victoria Hospital", "Bradford and Airedale SU", "Broomfield Hospital", "Calderdale Royal Hospital", "Charing Cross Hospital HASU", "Charing Cross Hospital SU - Nine South Ward", "Chelsea and Westminster Hospital", "Chesterfield Royal", "Colchester General Hospital", "Countess of Chester Hospital", "Croydon University Hospital", "Cumberland Infirmary", "Darent Valley Hospital", "Derriford Hospital", "Diana Princess of Wales Hospital Grimsby", "Doncaster Royal Infirmary", "Dorset County Hospital", "East Surrey Hospital", "Eastbourne District General Hospital", "Epsom Hospital", "Fairfield General Hospital", "Frimley Park Hospital", "Furness General Hospital", "Gloucestershire Royal Hospital", "Good Hope General Hospital", "Goole District Hospital", "Great Western Hospital Swindon", "Harrogate District Hospital", "Hereford County Hospital", "Hexham General Hospital", "Hillingdon Hospital", "Hinchingbrooke Hospital", "Homerton University Hospital", "Hull Royal Infirmary", "Invicta Ward Kent and Canterbury Hospital", "Ipswich Hospital", "James Cook University Hospital", "James Paget Hospital", "Jersey Health & Community Services Acute Episode", "John Radcliffe Hospital", "Kent and Canterbury Hospital", "King's College Hospital HASU", "King's College Hospital SU", "Kings Mill Hospital", "Kingston Hospital", "Leeds General Infirmary", "Leicester Royal Infirmary", "Leighton Hospital", "Lincoln County Hospital", "Lister Hospital", "Luton and Dunstable Hospital", "Maidstone District General Hospital", "Manchester Royal Infirmary", "Milton Keynes General Hospital", "Musgrove Park Hospital", "New Cross Hospital", "Newham General Hospital", "Noble's Hospital", "Norfolk and Norwich University Hospital", "North Bristol Hospitals", "North Devon District Hospital", "North Middlesex Hospital", "North Tyneside General Hospital", "Northampton General Hospital", "Northumbria Specialist Emergency Care Hospital HASU", "Northwick Park Hospital HASU", "Northwick Park Hospital SU", "Peterborough City Hospital", "Pilgrim Hospital", "Pinderfields Hospital", "Princess Royal Hospital Telford", "Princess Royal University Hospital HASU", "Princess Royal University Hospital SU", "Queen's Medical Centre - Nottingham", "Queen Alexandra Hospital Portsmouth", "Queen Elizabeth Hospital Edgbaston", "Queen Elizabeth Hospital Gateshead", "Queen Elizabeth Hospital Kings Lynn", "Queen Elizabeth the Queen Mother Hospital", "Queens Hospital Burton upon Trent", "Queens Hospital Romford HASU", "Queens Hospital Romford SU", "Rotherham Hospital", "Royal Albert Edward Infirmary", "Royal Berkshire Hospital", "Royal Blackburn Hospital", "Royal Bolton Hospital", "Royal Cornwall Hospital", "Royal Derby Hospital", "Royal Devon and Exeter Hospital", "Royal Free Hospital", "Royal Hallamshire Hospital", "Royal Hampshire County Hospital", "Royal Lancaster Infirmary", "Royal London Hospital HASU", "Royal London Hospital SU", "Royal Preston Hospital", "Royal Shrewsbury Hospital", "Royal Stoke University Hospital", "Royal Surrey County Hospital", "Royal Sussex County Hospital", "Royal United Hospital Bath", "Royal Victoria Infirmary", "Russells Hall Hospital", "Salford Royal Hospital", "Salisbury District Hospital", "Sandwell District Hospital", "Scunthorpe General Hospital", "Southampton General Hospital", "Southend Hospital", "Southport and Formby District General", "St George's Hospital HASU", "St George's Hospital SU", "St Helier Hospital", "St Mary's Hospital Newport", "St Peter's Hospital", "St Richards Hospital", "St Thomas Hospital", "Stepping Hill Hospital", "Sunderland Royal Hospital", "Tameside General Hospital", "Torbay Hospital", "Trafford General Hospital", "University College Hospital HASU", "University College Hospital SU", "University Hospital Aintree", "University Hospital Coventry", "University Hospital Lewisham", "University Hospital of North Durham", "University Hospitals Dorset Stroke Service", "University Hospitals of North Tees and Hartlepool", "Wansbeck General Hospital", "Warrington Hospital", "Watford General Hospital", "West Cumberland Hospital", "West Middlesex University Hospital", "West Suffolk Hospital", "Whipps Cross University Hospital", "Whiston Hospital HASU", "Whiston Hospital SU", "William Harvey Hospital", "Wirral Arrowe Park Hospital", "Worcestershire Royal Hospital", "Worthing Hospital", "Wycombe General Hospital", "Wythenshawe Hospital", "Yeovil District Hospital", "York Hospital"]
+
+  isdn:
+    label: ISDN (used when level = ISDN)
+    value: "— Select —"
+    choices: ["— Select —", "Cheshire and Mersey", "East Midlands", "East of England (North)", "East of England (South)", "Frimley ICS and Surrey Heartlands", "Greater Manchester", "Humber Coast and Vale", "Islands", "Kent and Medway", "Lancashire and South Cumbria", "London", "North East and North Cumbria", "North Midlands", "South Yorkshire and Bassetlaw", "Sussex", "SW Peninsula", "Thames Valley (BOB)", "Wessex", "West Midlands", "West of England", "West Yorkshire and Harrogate"]
+
+---
+
+```{r report-meta, echo=FALSE}
+cat(sprintf("**Author(s):** %s  \n**Year of analysis:** %s  \n**Citation:** %s\n\n",
+  params$authors, params$analysis_year, params$citation))
+```
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE, message = FALSE, warning = FALSE)
+
+needed <- c("knitr","kableExtra")
+miss  <- needed[!sapply(needed, requireNamespace, quietly = TRUE)]
+if (length(miss)) stop("Please install: ", paste(miss, collapse = ", "))
+
+# Load precomputed outputs
+load("outputs/base_case_results.RData")     # -> base_case
+load("outputs/network_results.RData")       # -> network_results (named list by ISDN)
+load("outputs/hospital_results.RData")      # -> hospital_results (named list by Hospital)
+
+# kable helpers (no booktabs)
+kbl <- function(x, cap = NULL, digits = 2) {
+  knitr::kable(x, format = "latex", caption = cap, digits = digits) |>
+    kableExtra::kable_styling(latex_options = c("hold_position"))
+}
+
+kbl_wide <- function(x, cap = NULL, digits = 2, font_size = 8) {
+  knitr::kable(x, format = "latex", caption = cap, digits = digits) |>
+    kableExtra::kable_styling(
+      latex_options = c("hold_position", "scale_down"),
+      font_size = font_size,
+      full_width = FALSE
+    )
+}
+
+pick_results <- function(level, hospital, isdn) {
+  if (identical(level, "National")) {
+    return(list(label = "National", res = base_case))
+  }
+  if (identical(level, "Hospital")) {
+    if (identical(hospital, "— Select —")) stop("Please pick a Hospital in the parameters dialog.")
+    if (!hospital %in% names(hospital_results)) stop("Selected hospital not found in outputs.")
+    return(list(label = paste0("Hospital: ", hospital), res = hospital_results[[hospital]]))
+  }
+  if (identical(level, "ISDN")) {
+    if (identical(isdn, "— Select —")) stop("Please pick an ISDN in the parameters dialog.")
+    if (!isdn %in% names(network_results)) stop("Selected ISDN not found in outputs.")
+    return(list(label = paste0("ISDN: ", isdn), res = network_results[[isdn]]))
+  }
+  stop("Unknown level: ", level)
+}
+
+picked <- pick_results(params$level, params$hospital, params$isdn)
+res    <- picked$res
+
+# ---- Formatting helpers ----
+# consistent renaming of column headers across all result tables
+rename_table_headers <- function(df) {
+  new_names <- c(
+    "intervention" = "intervention (numbers)",
+    "standard" = "standard (numbers)",
+    "unit.cost" = "unit cost (£)",
+    "LT_cost" = "long-term cost (£)",
+    "LT_qol" = "long-term quality of life (QALYs)",
+    "intervention_costs" = "total intervention costs (£)",
+    "standard_costs" = "total standard costs (£)",
+    "intervention_qol" = "total intervention QALYs",
+    "standard_qol" = "total standard QALYs",
+    "inc.costs" = "Incremental Cost (£)",
+    "inc.qol" = "Incremental QALYs",
+    "NMB" = "Net Monetary Benefit (£)"
+  )
+
+  # Rename only if names exist
+  names(df) <- ifelse(names(df) %in% names(new_names),
+                      new_names[names(df)],
+                      names(df))
+  df
+}
+
+# Custom number formatting (no decimals, thousands commas)
+format_numbers <- function(df) {
+  df[] <- lapply(df, function(x) {
+    if (is.numeric(x)) {
+      formatC(x, format = "f", digits = 0, big.mark = ",")
+    } else {
+      x
+    }
+  })
+  df
+}
+
+# Apply to all three result data frames
+res$process_results      <- rename_table_headers(format_numbers(res$process_results))
+res$summary_data_all     <- rename_table_headers(format_numbers(res$summary_data_all))
+res$incremental_results  <- rename_table_headers(format_numbers(res$incremental_results))
+```
+# Introduction
+This report presents a cost-effectiveness analysis of a Brainomix 360 Stroke (B360S) AI software decision-support tool in England NHS hospitals. 
+
+For more detailed information on the model structure please refer to the associated publication: [TO BE ADDED ONCE ACCEPTED]
+
+# Notes
+- Displays precomputed results from previously run analyses; no models are re-run in the compilation of this report.
+- Use **Knit ▼ → Knit with Parameters...** to choose Level and (if needed) Hospital/ISDN from dropdowns.
+
+# Selection
+
+**Level:** `r params$level`  
+**Scope:** `r picked$label`
+
+# Results
+
+## Process / Procedure numbers
+
+In Table 1 below, unit costs represent the direct cost of performing the procedures, whilst long term costs and QALYs are the per-procedure impacts modelled over time, based on changing distributions of patients on mRS scores. Values are rounded to the nearest value, and as such multiplying these may be different to the values computed with raw values and presented in Table 2. In Table 2, the cost of implementing the intervention is also included in total intervention costs. 
+
+```{r}
+# Split into two subtables for readability
+tbl1a <- res$process_results[, 1:6]      # first 6 columns
+tbl1b <- res$process_results[, c(1, 7:10)]  # first column + columns 7–10
+
+# Optional: reapply formatting if you use your earlier number/rename helpers
+tbl1a <- rename_table_headers(format_numbers(tbl1a))
+tbl1b <- rename_table_headers(format_numbers(tbl1b))
+
+# Table 1 – first half
+kbl_wide(tbl1a,
+         cap = "Process / Procedure numbers – Part 1",
+         digits = 0,
+         font_size = 8)
+knitr::asis_output("\\FloatBarrier")
+
+# Table 2 – second half
+kbl_wide(tbl1b,
+         cap = "Process / Procedure numbers – Part 2",
+         digits = 0,
+         font_size = 8)
+knitr::asis_output("\\FloatBarrier")
+```
+
+## Total Costs and QALYs
+```{r}
+kbl(res$summary_data_all, cap = "Total costs and QALYs", digits = 2)
+knitr::asis_output("\\FloatBarrier")
+```
+
+## Incremental results
+
+Note that net monetary benefit (NMB) is calculated as :
+$$
+NMB = (\text{Incremental QALYs} \times \text{Willingness-to-pay}) - \text{Incremental Costs}
+$$
+We use a willingness-to-pay threshold of £20,000 per QALY gained, as recommended by NICE. 
+
+```{r}
+kbl(res$incremental_results, cap = "Incremental results (intervention vs standard)", digits = 2)
+knitr::asis_output("\\FloatBarrier")
+```
+
+---
