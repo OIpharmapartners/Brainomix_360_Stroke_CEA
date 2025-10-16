@@ -243,10 +243,10 @@ cycles <- 10
 #' eligibility, reperfusion, and AI effects) with a long-term Markov model
 #' (mrs_markov) that tracks health-state transitions by modified Rankin Scale (mRS).
 #'
-#' @param data_main A data.table containing all model parameters.
+#' @param data_main_inp A data.table containing all model parameters.
 #' @param cycles Integer. Number of Markov cycles to simulate (default = 10).
 #'   Each cycle represents one year of follow-up.
-#' @param mrs_samples_mean A data.table containing mean mRS-specific
+#' @param mrs_samples_mean_inp A data.table containing mean mRS-specific
 #'   costs, utilities, and mortality rates
 #'
 #' Internal validation checks ensure:
@@ -270,8 +270,11 @@ cycles <- 10
 #' }
 #'
 #' @export
-run_model <- function(data_main=data_main, cycles=10,
-                      mrs_samples_mean=mrs_samples_mean){
+run_model <- function(data_main_inp=data_main, cycles=10,
+                      mrs_samples_mean_inp=mrs_samples_mean){
+  ##defensive copies to reduce the likelihood of unintended alterations
+  data_main       <- data.table::copy(data_main_inp)
+  mrs_samples_mean <- data.table::copy(mrs_samples_mean_inp)
 
   tolerance <- 1e-8 ## tolerance for rounding errors in checks
   
@@ -889,6 +892,7 @@ summary_data_all <- process_results %>%
     across(where(is.numeric), sum),
     across(where(is.character), ~"Total")
   )
+
 
 ## add cost of intervention (1-off cost)
 summary_data_all$intervention_costs <- summary_data_all$intervention_costs + c.B360

@@ -74,8 +74,8 @@ sc1_data_main <- copy(data_main)
 sc1_data_main[model_param=="age",base_case := 66] 
 
 # Check that mortality tables include ages ≥ start age (66)
-max_age_f <- max(data_main[model_param == "fqx", age], na.rm = TRUE)
-max_age_m <- max(data_main[model_param == "mqx", age], na.rm = TRUE)
+max_age_f <- max(sc1_data_main[model_param == "fqx", age], na.rm = TRUE)
+max_age_m <- max(sc1_data_main[model_param == "mqx", age], na.rm = TRUE)
 
 assert_that(
   max_age_f >= 66 && max_age_m >= 66,
@@ -93,11 +93,11 @@ sc1$process_results$scenario <- "sc1"
 #### ======================================= ####
 ####       2.REMOVE LT COST SAVINGS               ####
 #### ======================================= ####
-
+sc2_data_main <- copy(data_main)
 sc2_mrs_samples_mean <- copy(mrs_samples_mean)
 sc2_mrs_samples_mean$cost_sample <- 0
 
-sc2 <- run_model(data_main,cycles=10,sc2_mrs_samples_mean)
+sc2 <- run_model(sc2_data_main,cycles=10,sc2_mrs_samples_mean)
 
 sc2$incremental_results$scenario <- "sc2"
 sc2$process_results$scenario <- "sc2"
@@ -107,8 +107,8 @@ sc2$process_results$scenario <- "sc2"
 #### ======================================= ####
 
 source("model_code/model_functions_mortality_sc.R")
-
-sc3 <- run_model_Msc(data_main,cycles=10,sc2_mrs_samples_mean)
+sc3_data_main <- copy(data_main)
+sc3 <- run_model_Msc(sc3_data_main,cycles=10,sc2_mrs_samples_mean)
 sc3$incremental_results$scenario <- "sc3"
 sc3$process_results$scenario <- "sc3"
 
@@ -117,8 +117,8 @@ sc3$process_results$scenario <- "sc3"
 #### ======================================= ####
 
 source("model_code/model_functions_MTIVT_sc.R")
-
-sc4 <- run_model_mtivtsc(data_main,cycles=10,mrs_samples_mean)
+sc4_data_main <- copy(data_main)
+sc4 <- run_model_mtivtsc(sc4_data_main,cycles=10,mrs_samples_mean)
 sc4$incremental_results$scenario <- "sc4"
 sc4$process_results$scenario <- "sc4"
 

@@ -4,7 +4,7 @@
 
 library(data.table)
 
-load("inputs/params.psa.sample.RData")
+load("inputs/created_inputs/params.psa.sample.RData")
 # Remove 'sample_id' if it's the first column
 param_data <- params.psa.sample[, !("sample_id"), with = FALSE]
 

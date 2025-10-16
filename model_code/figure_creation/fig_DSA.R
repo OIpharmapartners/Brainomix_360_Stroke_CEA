@@ -12,6 +12,13 @@ library(ggplot2)
 
 load("outputs/DSA_results.RData")
 load("outputs/base_case_results.RData")
+
+DSA <- as.data.table(DSA)
+## relabel and remove duplicate rows
+DSA[variable=="c.360.asc", Parameter := "Cost per B360S for ASC [15000 , 30000]"]
+DSA[variable=="c.360.csc", Parameter := "Cost per B360S for CSC  [30000 , 60000]"]
+DSA <- DSA[, .SD[which.max(abs(high.value - low.value))], by = Parameter]
+
 # Set the base case value
 base_case_value <- base_case$incremental_results$NMB
 
