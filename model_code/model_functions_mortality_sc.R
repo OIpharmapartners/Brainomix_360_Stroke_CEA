@@ -50,8 +50,12 @@ conflict_prefer("data.table", "data.table")  # Ensure `[.data.table` overrides
 #' @export
 #'
 #' @examples
-mrs_markov <- function(data_main, mrs_samples_mean,
+mrs_markov <- function(data_main_inp, mrs_samples_mean_inp,
                        seed_distribution) {
+  
+  ##defensive copies to reduce the likelihood of unintended alterations
+  data_main <- copy(data_main_inp)
+  mrs_samples_mean <- copy(mrs_samples_mean_inp)
   
   # NOTE: In this function, cycles represent annual transitions (1 year per cycle)
   
