@@ -87,6 +87,8 @@ plot.ceac.all <- function(results){
   plot = ggplot(results) + 
     geom_line(aes(x=WTP, y=pCE, color=Group), size=1) + 
     labs(x = xlabel, y = ylabel) + 
+    scale_color_discrete(labels = c("no.intervention" = "Standard Care", 
+                                    "intervention" = "B360S"))+
     theme_classic() +
     theme(
       legend.title = element_blank(),

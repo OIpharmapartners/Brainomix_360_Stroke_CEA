@@ -84,7 +84,12 @@ for (i in 1:max(unique(hospital_l$group_ID))){
   temp_data_main[model_param=="n.asc", base_case := length(which(x$cscflag == 0))]
   temp_data_main[model_param=="n.csc", base_case := length(which(x$cscflag == 1))]
   temp_data_main[model_param=="n.stroke", base_case := n]
-    
+  
+  # updating p.asc
+  n_asc_strokes <- sum(x[cscflag==0, n.stroke])
+  n_csc_strokes <- sum(x[cscflag==1, n.stroke])
+  temp_data_main[model_param=="p.asc", base_case := n_asc_strokes / (n_asc_strokes + n_csc_strokes)]
+  
     y <- run_model(temp_data_main, cycles = 10, mrs_samples_mean = mrs_samples_mean)
 
     

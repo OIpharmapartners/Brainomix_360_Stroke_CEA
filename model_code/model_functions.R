@@ -232,11 +232,11 @@ return(output.trace)
 ####       4. COMPLETE MODEL RUN FUNCTION    ####
 #### ======================================= ####
 
-# ### testing code (and then # out run_model to run through)
-load("inputs/created_inputs/parameters_edited.RData")
-data_main <- parameters
-load("inputs/created_inputs/mrs_samples_mean.RData")
-cycles <- 10
+# # ### testing code (and then # out run_model to run through)
+# load("inputs/created_inputs/parameters_edited.RData")
+# data_main <- parameters
+# load("inputs/created_inputs/mrs_samples_mean.RData")
+# cycles <- 10
 
 
 #' Title: Model run
