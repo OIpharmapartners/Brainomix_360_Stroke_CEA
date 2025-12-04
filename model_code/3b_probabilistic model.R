@@ -145,6 +145,7 @@ cat("\nTotal rows:", nrow(params.psa),
 ########## RUN MODEL ON SAMPLES ################
 psa.outputs <- vector("list", n.sample)
 pb <- txtProgressBar(min = 1, max = n.sample, initial = 0, style = 3)
+errors <- list() # set up errors list in case need to store errors
 
 for (i in 1:n.sample) {
   setTxtProgressBar(pb, i)

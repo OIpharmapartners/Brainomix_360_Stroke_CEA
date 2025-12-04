@@ -707,10 +707,10 @@ for (metric in metrics) {
   }
 }
 
-## testing
-temp_test0 <- subset(mrs_samples,mrs==0)
-unique(temp_test0$mort_sample)
-temp_test6 <- subset(mrs_samples,mrs==6)
-unique(temp_test6$utility_sample)
-unique(temp_test6$cost_sample)
-unique(temp_test6$mort_sample)
+# ## testing
+# temp_test0 <- subset(mrs_samples,mrs==0)
+# unique(temp_test0$mort_sample)
+# temp_test6 <- subset(mrs_samples,mrs==6)
+# unique(temp_test6$utility_sample)
+# unique(temp_test6$cost_sample)
+# unique(temp_test6$mort_sample)
