@@ -67,7 +67,7 @@ intervention <- make_static_max_sankey(base_case$trace.intervention,
                        base_case$tm.intervention)
 intervention
 
-# Save the plots as HTML files
 
+# Save the plots as HTML files
 saveWidget(standard, "outputs/standard_sankey_plot.html", selfcontained = TRUE)
 saveWidget(intervention, "outputs/intervention_sankey_plot.html", selfcontained = TRUE)
