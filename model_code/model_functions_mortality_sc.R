@@ -7,7 +7,7 @@
 #
 # !!! IMPORTANT NOTE ON CYCLE INTERPRETATION
 #
-# - The Markov model (mrs_markov function) uses cycles that
+# - The Markov model (mrs_markov_3 function) uses cycles that
 #   represent annual transitions (i.e., 1 cycle = 1 year).
 #   This aligns with standard practice in health economics
 #   for long-term cost and QALY modelling by mRS state.
@@ -50,7 +50,7 @@ conflict_prefer("data.table", "data.table")  # Ensure `[.data.table` overrides
 #' @export
 #'
 #' @examples
-mrs_markov <- function(data_main_inp, mrs_samples_mean_inp,
+mrs_markov_sc3 <- function(data_main_inp, mrs_samples_mean_inp,
                        seed_distribution) {
   
   ##defensive copies to reduce the likelihood of unintended alterations
@@ -197,14 +197,14 @@ mrs_markov <- function(data_main_inp, mrs_samples_mean_inp,
   
 }
 
-# ### testing - note need to run package loading from e.g. 3a first
+# # ### testing - note need to run package loading from e.g. 3a first
 # load("inputs/created_inputs/parameters_edited.RData")
 # data_main <- parameters
 # load("inputs/created_inputs/mrs_samples_mean.RData")
 # seed_dist <- data_main[model_param == "dist.ivt"][order(mrs), base_case]
-# x <- mrs_markov(data_main, mrs_samples_mean, seed_dist)[[1]]
+# x <- mrs_markov_sc3(data_main, mrs_samples_mean, seed_dist)[[1]]
 # seed_dist <- data_main[model_param == "dist.noivt"][order(mrs), base_case]
-# y <- mrs_markov(data_main, mrs_samples_mean, seed_dist)[[1]]
+# y <- mrs_markov_sc3(data_main, mrs_samples_mean, seed_dist)[[1]]
 
 
 #### ======================================= ####
@@ -223,7 +223,7 @@ mrs_markov <- function(data_main_inp, mrs_samples_mean_inp,
 #' This function executes the full decision-analytic model for one set of
 #' input parameters. It combines an acute-phase decision tree (for treatment
 #' eligibility, reperfusion, and AI effects) with a long-term Markov model
-#' (mrs_markov) that tracks health-state transitions by modified Rankin Scale (mRS).
+#' (mrs_markov_3) that tracks health-state transitions by modified Rankin Scale (mRS).
 #'
 #' @param data_main_inp A data.table containing all model parameters.
 #' @param cycles Integer. Number of Markov cycles to simulate (default = 10).
@@ -820,28 +820,28 @@ run_model_Msc <- function(data_main_inp=data_main, cycles=10,
   seed_distribution_MT <- data_main[model_param=="dist.mt"][order(mrs), base_case]
   seed_distribution_no_MT <- data_main[model_param=="dist.nomt"][order(mrs), base_case]
   
-  out_ivt <- mrs_markov(data_main, mrs_samples_mean, seed_distribution_ivt)
+  out_ivt <- mrs_markov_sc3(data_main, mrs_samples_mean, seed_distribution_ivt)
   output_ivt <- out_ivt[[1]]
   mrs_ivt <- as.data.frame(out_ivt[[2]])
   
   mrs_ivt$var <- "ivt"
   mrs_ivt$t <- 1:nrow(mrs_ivt)
   
-  out_no_ivt <- mrs_markov(data_main, mrs_samples_mean, seed_distribution_no_ivt)
+  out_no_ivt <- mrs_markov_sc3(data_main, mrs_samples_mean, seed_distribution_no_ivt)
   output_no_ivt <- out_no_ivt[[1]]
   mrs_no_ivt <- as.data.frame(out_no_ivt[[2]])
   
   mrs_no_ivt$var <- "no_ivt"                         
   mrs_no_ivt$t <- 1:nrow(mrs_no_ivt)                         
   
-  out_MT <- mrs_markov(data_main, mrs_samples_mean, seed_distribution_MT)
+  out_MT <- mrs_markov_sc3(data_main, mrs_samples_mean, seed_distribution_MT)
   output_MT <- out_MT[[1]]
   mrs_MT <- as.data.frame(out_MT[[2]])
   
   mrs_MT$var <- "mt"
   mrs_MT$t <- 1:nrow(mrs_MT)
   
-  out_no_MT <- mrs_markov(data_main, mrs_samples_mean, seed_distribution_no_MT)
+  out_no_MT <- mrs_markov_sc3(data_main, mrs_samples_mean, seed_distribution_no_MT)
   output_no_MT <- out_no_MT[[1]]
   mrs_no_MT <- as.data.frame(out_no_MT[[2]])
   
