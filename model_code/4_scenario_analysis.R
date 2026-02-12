@@ -144,8 +144,19 @@ sc6 <- run_model_Msc_gradual(sc6_data_main, cycles = 10, mrs_samples_mean)
 sc6$incremental_results$scenario <- "sc6"
 sc6$process_results$scenario <- "sc6"
 
+
 #### ======================================= ####
-#### 7. Per-AIS patient results (re-scaled base case) ####
+#### 7. Half-cycle correction applied        ####
+#### ======================================= ####
+
+source("model_code/model_functions_hcc.R")
+sc7_data_main <- copy(data_main)
+sc7 <- run_model_hcc(sc7_data_main, cycles = 10, mrs_samples_mean)
+sc7$incremental_results$scenario <- "sc7"
+sc7$process_results$scenario <- "sc7"
+
+#### ======================================= ####
+#### 8. Per-AIS patient results (re-scaled base case) ####
 #### ======================================= ####
 
 # Number of AIS patients from base case imaging counts (should equal ~81,565)
@@ -153,17 +164,16 @@ n.ais <- sum(base_case$process_results$intervention[
   base_case$process_results$procedure %in% c("NCCT + CTA", "NCCT + CTA + CTP", "NCCT + CTA + CTP + MRI")
 ])
 
-sc7_inc <- data.frame(
+sc8_inc <- data.frame(
   inc.cost = base_case$incremental_results$inc.cost / n.ais,
   inc.qol  = base_case$incremental_results$inc.qol / n.ais,
   NMB      = base_case$incremental_results$NMB / n.ais
 )
-sc7_inc$scenario <- "sc7"
+sc8_inc$scenario <- "sc8"
 
 # also create a placeholder process_results row for consistency
-sc7_proc <- copy(base_case$process_results)
-sc7_proc$scenario <- "sc7"
-
+sc8_proc <- copy(base_case$process_results)
+sc8_proc$scenario <- "sc8"
 
 #### ======================================= ####
 #### COMBINE RESULTS                  ####
@@ -172,12 +182,14 @@ sc7_proc$scenario <- "sc7"
 incremental.results <- rbind(base_case$incremental_results, sc1$incremental_results,
                              sc2$incremental_results, sc3$incremental_results,
                              sc4$incremental_results, sc5$incremental_results,
-                             sc6$incremental_results, sc7_inc)
+                             sc6$incremental_results,
+                             sc7$incremental_results,
+                             sc8_inc)
 
 process.results <- rbind(base_case$process_results, sc1$process_results,
                          sc2$process_results, sc3$process_results,
                          sc4$process_results, sc5$process_results,
-                         sc6$process_results)
+                         sc6$process_results, sc7$process_results)
 
 ### edit dps
 incremental.results <- as.data.table(incremental.results)

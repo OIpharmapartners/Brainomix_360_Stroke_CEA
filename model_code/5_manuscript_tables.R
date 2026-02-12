@@ -52,7 +52,8 @@ sc_raw <- rbind(
   sc4$incremental_results,
   sc5$incremental_results,
   sc6$incremental_results,
-  sc7_inc
+  sc7$incremental_results,
+  sc8_inc
 )
 sc_raw <- as.data.table(sc_raw)
 
@@ -65,15 +66,17 @@ sc_labels <- c(
   "sc4" = "SC4: Additive MT and IVT benefits for those who have both",
   "sc5" = "SC5: Alternative IVT mRS distribution",
   "sc6" = "SC6: Gradual mortality risk attenuation (years 1-4)",
-  "sc7" = "SC7: Per-AIS patient"
+  "sc7" = "SC7: Half-cycle correction applied",
+  "sc8" = "SC8: Per-AIS patient"
+  
 )
 
 # Format deterministic scenario rows
-# SC7 (per-patient) needs different precision: costs ~£111, QALYs ~0.019
-# So handle SC7 separately
+# SC8 (per-patient) needs different precision: costs ~£111, QALYs ~0.019
+# So handle SC8 separately
 
-sc_pop <- sc_raw[scenario != "sc7"]  # population-level scenarios
-sc_pp  <- sc_raw[scenario == "sc7"]  # per-patient
+sc_pop <- sc_raw[scenario != "sc8"]  # population-level scenarios
+sc_pp  <- sc_raw[scenario == "sc8"]  # per-patient
 
 table4 <- data.table(
   Scenario               = sc_labels[sc_pop$scenario],
@@ -83,13 +86,13 @@ table4 <- data.table(
 )
 
 # Per-patient row with appropriate precision
-sc7_row <- data.table(
-  Scenario               = sc_labels["sc7"],
+sc8_row <- data.table(
+  Scenario               = sc_labels["sc8"],
   `Incremental Cost (£)` = comma(round(sc_pp$inc.cost, 0)),
   `Incremental QALYs`    = sprintf("%.3f", sc_pp$inc.qol),
   `Net Monetary Benefit (£)` = comma(round(sc_pp$NMB, 0))
 )
-table4 <- rbind(table4, sc7_row)
+table4 <- rbind(table4, sc8_row)
 
 # Add PSA row with mean (95% CI)
 # psa_summary created in Chunk 4
