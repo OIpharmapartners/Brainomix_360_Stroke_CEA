@@ -5,12 +5,6 @@
 #
 # DESCRIPTION:
 # Runs predefined structural and policy scenarios to test alternative assumptions
-# The scenarios are:
-# 1. Use 66 as start age
-# 2. Remove long term cost savings 
-# 3. scenario 2. + Mortality impacts only occur in the first year
-# 4. Long term QALY and cost impacts are additive for IVT and MT
-# 5. A different IVT MRS distribution
 #
 # WHAT THIS SCRIPT DOES:
 # 1) Defines scenario sets (named lists) with altered parameters/flags.
@@ -31,7 +25,7 @@
 # - outputs/threshold.csv / threshold.png           # if thresholding used
 #
 # DEPENDENCIES:
-# - core model functions: mrs_markov(), run_model()
+# - core model functions: mrs_markov(), run_model() & scenario equivalents
 # - PSA outputs optional for overlay (e.g., CEAC under scenario)
 # - Packages: data.table, dplyr, ggplot2 (if plotting), assertthat, conflicted
 #
@@ -140,20 +134,56 @@ sc5 <- run_model(sc5_data_main,cycles=10,mrs_samples_mean)
 sc5$incremental_results$scenario <- "sc5"
 sc5$process_results$scenario <- "sc5"
 
+#### ======================================= ####
+#### 6. Gradual mortality attenuation (years 1-4, background mortality from year 5) ####
+#### ======================================= ####
+
+source("model_code/model_functions_mortality_gradual_sc.R")
+sc6_data_main <- copy(data_main)
+sc6 <- run_model_Msc_gradual(sc6_data_main, cycles = 10, mrs_samples_mean)
+sc6$incremental_results$scenario <- "sc6"
+sc6$process_results$scenario <- "sc6"
+
+#### ======================================= ####
+#### 7. Per-AIS patient results (re-scaled base case) ####
+#### ======================================= ####
+
+# Number of AIS patients from base case imaging counts (should equal ~81,565)
+n.ais <- sum(base_case$process_results$intervention[
+  base_case$process_results$procedure %in% c("NCCT + CTA", "NCCT + CTA + CTP", "NCCT + CTA + CTP + MRI")
+])
+
+sc7_inc <- data.frame(
+  inc.cost = base_case$incremental_results$inc.cost / n.ais,
+  inc.qol  = base_case$incremental_results$inc.qol / n.ais,
+  NMB      = base_case$incremental_results$NMB / n.ais
+)
+sc7_inc$scenario <- "sc7"
+
+# also create a placeholder process_results row for consistency
+sc7_proc <- copy(base_case$process_results)
+sc7_proc$scenario <- "sc7"
+
 
 #### ======================================= ####
 #### COMBINE RESULTS                  ####
 #### ======================================= ####
 
-incremental.results <- rbind(base_case$incremental_results,sc1$incremental_results,sc2$incremental_results,
-                             sc3$incremental_results,sc4$incremental_results,sc5$incremental_results)
-process.results <- rbind(base_case$process_results,sc1$process_results,sc2$process_results,
-                         sc3$process_results, sc4$process_results,sc5$process_results)
+incremental.results <- rbind(base_case$incremental_results, sc1$incremental_results,
+                             sc2$incremental_results, sc3$incremental_results,
+                             sc4$incremental_results, sc5$incremental_results,
+                             sc6$incremental_results, sc7_inc)
+
+process.results <- rbind(base_case$process_results, sc1$process_results,
+                         sc2$process_results, sc3$process_results,
+                         sc4$process_results, sc5$process_results,
+                         sc6$process_results)
+
 ### edit dps
 incremental.results <- as.data.table(incremental.results)
 incremental.results[, inc.cost := comma(round(inc.cost, 0))]
-incremental.results[, inc.qol := comma(round(inc.qol, 2))]
-incremental.results[, NMB := comma(round(NMB, 0))]
+incremental.results[, inc.qol  := comma(round(inc.qol, 2))]
+incremental.results[, NMB      := comma(round(NMB, 0))]
 
 process.results <- as.data.table(process.results)
 process.results[, intervention := comma(round(intervention, 0))]
@@ -167,5 +197,25 @@ process.results[, LT_qol := comma(round(LT_qol, 2))]
 process.results[, unit.cost := comma(round(unit.cost, 2))]
 
 ### save results
-write.csv(incremental.results,"outputs/scenario_incremental_results.csv",row.names=FALSE)
-write.csv(process.results,"outputs/scenario_process_results.csv",row.names=FALSE)
+write.csv(incremental.results, "outputs/scenario_incremental_results.csv", row.names = FALSE)
+write.csv(process.results, "outputs/scenario_process_results.csv", row.names = FALSE)
+
+#### ======================================= ####
+#### PSA SUMMARY: Mean and 95% CI (percentile method) ####
+#### ======================================= ####
+
+psa <- read.csv("outputs/psa_outputs.csv")
+psa <- as.data.table(psa)
+
+psa_summary <- data.table(
+  metric = c("inc.cost", "inc.qol", "NMB"),
+  mean   = c(mean(psa$inc.cost), mean(psa$inc.qol), mean(psa$NMB)),
+  lower  = c(quantile(psa$inc.cost, 0.025), quantile(psa$inc.qol, 0.025), quantile(psa$NMB, 0.025)),
+  upper  = c(quantile(psa$inc.cost, 0.975), quantile(psa$inc.qol, 0.975), quantile(psa$NMB, 0.975))
+)
+
+# Also calculate probability of cost-effectiveness at WTP = 20,000
+pCE <- mean(psa$NMB > 0)
+cat(sprintf("Probability cost-effective at £20,000/QALY: %.1f%%\n", pCE * 100))
+
+write.csv(psa_summary, "outputs/psa_summary.csv", row.names = FALSE)
