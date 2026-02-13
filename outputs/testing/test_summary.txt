@@ -1,0 +1,132 @@
+###############################################################################
+#               B360S CEA MODEL TEST SUMMARY                                #
+#      Based on NICE HTA Lab Validation Checklist (Oct 2025)                #
+###############################################################################
+Run completed: 2026-02-13 11:28:43
+
+TOTAL: 64 tests | PASSED: 64 | FAILED: 0 | WARNINGS: 0
+
+-------------------------------------------------------------------------------
+[PASS] 1.1 dist.ivt sums to 1
+       Sum = 1.00000000
+[PASS] 1.1 dist.noivt sums to 1
+       Sum = 1.00000000
+[PASS] 1.1 dist.mt sums to 1
+       Sum = 1.00000000
+[PASS] 1.1 dist.nomt sums to 1
+       Sum = 1.00000000
+[PASS] 1.2 All probabilities in [0,1]
+[PASS] 1.3 Utilities decrease with mRS severity
+       Diffs: -0.065, -0.096, -0.104, -0.29, -0.316
+[PASS] 1.4 Costs increase with mRS severity (0-5)
+       Diffs: 557, 637, 12114, 5866, 14234
+[PASS] 1.5 Mortality RR increases with mRS (0-5)
+       Diffs: 0, 0.12, 0.54, 0.26, 0.65
+[PASS] 1.6a mRS 6 utility = 0
+[PASS] 1.6b mRS 6 cost = 0
+[PASS] 1.7a IVT mean mRS < no-IVT mean mRS
+       IVT: 3.219 vs no-IVT: 3.640
+[PASS] 1.7b MT mean mRS < no-MT mean mRS
+       MT: 2.829 vs no-MT: 3.467
+[PASS] 1.8a Discount rate = 3.5%
+       Got 0.0350
+[PASS] 1.8b WTP = £20,000
+       Got 20000
+[PASS] 2.1a TM row sums = 1 (standard arm)
+[PASS] 2.1b TM row sums = 1 (intervention arm)
+[PASS] 2.2a Cohort conserved (standard arm)
+       Terminal: 93753.00, Input: 93753
+[PASS] 2.2b Cohort conserved (intervention arm)
+       Terminal: 93753.00, Input: 93753
+[PASS] 2.3a Intervention produces more IVT
+       B360S: 10847 vs Standard: 10075
+[PASS] 2.3b Intervention produces more MT
+       B360S: 4306 vs Standard: 3042
+[PASS] 2.4 Markov converges (>99% dead at end of life tables)
+       mRS6 = 0.9881 at cycle 26
+[PASS] 3.1 Base case NMB > 0
+       NMB = £40213713
+[PASS] 3.2 NMB = inc.QALYs * WTP - inc.Cost
+       Calculated: £40213713, Stored: £40213713
+[PASS] 3.3a probs=1 -> equal IVT counts
+       Int: 10075, Std: 10075
+[PASS] 3.3b probs=1 -> equal MT counts
+       Int: 3042, Std: 3042
+[PASS] 3.3c probs=1 -> incremental QALYs ≈ 0
+       inc.QALYs = 0.0000
+[PASS] 3.4a 100% ASC runs without error
+[PASS] 3.4b 100% CSC runs without error
+[PASS] 3.4c n.stroke=1 runs without error
+[PASS] 3.5a PSA has 1000 rows
+       Got 1000 rows
+[PASS] 3.5b No NAs in PSA inc.cost
+[PASS] 3.5c No NAs in PSA inc.qol
+[PASS] 3.5d No NAs in PSA NMB
+[PASS] 3.5e PSA NMB has variance
+       Var = 362164286449823
+[PASS] 3.5f PSA mean NMB same order of magnitude as deterministic
+       PSA mean: £40135435, Deterministic: £40213713
+[PASS] NICE 1: DR=0 produces finite results
+       NMB with dr=0: £54127989
+[PASS] NICE 1b: DR=0 -> larger absolute incremental QALYs than DR=3.5%%
+       DR=0: 2013.48 QALYs, DR=3.5%: 1542.92 QALYs
+[PASS] NICE 2: Higher DR (10%%) -> smaller absolute incremental QALYs
+       DR=10%: 1035.30 QALYs, DR=3.5%: 1542.92 QALYs
+[PASS] NICE 4a: Zero costs -> intervention costs ≈ £0
+       Intervention total cost: £0.00
+[PASS] NICE 4b: Zero costs -> standard costs ≈ £0
+       Standard total cost: £0.00
+[PASS] NICE 5: Utility=1 for alive states -> positive QALYs (= life years)
+       Discounted QALYs: 7.9111
+[PASS] NICE 6: All utilities = 0 -> QALYs = 0
+       Discounted QALYs: 0.0000000000
+[PASS] NICE 7: Zero mortality -> no deaths (mRS6 = 0 at all time points)
+       mRS6 at last cycle: 0.0000000000
+[PASS] NICE 8: Increased mortality -> more deaths at midpoint
+       Cycle 10: High mort mRS6=0.7361, Base mRS6=0.4871
+[PASS] NICE 9: Increased age (85) -> reduced incremental QALYs
+       Age 85: 856.49 QALYs, Age 75: 1542.92 QALYs
+[PASS] NICE 10: Decreased age (55) -> increased incremental QALYs
+       Age 55: 2831.43 QALYs, Age 75: 1542.92 QALYs
+[PASS] NICE 11: Shorter horizon (age 90 start) -> lower total QALYs
+       Age 90: 1.6585, Age 75: 4.8488
+[PASS] NICE 12: Longer horizon (age 55 start) -> higher total QALYs
+       Age 55: 9.3596, Age 75: 4.8488
+[PASS] NICE 13: Zero procedure costs -> model runs successfully
+       NMB with zero procedure costs: £53936844
+[PASS] NICE 14: Increased efficacy -> NMB increases
+       High efficacy NMB: £72163555, Baseline NMB: £40213713
+[PASS] A1 All mortality RRs > 0
+       All 6 RR values positive (range: 1.000 to 2.570)
+[PASS] A2 All cost parameters >= 0
+[PASS] A3a Discounting reduces Markov lifetime costs
+       DR=3.5%: £31476, DR=0: £40825
+[PASS] A3b Discounting reduces Markov lifetime QALYs
+       DR=3.5%: 7.3099, DR=0: 9.4809
+[PASS] A4a mRS 0 has higher lifetime QALYs than mRS 4
+       mRS0: 7.3099, mRS4: 1.7188
+[PASS] A4b mRS 0 has lower lifetime costs than mRS 4
+       mRS0: £31476, mRS4: £148866
+[PASS] A5a PSA: inc.cost = intervention_costs - standard_costs
+       Max row diff = £0.0000
+[PASS] A5b PSA: inc.qol = intervention_qol - standard_qol
+       Max row diff = 0.000000
+[PASS] A5c PSA: NMB = inc.qol * WTP - inc.cost (all 1000 rows)
+       Max row diff = £0.0000
+[PASS] A5d P(cost-effective) at £20k > 50%
+       P(CE) = 99.7%
+[PASS] A5e PSA mean NMB same sign as deterministic
+       PSA mean: £40135435, Deterministic: £40213713
+[PASS] A6a Removing LT cost savings (sc2) increases inc.cost
+       sc2: £16075265, base case: £-9355267
+[PASS] A6b sc3 has fewer incremental QALYs than sc2 (mortality restriction)
+       sc3: 1487.20, sc2: 1542.90
+[PASS] A6c Younger start age (sc1) -> more incremental QALYs
+       sc1 (age 66): 2166.80, base case (age 75): 1542.90
+
+-------------------------------------------------------------------------------
+FAILED TESTS:
+  None - all tests passed!
+
+WARNINGS:
+  None
