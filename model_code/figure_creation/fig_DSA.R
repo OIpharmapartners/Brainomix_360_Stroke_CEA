@@ -20,7 +20,7 @@ DSA[variable=="c.360.asc", Parameter := "Cost per B360S for ASC [15000 , 30000]"
 DSA[variable=="c.360.csc", Parameter := "Cost per B360S for CSC  [30000 , 60000]"]
 DSA[variable=="p.eivt", Parameter := "% eligible for IVT [0.21 , 0.88]"]
 DSA[variable=="p.ivt2emt", Parameter := "% of IVT patients that are eligible for MT [0.41 , 0.8]"]
-DSA[variable=="p.noivt2emt", Parameter := "% of patients who didn't get IVT who are eligble for MT [0.41 , 0.8]"]
+DSA[variable=="p.noivt2emt", Parameter := "% of patients who didn't get IVT who are eligible for MT [0.41 , 0.8]"]
 
 
 ## remove duplicate rows

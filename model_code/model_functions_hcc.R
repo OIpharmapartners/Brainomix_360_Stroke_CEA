@@ -1,13 +1,39 @@
 ###############################################
-# TITLE: Core Model Function for B360S Model - FOR ALTERNATIVE MORTALITY SCENARIO
-# AUTHOR: Nichola Naylor (OI Pharma Partners Ltd), aided by GPT-4o,GTP-5 & Github co-pilot
+# TITLE: Core Model Function for B360S Model WITH half cycle correction applied
+# AUTHOR: Nichola Naylor (OI Pharma Partners Ltd), aided by GPT-4o,GTP-5 & Github co-pilot & Claude Opus 4
 # DATE: September 2025
 #
-# DESCRIPTION: SEE "model_functions.R" for further descriptions
+# DESCRIPTION:
+# This R script defines and runs the full cost-effectiveness model
+# for evaluating the B360S stroke imaging intervention versus standard care.
+# It:
+# - Runs a decision-tree model simulating acute stroke pathways
+# - Embeds a Markov model estimating long-term costs and QALYs by mRS state (used in run_model())
+# - Computes procedure volumes, imaging use, and intervention effects
+# - Outputs total and incremental costs, QALYs, and net benefit
 #
+# INPUTS:
+# - inputs/data_main.RData or inputs/data_main.csv: Parameter table (`data_main`) with base case and PSA values
+# - inputs/mrs_samples_mean.RData or .csv: Summary statistics of cost, utility, and mortality by mRS (`mrs_samples_mean`)
+#
+# OUTPUTS:
+# From mrs_markov_hcc(): returned as a list...
+# - discounted.costs: total discounted lifetime costs.
+# - discounted.utility: total discounted lifetime QALYs.
+# From run_model(): returned as a list...
+# - process_results: detailed counts and costs for key model processes
+#   (e.g., imaging, reperfusion, admissions).
+# - summary_data_all: summarised population-level results for both arms.
+# - incremental_results: incremental costs, QALYs, and NMB between arms.
+# - mrs.trace: mRS state distribution over time from the long-term Markov model.
+# - trace.standard: acute decision-tree state trace for the standard-care arm.
+# - trace.intervention: acute decision-tree state trace for the intervention arm.
+# - tm.standard: transition matrices (acute phase) for the standard-care arm.
+# - tm.intervention: transition matrices (acute phase) for the intervention arm.
+############################################################
 # !!! IMPORTANT NOTE ON CYCLE INTERPRETATION
 #
-# - The Markov model (mrs_markov_3 function) uses cycles that
+# - The Markov model (mrs_markov_hcc function) uses cycles that
 #   represent annual transitions (i.e., 1 cycle = 1 year).
 #   This aligns with standard practice in health economics
 #   for long-term cost and QALY modelling by mRS state.
@@ -38,9 +64,7 @@ conflict_prefer("data.table", "data.table")  # Ensure `[.data.table` overrides
 ####       2. MARKOV MODEL FUNCTION             ####
 #### ======================================= ####
 
-#' Title: Markov Model based on MRS distributions 
-#' !!! NOTE THIS IS THE FUNCTION THAT ACTUALLY CHANGES COMPARED TO NORMAL
-#' BUT MODEL_RUN HAS A DIFFERENT NAME TO DIFFERENTIATE RUNS
+#' Title: Markov Model based on MRS distributions
 #'
 #' @param data_main is a data.table containing the model parameters
 #' @param mrs_samples_mean is a data.table containing the mean mRS samples
@@ -50,9 +74,8 @@ conflict_prefer("data.table", "data.table")  # Ensure `[.data.table` overrides
 #' @export
 #'
 #' @examples
-mrs_markov_sc3 <- function(data_main_inp, mrs_samples_mean_inp,
+mrs_markov_hcc <- function(data_main_inp, mrs_samples_mean_inp,
                        seed_distribution) {
-  
   ##defensive copies to reduce the likelihood of unintended alterations
   data_main <- copy(data_main_inp)
   mrs_samples_mean <- copy(mrs_samples_mean_inp)
@@ -88,14 +111,12 @@ mrs_markov_sc3 <- function(data_main_inp, mrs_samples_mean_inp,
   # create sample data frame of transition probabilities for each mRS score
   combined_mortality_list <- list()
   
-  #### !!! change from normal function is in the loop below
   for (mrs_group in 0:6) {
     if (mrs_group == 6) {
       mort_probs <- rep(1, length(pop_mort)) 
     } else {
       rr_value <- mrs_samples_mean[mrs == mrs_group, mort_sample]
-      mort_probs <- pop_mort
-      mort_probs[1] <- pop_mort[1] * rr_value
+      mort_probs <- pop_mort * rr_value
       mort_probs <- pmin(mort_probs, 1) # cap probabilities at 1
     }
     combined_mortality_list[[length(combined_mortality_list) + 1]] <- data.frame(
@@ -181,8 +202,12 @@ mrs_markov_sc3 <- function(data_main_inp, mrs_samples_mean_inp,
   discount.factor <- 1/(1+dr)^(1:nrow(trace))
   discount.factor <- as.matrix(discount.factor, ncol=1)
   
-  c.trace <- trace %*% costs
-  u.trace <- trace %*% utility
+  trace_with_seed <- rbind(seed_distribution, trace)
+  trace_hcc <- (trace_with_seed[1:(nrow(trace_with_seed)-1), ] + 
+                  trace_with_seed[2:nrow(trace_with_seed), ]) / 2
+  
+  c.trace <- trace_hcc %*% costs
+  u.trace <- trace_hcc %*% utility
   
   discounted.costs <- sum(discount.factor * c.trace)
   discounted.utility <- sum(discount.factor * u.trace)
@@ -197,21 +222,21 @@ mrs_markov_sc3 <- function(data_main_inp, mrs_samples_mean_inp,
   
 }
 
-# # ### testing - note need to run package loading from e.g. 3a first
+# ### testing - note need to run package loading from e.g. 3a first
 # load("inputs/created_inputs/parameters_edited.RData")
 # data_main <- parameters
 # load("inputs/created_inputs/mrs_samples_mean.RData")
 # seed_dist <- data_main[model_param == "dist.ivt"][order(mrs), base_case]
-# x <- mrs_markov_sc3(data_main, mrs_samples_mean, seed_dist)[[1]]
+# x <- mrs_markov_hcc(data_main, mrs_samples_mean, seed_dist)[[1]]
 # seed_dist <- data_main[model_param == "dist.noivt"][order(mrs), base_case]
-# y <- mrs_markov_sc3(data_main, mrs_samples_mean, seed_dist)[[1]]
+# y <- mrs_markov_hcc(data_main, mrs_samples_mean, seed_dist)[[1]]
 
 
 #### ======================================= ####
 ####       4. COMPLETE MODEL RUN FUNCTION    ####
 #### ======================================= ####
 
-# ### testing code (and then # out run_model to run through)
+# # ### testing code (and then # out run_model to run through)
 # load("inputs/created_inputs/parameters_edited.RData")
 # data_main <- parameters
 # load("inputs/created_inputs/mrs_samples_mean.RData")
@@ -223,7 +248,7 @@ mrs_markov_sc3 <- function(data_main_inp, mrs_samples_mean_inp,
 #' This function executes the full decision-analytic model for one set of
 #' input parameters. It combines an acute-phase decision tree (for treatment
 #' eligibility, reperfusion, and AI effects) with a long-term Markov model
-#' (mrs_markov_3) that tracks health-state transitions by modified Rankin Scale (mRS).
+#' (mrs_markov_hcc) that tracks health-state transitions by modified Rankin Scale (mRS).
 #'
 #' @param data_main_inp A data.table containing all model parameters.
 #' @param cycles Integer. Number of Markov cycles to simulate (default = 10).
@@ -252,8 +277,8 @@ mrs_markov_sc3 <- function(data_main_inp, mrs_samples_mean_inp,
 #' }
 #'
 #' @export
-run_model_Msc <- function(data_main_inp=data_main, cycles=10,
-                          mrs_samples_mean_inp=mrs_samples_mean){
+run_model_hcc <- function(data_main_inp=data_main, cycles=10,
+                      mrs_samples_mean_inp=mrs_samples_mean){
   ##defensive copies to reduce the likelihood of unintended alterations
   data_main       <- data.table::copy(data_main_inp)
   mrs_samples_mean <- data.table::copy(mrs_samples_mean_inp)
@@ -820,28 +845,28 @@ run_model_Msc <- function(data_main_inp=data_main, cycles=10,
   seed_distribution_MT <- data_main[model_param=="dist.mt"][order(mrs), base_case]
   seed_distribution_no_MT <- data_main[model_param=="dist.nomt"][order(mrs), base_case]
   
-  out_ivt <- mrs_markov_sc3(data_main, mrs_samples_mean, seed_distribution_ivt)
+  out_ivt <- mrs_markov_hcc(data_main, mrs_samples_mean, seed_distribution_ivt)
   output_ivt <- out_ivt[[1]]
   mrs_ivt <- as.data.frame(out_ivt[[2]])
   
   mrs_ivt$var <- "ivt"
   mrs_ivt$t <- 1:nrow(mrs_ivt)
   
-  out_no_ivt <- mrs_markov_sc3(data_main, mrs_samples_mean, seed_distribution_no_ivt)
+  out_no_ivt <- mrs_markov_hcc(data_main, mrs_samples_mean, seed_distribution_no_ivt)
   output_no_ivt <- out_no_ivt[[1]]
   mrs_no_ivt <- as.data.frame(out_no_ivt[[2]])
   
   mrs_no_ivt$var <- "no_ivt"                         
   mrs_no_ivt$t <- 1:nrow(mrs_no_ivt)                         
   
-  out_MT <- mrs_markov_sc3(data_main, mrs_samples_mean, seed_distribution_MT)
+  out_MT <- mrs_markov_hcc(data_main, mrs_samples_mean, seed_distribution_MT)
   output_MT <- out_MT[[1]]
   mrs_MT <- as.data.frame(out_MT[[2]])
   
   mrs_MT$var <- "mt"
   mrs_MT$t <- 1:nrow(mrs_MT)
   
-  out_no_MT <- mrs_markov_sc3(data_main, mrs_samples_mean, seed_distribution_no_MT)
+  out_no_MT <- mrs_markov_hcc(data_main, mrs_samples_mean, seed_distribution_no_MT)
   output_no_MT <- out_no_MT[[1]]
   mrs_no_MT <- as.data.frame(out_no_MT[[2]])
   
@@ -874,6 +899,7 @@ run_model_Msc <- function(data_main_inp=data_main, cycles=10,
       across(where(is.numeric), sum),
       across(where(is.character), ~"Total")
     )
+  
   
   ## add cost of intervention (1-off cost)
   summary_data_all$intervention_costs <- summary_data_all$intervention_costs + c.B360

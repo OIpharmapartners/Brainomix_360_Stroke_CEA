@@ -87,6 +87,7 @@ stopifnot(all(abs(check_distributions(dist) - 1) < 1e-8))
 
 #######  3. SAMPLING UTILITIES, COSTS, MORT  ######
 
+#### !!! note this function only truncates upper values 
 #' Title : Generate Samples from A Truncated Normal Distribution
 #'
 #' @param mean a numeric value representing the mean of the distribution

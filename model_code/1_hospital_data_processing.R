@@ -128,6 +128,8 @@ isdn_ht <- isdn_ht  %>% filter(!is.na(ISDN)) %>%  ### REMOVE THOSE WITH NO IDSN 
 ##!!! if ISDNs/hospitals update this will need checking
 isdn_ht[is.na(cscflag), cscflag:=0]
 isdn_ht[Hospital=="Queen's Medical Centre - Nottingham",cscflag:=1]
+isdn_h[Hospital=="Royal Victoria Infirmary", cscflag:=1]
+isdn_h[Hospital=="North Bristol Hospitals", cscflag:=1]
 
 isdn_ht[ , p_eivt2ivt := as.numeric(p_eivt2ivt)] ## proportion of those eligible for ivt that get ivt
 x <- isdn_ht[ ,.(v1average=mean(p_eivt2ivt, na.rm=TRUE)),by=c("cscflag","date")]
@@ -142,6 +144,12 @@ summary_stats <- x %>%
   as.data.table()
 
 summary_stats
+
+stroke_summary <- isdn_h[, .(total_strokes = sum(n.stroke)), by = cscflag]
+print(stroke_summary)
+cat("p.asc =", stroke_summary[cscflag == 0, total_strokes] / sum(stroke_summary$total_strokes), "\n")
+
+### !!! note need to mannually update p.asc and n.asc and csc equivalents in parameters.csv
 
 ### CREATES EDITED PARAMETER DATA FRAME TO USE
 ## early ASC
