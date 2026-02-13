@@ -8,8 +8,10 @@ This repo is a cost-effectiveness model, including all the parameter inputs, R c
 
 Note the accompanying paper is going through review processes and therefore this repository is subject to change until publication.
 
+This is V2.0
+
 ## How to Use
-Please see the "User_Guide_V1.doc" in this repository.
+Please see the "User_Guide.doc" in this repository.
 
 ## Contents
 
