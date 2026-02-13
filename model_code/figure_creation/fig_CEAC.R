@@ -112,3 +112,20 @@ plot.ceac.all <- function(results){
 
 plot.ceac.all(CEAC.long)
 ggsave("outputs/plot.ceac.all.png", width = 120, height = 100, units='mm',dpi=1000)
+
+#### for narrative text
+# CEAC thresholds from PSA
+ceac_int <- CEAC.long[group == "intervention"]
+
+# WTP where pCE first exceeds 90% and 95%
+wtp_90 <- ceac_int[pCE >= 0.90, min(WTP)]
+wtp_95 <- ceac_int[pCE >= 0.95, min(WTP)]
+
+cat(sprintf("WTP at which pCE >= 90%%: £%s\n", comma(wtp_90)))
+cat(sprintf("WTP at which pCE >= 95%%: £%s\n", comma(wtp_95)))
+
+# pCE at NICE thresholds
+pCE_20k <- ceac_int[WTP == 20000, pCE]
+pCE_30k <- ceac_int[WTP == 30000, pCE]
+cat(sprintf("pCE at £20,000/QALY: %.1f%%\n", pCE_20k * 100))
+cat(sprintf("pCE at £30,000/QALY: %.1f%%\n", pCE_30k * 100))

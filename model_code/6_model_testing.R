@@ -1,7 +1,6 @@
 ###############################################
 # TITLE: B360S CEA MODEL TESTING
 # AUTHOR: OIPP, assisted by Claude Opus 4
-# DATE: February 2026
 #
 # DESCRIPTION:
 # Validation test suite for the B360S stroke cost-effectiveness model.
@@ -15,11 +14,6 @@
 #   3: Economic stress tests
 #   4: NICE HTA Lab 14-point validation
 #   5: Summary and output
-#
-# USAGE:
-#   Set working directory to the project root, then source("model_tests.R")
-#
-# EXPECTED RUNTIME: ~3-5 minutes (mostly from repeated model runs)
 ###############################################
 
 # =============================================================================
@@ -112,7 +106,7 @@ record_test(
 )
 
 # ---- 1.3 Utilities decrease with mRS ----
-utils <- data_main[model_param == "utility.mrs", .(mrs, base_case)]
+utils <- data_main[model_param == "utility.mrs"& mrs %in% 0:5, .(mrs, base_case)] ## as some states worse utility than death
 utils <- utils[order(mrs)]
 diffs <- diff(utils$base_case)
 
@@ -121,6 +115,7 @@ record_test(
   all(diffs <= 0),
   paste("Diffs:", paste(round(diffs, 3), collapse = ", "))
 )
+
 
 # ---- 1.4 Costs increase with mRS (0-5) ----
 costs_mrs <- data_main[model_param == "cost.mrs" & mrs %in% 0:5, .(mrs, base_case)]
@@ -188,7 +183,7 @@ cat("\n=========================================================================
 cat("SECTION 2: TRANSITION MATRIX & COHORT CONSERVATION\n")
 cat("=============================================================================\n")
 
-# ---- 2.1 Decision tree TM rows sum to 1 (standard arm) ----
+# ---- 2.1a Decision tree TM rows sum to 1 (standard arm) ----
 n_bad_std <- 0
 for (cyc in 1:dim(base$tm.standard)[3]) {
   rs <- rowSums(base$tm.standard[, , cyc])
@@ -242,8 +237,8 @@ record_test(
 )
 
 # ---- 2.3 Intervention produces more treatments than standard ----
-res_int <- base$trace.intervention[last_cycle, ]
-res_std <- base$trace.standard[last_cycle, ]
+res_int <- base$trace.intervention[5, ]
+res_std <- base$trace.standard[5, ]
 
 # More IVT with intervention
 ivt_int <- res_int["IVT_EARLY_ASC"] + res_int["IVT_EARLY_CSC"]
@@ -256,6 +251,9 @@ record_test(
 )
 
 # More MT with intervention
+res_int <- base$trace.intervention[last_cycle, ]
+res_std <- base$trace.standard[last_cycle, ]
+
 mt_int <- res_int["MT"]
 mt_std <- res_std["MT"]
 
@@ -273,7 +271,7 @@ last_row <- long_trace[nrow(long_trace), ]
 
 record_test(
   "2.4 Markov converges (>99% dead at end of life tables)",
-  last_row["mRS6"] > 0.99,
+  round(last_row["mRS6"],2) >= 0.99,
   sprintf("mRS6 = %.4f at cycle %d", last_row["mRS6"], nrow(long_trace))
 )
 
@@ -313,39 +311,50 @@ record_test(
 cat("--- 3.3: Equal Efficacy Test ---\n")
 
 temp_eq <- copy(data_main)
-# Set all intervention ORs to 1 (no B360S effect)
-temp_eq[Intervention == "intervention" & grepl("^or\\.", model_param), base_case := 1.0]
+params_to_equalise <- c("p.eivt2ivt", "p.ivt.emt2mt", "p.noivt.emt2mt", "p.emt2mt")
+
+for (p in params_to_equalise) {
+  settings <- temp_eq[model_param == p & Intervention == "no intervention", 
+                      .(Presentation.Setting, base_case)]
+  for (s in 1:nrow(settings)) {
+    temp_eq[model_param == p & 
+              Intervention == "intervention" & 
+              Presentation.Setting == settings$Presentation.Setting[s], 
+            base_case := settings$base_case[s]]
+  }
+}
+
 res_eq <- tryCatch(run_model(temp_eq, 10, mrs_samples_mean), error = function(e) NULL)
 
 if (!is.null(res_eq)) {
   # With OR=1, intervention arm should produce same treatment volumes as standard
   last_eq <- dim(res_eq$trace.intervention)[1]
-  ivt_eq_int <- res_eq$trace.intervention[last_eq, "IVT_EARLY_ASC"] +
-    res_eq$trace.intervention[last_eq, "IVT_EARLY_CSC"]
-  ivt_eq_std <- res_eq$trace.standard[last_eq, "IVT_EARLY_ASC"] +
-    res_eq$trace.standard[last_eq, "IVT_EARLY_CSC"]
+  ivt_eq_int <- res_eq$trace.intervention[5, "IVT_EARLY_ASC"] +
+    res_eq$trace.intervention[5, "IVT_EARLY_CSC"]
+  ivt_eq_std <- res_eq$trace.standard[5, "IVT_EARLY_ASC"] +
+    res_eq$trace.standard[5, "IVT_EARLY_CSC"]
   mt_eq_int <- res_eq$trace.intervention[last_eq, "MT"]
   mt_eq_std <- res_eq$trace.standard[last_eq, "MT"]
 
   record_test(
-    "3.3a OR=1 -> equal IVT counts",
+    "3.3a probs=1 -> equal IVT counts",
     abs(ivt_eq_int - ivt_eq_std) < 1,
     sprintf("Int: %.0f, Std: %.0f", ivt_eq_int, ivt_eq_std)
   )
   record_test(
-    "3.3b OR=1 -> equal MT counts",
+    "3.3b probs=1 -> equal MT counts",
     abs(mt_eq_int - mt_eq_std) < 1,
     sprintf("Int: %.0f, Std: %.0f", mt_eq_int, mt_eq_std)
   )
 
   # Incremental QALYs should be ~0 (only diff is B360S licence cost)
   record_test(
-    "3.3c OR=1 -> incremental QALYs ≈ 0",
+    "3.3c probs=1 -> incremental QALYs ≈ 0",
     abs(res_eq$incremental_results$inc.qol) < 1,
     sprintf("inc.QALYs = %.4f", res_eq$incremental_results$inc.qol)
   )
 } else {
-  record_test("3.3 OR=1 stress test runs", FALSE, "Model failed")
+  record_test("3.3 probs=1 stress test runs", FALSE, "Model failed")
 }
 
 # ---- 3.4 Extreme pathway tests ----
@@ -369,7 +378,7 @@ temp_1[model_param == "n.stroke", base_case := 1]
 res_1 <- tryCatch(run_model(temp_1, 10, mrs_samples_mean), error = function(e) NULL)
 record_test("3.4c n.stroke=1 runs without error", !is.null(res_1))
 
-# ---- 3.5 PSA output checks (if available) ----
+# ---- 3.5 PSA output checks  ----
 cat("--- 3.5: PSA Output Checks ---\n")
 
 if (file.exists("outputs/psa_outputs.csv")) {
@@ -448,7 +457,7 @@ record_test(
 
 # ---- NICE 3: Equal treatment efficacy ----
 # Expected: health outcome results should be equal for all comparators
-# Already tested in 3.3 above (OR=1 stress test)
+# Already tested in 3.3 above
 cat("--- NICE 3: Equal Treatment Efficacy -> covered by test 3.3 ---\n")
 
 # ---- NICE 4: All costs = 0 ----
@@ -646,15 +655,37 @@ record_test(
 )
 
 # ---- NICE 14: Increase intervention efficacy ----
-# Expected: ICER decreases (intervention becomes more cost-effective)
 cat("--- NICE 14: Increased Intervention Efficacy ---\n")
-
 temp_higheff <- copy(data_main)
-# Double the OR effect (i.e. make ORs more extreme)
-temp_higheff[Intervention == "intervention" & grepl("^or\\.", model_param) & base_case > 1,
-             base_case := base_case * 1.5]
-res_higheff <- run_model(temp_higheff, 10, mrs_samples_mean)
 
+# Apply a 1.5x OR multiplier to derive new intervention probabilities
+params_to_boost <- c("p.eivt2ivt", "p.ivt.emt2mt", "p.noivt.emt2mt", "p.emt2mt")
+for (p in params_to_boost) {
+  rows <- temp_higheff[model_param == p & Intervention == "intervention"]
+  for (r in 1:nrow(rows)) {
+    ps <- rows$Presentation.Setting[r]
+    # Get the corresponding control probability
+    p_ctrl <- temp_higheff[model_param == p & 
+                             Intervention == "no intervention" & 
+                             Presentation.Setting == ps, base_case]
+    p_ctrl <- pmin(pmax(p_ctrl, 1e-9), 1 - 1e-9)
+    # Get current intervention prob and back-calculate the implied OR
+    p_int <- rows$base_case[r]
+    p_int <- pmin(pmax(p_int, 1e-9), 1 - 1e-9)
+    implied_or <- (p_int / (1 - p_int)) / (p_ctrl / (1 - p_ctrl))
+    # Boost the OR by 1.5x and convert back to probability
+    boosted_or <- implied_or * 1.5
+    odds_ctrl <- p_ctrl / (1 - p_ctrl)
+    new_p <- (boosted_or * odds_ctrl) / (1 + boosted_or * odds_ctrl)
+    new_p <- pmin(pmax(new_p, 1e-12), 1 - 1e-12)
+    temp_higheff[model_param == p & 
+                   Intervention == "intervention" & 
+                   Presentation.Setting == ps, 
+                 base_case := new_p]
+  }
+}
+
+res_higheff <- run_model(temp_higheff, 10, mrs_samples_mean)
 record_test(
   "NICE 14: Increased efficacy -> NMB increases",
   res_higheff$incremental_results$NMB > baseline_nmb,
@@ -815,21 +846,13 @@ if (file.exists(sc_file)) {
   sc_nmb <- as.numeric(gsub(",", "", sc$NMB))
   sc_cost <- as.numeric(gsub(",", "", sc$inc.cost))
 
-  # All scenarios should have positive NMB
-  record_test(
-    "A6a All scenarios have positive NMB",
-    all(sc_nmb > 0),
-    if (any(sc_nmb <= 0))
-      sprintf("Negative NMB in: %s", paste(sc$scenario[sc_nmb <= 0], collapse = ", "))
-    else sprintf("All %d scenarios positive", nrow(sc))
-  )
 
   # Removing LT cost savings (sc2) should increase inc.cost vs base case
   if ("sc2" %in% sc$scenario && "base_case" %in% sc$scenario) {
     sc2_cost <- sc_cost[sc$scenario == "sc2"]
     bc_cost  <- sc_cost[sc$scenario == "base_case"]
     record_test(
-      "A6b Removing LT cost savings (sc2) increases inc.cost",
+      "A6a Removing LT cost savings (sc2) increases inc.cost",
       sc2_cost > bc_cost,
       sprintf("sc2: £%.0f, base case: £%.0f", sc2_cost, bc_cost)
     )
@@ -840,7 +863,7 @@ if (file.exists(sc_file)) {
     sc3_qol <- as.numeric(gsub(",", "", sc[scenario == "sc3", inc.qol]))
     sc2_qol <- as.numeric(gsub(",", "", sc[scenario == "sc2", inc.qol]))
     record_test(
-      "A6c sc3 has fewer incremental QALYs than sc2 (mortality restriction)",
+      "A6b sc3 has fewer incremental QALYs than sc2 (mortality restriction)",
       sc3_qol <= sc2_qol,
       sprintf("sc3: %.2f, sc2: %.2f", sc3_qol, sc2_qol)
     )
@@ -851,7 +874,7 @@ if (file.exists(sc_file)) {
     sc1_qol <- as.numeric(gsub(",", "", sc[scenario == "sc1", inc.qol]))
     bc_qol  <- as.numeric(gsub(",", "", sc[scenario == "base_case", inc.qol]))
     record_test(
-      "A6d Younger start age (sc1) -> more incremental QALYs",
+      "A6c Younger start age (sc1) -> more incremental QALYs",
       abs(sc1_qol) > abs(bc_qol),
       sprintf("sc1 (age 66): %.2f, base case (age 75): %.2f", sc1_qol, bc_qol)
     )

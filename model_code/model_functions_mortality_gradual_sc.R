@@ -1,7 +1,6 @@
 ###############################################
 # TITLE: Scenario Function for B360S Model (gradual mortality impacts declined)
 # AUTHOR: Nichola Naylor (OI Pharma Partners Ltd), aided by GPT-4o,GTP-5 & Github co-pilot & Claude Opus 4
-# DATE: September 2025
 #
 # DESCRIPTION:
 # This R script defines and runs the full cost-effectiveness model

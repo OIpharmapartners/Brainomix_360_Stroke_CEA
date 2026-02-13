@@ -1,3 +1,10 @@
+
+###############################################
+# TITLE: Clean table creation
+# AUTHOR: Nichola Naylor (OI Pharma Partners Ltd), aided by Claude Opus 4
+
+### !!! have to run scenario analysis first
+
 #### ======================================= ####
 #### TABLE 3 for manuscript: National Results  ####
 #### ======================================= ####
@@ -31,10 +38,6 @@ write.csv(table3, "outputs/table3_clean.csv", row.names = FALSE)
 print(table3)
 
 
-#### ============================================================ ####
-#### CHUNK 6: Clean Table 4 — Scenario Results + PSA              ####
-####          Run after CHUNK 3 and CHUNK 4                       ####
-#### ============================================================ ####
 
 #### ======================================= ####
 #### TABLE 4: Scenario Analyses + PSA        ####
@@ -115,3 +118,27 @@ table4 <- rbind(table4, psa_row)
 write.csv(table4, "outputs/table4_clean.csv", row.names = FALSE)
 print(table4)
 
+#### information for narrative text
+# % increase in procedures: B360S vs Standard Care
+t3_pct <- data.table(
+  Procedure = t3$procedure,
+  pct_increase = round((t3$intervention - t3$standard) / t3$standard * 100, 1)
+)
+print(t3_pct)
+
+# Total IVT = IVT only + IVT+MT
+total_ivt_int <- t3[procedure == "IVT", intervention] + t3[procedure == "IVT + MT", intervention]
+total_ivt_std <- t3[procedure == "IVT", standard] + t3[procedure == "IVT + MT", standard]
+pct_ivt_total <- round((total_ivt_int - total_ivt_std) / total_ivt_std * 100, 1)
+
+# Total MT = MT only + IVT+MT
+total_mt_int <- t3[procedure == "MT", intervention] + t3[procedure == "IVT + MT", intervention]
+total_mt_std <- t3[procedure == "MT", standard] + t3[procedure == "IVT + MT", standard]
+pct_mt_total <- round((total_mt_int - total_mt_std) / total_mt_std * 100, 1)
+
+cat(sprintf("Total IVT increase: %.1f%%\n", pct_ivt_total))
+cat(sprintf("Total MT increase: %.1f%%\n", pct_mt_total))
+
+icer_sc2 <- sc2$incremental_results$inc.cost / sc2$incremental_results$inc.qol
+icer_sc3 <- sc3$incremental_results$inc.cost / sc3$incremental_results$inc.qol
+sprintf("SC2 ICER: £%.0f, SC3 ICER: £%.0f", icer_sc2, icer_sc3)
