@@ -20,24 +20,33 @@ n.ais.t3 <- sum(proc[procedure %in% c("NCCT + CTA", "NCCT + CTA + CTP",
                                       "NCCT + CTA + CTP + MRI"), intervention])
 
 # Build Table 3
-# Procedure costs (count x unit.cost) and long-term mRS costs (count x LT_cost)
-# are reported SEPARATELY and SIGNED. Procedure costs are positive (acute spend);
-# long-term costs carry the sign, where negative = lifetime cost saving from
-# better mRS outcomes. (procedure cost + LT cost reconciles to the model's
-# bundled intervention_costs/standard_costs.)
+# Build Table 3
+# Procedure counts and percentages are reported together, e.g. 9,109 (11.2%)
 table3 <- data.table(
-  Procedures           = c("IVT only", "MT only", "IVT plus MT"),
-  `B360S Procedures`   = comma(round(t3$intervention, 0)),
-  `B360S (% AIS)`      = paste0(round(t3$intervention / n.ais.t3 * 100, 1), "%"),
-  `Standard Care Procedures` = comma(round(t3$standard, 0)),
-  `Standard Care (% AIS)` = paste0(round(t3$standard / n.ais.t3 * 100, 1), "%"),
-  `B360S Procedure Costs (£)`         = comma(round(t3$intervention * t3$unit.cost, 0)),
-  `Standard Care Procedure Costs (£)` = comma(round(t3$standard     * t3$unit.cost, 0)),
-  `B360S Long-term Costs (£)`         = comma(round(t3$intervention * t3$LT_cost, 0)),
-  `Standard Care Long-term Costs (£)` = comma(round(t3$standard     * t3$LT_cost, 0)),
-  `B360S QALYs`        = comma(round(t3$intervention_qol, 0)),
+  Procedures = c("IVT only", "MT only", "IVT plus MT"),
+  
+  `B360S Procedures (% AIS)` = paste0(
+    comma(round(t3$intervention, 0)),
+    " (",
+    round(t3$intervention / n.ais.t3 * 100, 1),
+    "%)"
+  ),
+  
+  `Standard Care Procedures (% AIS)` = paste0(
+    comma(round(t3$standard, 0)),
+    " (",
+    round(t3$standard / n.ais.t3 * 100, 1),
+    "%)"
+  ),
+  
+  `B360S Procedure Costs (£)` = comma(round(t3$intervention * t3$unit.cost, 0)),
+  `Standard Care Procedure Costs (£)` = comma(round(t3$standard * t3$unit.cost, 0)),
+  `B360S Long-term Costs (£)` = comma(round(t3$intervention * t3$LT_cost, 0)),
+  `Standard Care Long-term Costs (£)` = comma(round(t3$standard * t3$LT_cost, 0)),
+  `B360S QALYs` = comma(round(t3$intervention_qol, 0)),
   `Standard Care QALYs` = comma(round(t3$standard_qol, 0))
 )
+
 
 write.csv(table3, "outputs/table3_clean.csv", row.names = FALSE)
 print(table3)
@@ -47,7 +56,6 @@ print(table3)
 #### ======================================= ####
 #### TABLE 4: Scenario Analyses + PSA        ####
 #### ======================================= ####
-
 
 sc_raw <- rbind(
   base_case$incremental_results,
@@ -75,31 +83,50 @@ sc_labels <- c(
   "sc7" = "SC7: Half-cycle correction applied",
   "sc8" = "SC8: Dampened intervention effect",
   "sc9" = "SC9: Per-AIS patient"
-  
 )
+
+# Format ICER:
+# - Dominant = cost-saving and QALY-gaining
+# - Dominated = more costly and less effective
+# - Otherwise calculate inc.cost / inc.qol
+fmt_icer <- function(cost, qaly, dp = 0) {
+  out <- rep(NA_character_, length(cost))
+  
+  out[cost < 0 & qaly > 0] <- "Dominant"
+  out[cost > 0 & qaly < 0] <- "Dominated"
+  out[qaly == 0] <- "Not calculated"
+  
+  calc <- is.na(out) & !is.na(cost) & !is.na(qaly)
+  out[calc] <- paste0("£", comma(round(cost[calc] / qaly[calc], dp)))
+  
+  return(out)
+}
 
 # Format deterministic scenario rows
 sc_pop <- sc_raw[scenario != "sc9"]  # population-level scenarios
 sc_pp  <- sc_raw[scenario == "sc9"]  # per-patient - needs different edit
 
 table4 <- data.table(
-  Scenario               = sc_labels[sc_pop$scenario],
-  `Incremental Cost (£)` = comma(round(sc_pop$inc.cost, 0)),
-  `Incremental QALYs`    = comma(round(sc_pop$inc.qol, 0)),
-  `Net Monetary Benefit (£)` = comma(round(sc_pop$NMB, 0))
+  Scenario                    = sc_labels[sc_pop$scenario],
+  `Incremental Cost (£)`      = comma(round(sc_pop$inc.cost, 0)),
+  `Incremental QALYs`         = comma(round(sc_pop$inc.qol, 0)),
+  `Net Monetary Benefit (£)`  = comma(round(sc_pop$NMB, 0)),
+  `ICER (£/QALY)`             = fmt_icer(sc_pop$inc.cost, sc_pop$inc.qol)
 )
 
 # Per-patient row with appropriate precision
 sc9_row <- data.table(
-  Scenario               = sc_labels["sc9"],
-  `Incremental Cost (£)` = comma(round(sc_pp$inc.cost, 0)),
-  `Incremental QALYs`    = sprintf("%.3f", sc_pp$inc.qol),
-  `Net Monetary Benefit (£)` = comma(round(sc_pp$NMB, 0))
+  Scenario                    = sc_labels["sc9"],
+  `Incremental Cost (£)`      = comma(round(sc_pp$inc.cost, 0)),
+  `Incremental QALYs`         = sprintf("%.3f", sc_pp$inc.qol),
+  `Net Monetary Benefit (£)`  = comma(round(sc_pp$NMB, 0)),
+  `ICER (£/QALY)`             = fmt_icer(sc_pp$inc.cost, sc_pp$inc.qol)
 )
+
 table4 <- rbind(table4, sc9_row)
 
 # Add PSA row with mean (95% CI)
-# psa_summary created in Chunk 4
+# psa_summary created in scenario analysis
 fmt_psa <- function(met, dp = 0) {
   m <- psa_summary$mean[psa_summary$metric == met]
   l <- psa_summary$lower[psa_summary$metric == met]
@@ -107,17 +134,22 @@ fmt_psa <- function(met, dp = 0) {
   paste0(comma(round(m, dp)), " (", comma(round(l, dp)), " to ", comma(round(u, dp)), ")")
 }
 
+psa_inc_cost <- psa_summary$mean[psa_summary$metric == "inc.cost"]
+psa_inc_qaly <- psa_summary$mean[psa_summary$metric == "inc.qol"]
+
 psa_row <- data.table(
-  Scenario               = "PSA: Mean (95% CI)",
-  `Incremental Cost (£)` = fmt_psa("inc.cost"),
-  `Incremental QALYs`    = fmt_psa("inc.qol"),
-  `Net Monetary Benefit (£)` = fmt_psa("NMB")
+  Scenario                    = "PSA: Mean (95% CI)",
+  `Incremental Cost (£)`      = fmt_psa("inc.cost"),
+  `Incremental QALYs`         = fmt_psa("inc.qol"),
+  `Net Monetary Benefit (£)`  = fmt_psa("NMB"),
+  `ICER (£/QALY)`             = fmt_icer(psa_inc_cost, psa_inc_qaly)
 )
 
 table4 <- rbind(table4, psa_row)
 
 write.csv(table4, "outputs/table4_clean.csv", row.names = FALSE)
 print(table4)
+
 
 #### information for narrative text
 # % increase in procedures: B360S vs Standard Care

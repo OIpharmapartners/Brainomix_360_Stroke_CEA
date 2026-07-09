@@ -1,4 +1,4 @@
-"Procedures","B360S Procedures","B360S (% AIS)","Standard Care Procedures","Standard Care (% AIS)","B360S Procedure Costs (£)","Standard Care Procedure Costs (£)","B360S Long-term Costs (£)","Standard Care Long-term Costs (£)","B360S QALYs","Standard Care QALYs"
-"IVT only","9,109","11.2%","8,617","10.6%","13,916,645","13,163,834","65,299,992","61,767,633","7,078","6,695"
-"MT only","2,655","3.3%","1,645","2%","24,209,554","15,002,746","-49,389,547","-30,606,877","2,680","1,661"
-"IVT plus MT","1,686","2.1%","1,370","1.7%","17,957,036","14,591,648","-31,377,731","-25,497,125","1,702","1,383"
+"Procedures","B360S Procedures (% AIS)","Standard Care Procedures (% AIS)","B360S Procedure Costs (£)","Standard Care Procedure Costs (£)","B360S Long-term Costs (£)","Standard Care Long-term Costs (£)","B360S QALYs","Standard Care QALYs"
+"IVT only","9,109 (11.2%)","8,617 (10.6%)","13,916,645","13,163,834","65,299,992","61,767,633","7,078","6,695"
+"MT only","2,655 (3.3%)","1,645 (2%)","24,209,554","15,002,746","-49,389,547","-30,606,877","2,680","1,661"
+"IVT plus MT","1,686 (2.1%)","1,370 (1.7%)","17,957,036","14,591,648","-31,377,731","-25,497,125","1,702","1,383"
