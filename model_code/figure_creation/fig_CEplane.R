@@ -1,8 +1,6 @@
 ###############################################
 # TITLE: CE plane
 ### this script is for plotting the cost-effectiveness plane
-### inputs: outputs/psa_outputs.csv
-### outputs: plot.ce.plane.png
 
 ### Clear environment
 rm(list=ls())
@@ -50,6 +48,6 @@ plot.ce.plane <- function(results, wtp){
   
 }
 plot.ce.plane(psa.outputs.dt,20000)
-ggsave("outputs/plot.ce.plane.png", width = 100, height = 100, units='mm',dpi=1000)
+ggsave("outputs/plot_ce_plane.png", width = 100, height = 100, units='mm',dpi=1000)
 
 

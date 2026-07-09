@@ -1,8 +1,6 @@
 ###############################################
 # TITLE: transition state plot function
 ### This script is for plotting the states after AIS
-### inputs: outputs/base_case_results.RData
-### outputs: sankey_plot.html
 
 
 ### Clear environment

@@ -1,8 +1,6 @@
 ###############################################
 # TITLE: Tornado plotting
 ## This script runs the DSA tornado plot code
-## Inputs: outputs/DSA_results.RData
-## Outputs: outputs/dsa_plot.png
 
 ### Clear environment
 rm(list=ls())
@@ -21,6 +19,7 @@ DSA[variable=="c.360.csc", Parameter := "Cost per B360S for CSC  [30000 , 60000]
 DSA[variable=="p.eivt", Parameter := "% eligible for IVT [0.21 , 0.88]"]
 DSA[variable=="p.ivt2emt", Parameter := "% of IVT patients that are eligible for MT [0.41 , 0.8]"]
 DSA[variable=="p.noivt2emt", Parameter := "% of patients who didn't get IVT who are eligible for MT [0.41 , 0.8]"]
+DSA[variable=="p.emt", Parameter := "% of late stroke patients in CSCs that are eligible for MT [0.41 , 0.8]"]
 
 
 ## remove duplicate rows

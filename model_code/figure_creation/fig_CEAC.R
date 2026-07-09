@@ -1,8 +1,6 @@
 ###############################################
 # TITLE: CEAC plotting
 ### This script is for plotting the cost-effectiveness acceptability curve (CEAC)
-### inputs: outputs/psa_outputs.csv
-### outputs: plot.ceac.all.png & outputs/CEAC.long.csv
 
 ### Clear environment
 rm(list=ls())
@@ -70,8 +68,7 @@ CEAC.long <- melt(CEAC, id.vars = c("WTP"))
 colnames(CEAC.long) <- c("WTP", "group", "pCE")
 head(CEAC.long)
 
-write.csv(CEAC.long, file="outputs/CEAC.long.csv")
-#CEAC.long <- read.csv("outputs/CEAC.long.csv")
+write.csv(CEAC.long, file="outputs/CEAC_long.csv")
 
 CEAC.long$Group<-CEAC.long$group
 
@@ -111,7 +108,7 @@ plot.ceac.all <- function(results){
 }
 
 plot.ceac.all(CEAC.long)
-ggsave("outputs/plot.ceac.all.png", width = 120, height = 100, units='mm',dpi=1000)
+ggsave("outputs/plot_ceac_all.png", width = 120, height = 100, units='mm',dpi=1000)
 
 #### for narrative text
 # CEAC thresholds from PSA
