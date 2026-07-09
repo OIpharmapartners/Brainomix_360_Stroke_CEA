@@ -1,7 +1,6 @@
 ###############################################
 # TITLE: Hospital Data Processing for B360S Model
-# AUTHOR: Nichola Naylor (OI Pharma Partners Ltd), aided by GPT-4o,GTP-5 & Github co-pilot
-# DATE: September 2025
+# AUTHOR: Nichola Naylor (OI Pharma Partners Ltd), aided by GPT-4o,GTP-5 & Github co-pilot, Claude Opus 4.6 and Claude Opus 4.8
 #
 # DESCRIPTION:
 # This script processes regional hospital data to:
@@ -70,13 +69,13 @@ isdn <- read.csv("inputs/isdn_key.csv")
 isdn <- as.data.table(isdn)
 
 stopifnot("Apr 2022-Mar 2023" %in% isdn$date) ### !!! different years will need different filters
-isdn <- isdn[date=="Apr 2022-Mar 2023"] ### !!! different years will need different filters
+isdn <- isdn[date=="Apr 2022-Mar 2023"] ### !!! different years will need different filters, flagged to enable user to input dates wanted it changes
 
 stopifnot(!any(duplicated(isdn$Hospital)))
 
 isdn_h <- merge(hospital_l, isdn, by="Hospital", all=TRUE)
 
-isdn_h <- isdn_h  %>% filter(!is.na(ISDN)) %>%  ### REMOVE THOSE WITH NO IDSN or stroke numbers
+isdn_h <- isdn_h  %>% filter(!is.na(ISDN)) %>%  ### REMOVE THOSE WITH NO ISDN or stroke numbers
   filter(!is.na(n.stroke) & n.stroke!="Too few to report" & n.stroke!=".") %>% 
   filter(!stringr::str_detect(Hospital, 'Rehabilitation|Rehab') ) %>% ### REMOVE REHAB UNITS/CENTRES
   filter(ISDN!="Wales" & ISDN!="Northern Ireland") %>% ### REMOVE WALES & NI
@@ -87,6 +86,8 @@ isdn_h <- isdn_h  %>% filter(!is.na(ISDN)) %>%  ### REMOVE THOSE WITH NO IDSN or
 ##!!! if ISDNs/hospitals update this will need checking
 isdn_h[is.na(cscflag), cscflag:=0]
 isdn_h[Hospital=="Queen's Medical Centre - Nottingham",cscflag:=1]
+isdn_h[Hospital=="Royal Victoria Infirmary", cscflag:=1]
+isdn_h[Hospital=="North Bristol Hospitals", cscflag:=1]
 
 length(which(isdn_h$cscflag==1))
 length(which(isdn_h$cscflag==0))
@@ -100,13 +101,6 @@ if (any(is.na(isdn_h$n.stroke))) stop("n.stroke has non-numeric entries after cl
 
 write.csv(isdn_h, file="inputs/created_inputs/IO_isdn_hosp_numbers.csv", row.names = FALSE)
 
-# ##### finding out p.asc
-# isdn_h[ , n.stroke := as.numeric(n.stroke)]
-# isdn_h%>%
-#   group_by(cscflag) %>%
-#   summarise(
-#     total_value = sum(n.stroke)) %>%
-#   as.data.table()
 
 ###### 4. IVT ELIGIBILITY PROCESSING   ######
 
@@ -128,8 +122,8 @@ isdn_ht <- isdn_ht  %>% filter(!is.na(ISDN)) %>%  ### REMOVE THOSE WITH NO IDSN 
 ##!!! if ISDNs/hospitals update this will need checking
 isdn_ht[is.na(cscflag), cscflag:=0]
 isdn_ht[Hospital=="Queen's Medical Centre - Nottingham",cscflag:=1]
-isdn_h[Hospital=="Royal Victoria Infirmary", cscflag:=1]
-isdn_h[Hospital=="North Bristol Hospitals", cscflag:=1]
+isdn_ht[Hospital=="Royal Victoria Infirmary", cscflag:=1]
+isdn_ht[Hospital=="North Bristol Hospitals", cscflag:=1]
 
 isdn_ht[ , p_eivt2ivt := as.numeric(p_eivt2ivt)] ## proportion of those eligible for ivt that get ivt
 x <- isdn_ht[ ,.(v1average=mean(p_eivt2ivt, na.rm=TRUE)),by=c("cscflag","date")]
@@ -149,7 +143,7 @@ stroke_summary <- isdn_h[, .(total_strokes = sum(n.stroke)), by = cscflag]
 print(stroke_summary)
 cat("p.asc =", stroke_summary[cscflag == 0, total_strokes] / sum(stroke_summary$total_strokes), "\n")
 
-### !!! note need to mannually update p.asc and n.asc and csc equivalents in parameters.csv
+### !!! note need to then mannually update p.asc and n.asc and csc equivalents in parameters.csv
 
 ### CREATES EDITED PARAMETER DATA FRAME TO USE
 ## early ASC
@@ -182,7 +176,8 @@ parameters[Presentation.Setting == "early;CSC" &
              model_param == "p.eivt2ivt", 
            PSA_high := summary_stats[cscflag == 1, max_value]/100]
 
+
+stopifnot(!any(duplicated(parameters[, .(Presentation.Setting, Intervention, Description, model_param,mrs,age)])))
+
 save(parameters,file="inputs/created_inputs/parameters_edited.RData")
-
-
 
