@@ -1,7 +1,6 @@
 ###############################################
 # TITLE: Core Model Function for B360S Model
-# AUTHOR: Nichola Naylor (OI Pharma Partners Ltd), aided by GPT-4o,GTP-5 & Github co-pilot
-# DATE: September 2025
+# AUTHOR: Nichola Naylor (OI Pharma Partners Ltd), aided by GPT-4o,GTP-5 & Github co-pilot, Claude Opus 4.6 and Claude Opus 4.8
 #
 # DESCRIPTION:
 # This R script defines and runs the full cost-effectiveness model
@@ -13,8 +12,8 @@
 # - Outputs total and incremental costs, QALYs, and net benefit
 #
 # INPUTS:
-# - inputs/data_main.RData or inputs/data_main.csv: Parameter table (`data_main`) with base case and PSA values
-# - inputs/mrs_samples_mean.RData or .csv: Summary statistics of cost, utility, and mortality by mRS (`mrs_samples_mean`)
+# - inputs/data_main.RData 
+# - inputs/mrs_samples_mean.RData ## although note in the deterministic model these are the csv values & in the probabilistic each run contains the sampled values
 #
 # OUTPUTS:
 # From mrs_markov(): returned as a list...
@@ -67,7 +66,7 @@ conflict_prefer("data.table", "data.table")  # Ensure `[.data.table` overrides
 #' Title: Markov Model based on MRS distributions
 #'
 #' @param data_main is a data.table containing the model parameters
-#' @param mrs_samples_mean is a data.table containing the mean mRS samples
+#' @param mrs_samples_mean is a data.table containing the cost, utility and mortality values for mrs values
 #' @param seed_distribution is a vector of the initial distribution of patients across mRS states
 #'
 #' @return A data frame containing the discounted costs and utilities based on mRS
@@ -102,6 +101,12 @@ mrs_markov <- function(data_main_inp, mrs_samples_mean_inp,
   p_male <- data_main[model_param=="p.male",base_case]
   assert_that(length(p_male) == 1, p_male >= 0, p_male <= 1, msg = "Proportion of males not in correct format, please make between 0 and 1")
  
+  req_cols <- c("mrs", "utility_sample", "cost_sample", "mort_sample")
+  assert_that(all(req_cols %in% names(mrs_samples_mean)),
+              msg = paste("mrs_samples_mean is missing required column(s):",
+                          paste(setdiff(req_cols, names(mrs_samples_mean)),
+                                collapse = ", ")))
+  
 #### ======================================= ####
 ####       2b. MRS MARKOV  SET UP             ####
 #### ======================================= ####
@@ -179,22 +184,22 @@ for (i in 2:nrow(trace)) {
 
 ## set the state costs and rewards
 
-costs <- c(mrs_samples_mean[mrs=="0",cost_sample],
-           mrs_samples_mean[mrs=="1",cost_sample],
-           mrs_samples_mean[mrs=="2",cost_sample],
-           mrs_samples_mean[mrs=="3",cost_sample],
-           mrs_samples_mean[mrs=="4",cost_sample],
-           mrs_samples_mean[mrs=="5",cost_sample],
-           mrs_samples_mean[mrs=="6",cost_sample])
+costs <- c(mrs_samples_mean[mrs==0,cost_sample],
+           mrs_samples_mean[mrs==1,cost_sample],
+           mrs_samples_mean[mrs==2,cost_sample],
+           mrs_samples_mean[mrs==3,cost_sample],
+           mrs_samples_mean[mrs==4,cost_sample],
+           mrs_samples_mean[mrs==5,cost_sample],
+           mrs_samples_mean[mrs==6,cost_sample])
 costs <- matrix(costs, ncol=1)
 
-utility <- c(mrs_samples_mean[mrs=="0",utility_sample],
-             mrs_samples_mean[mrs=="1",utility_sample],
-             mrs_samples_mean[mrs=="2",utility_sample],
-             mrs_samples_mean[mrs=="3",utility_sample],
-             mrs_samples_mean[mrs=="4",utility_sample],
-             mrs_samples_mean[mrs=="5",utility_sample],
-             mrs_samples_mean[mrs=="6",utility_sample])
+utility <- c(mrs_samples_mean[mrs==0,utility_sample],
+             mrs_samples_mean[mrs==1,utility_sample],
+             mrs_samples_mean[mrs==2,utility_sample],
+             mrs_samples_mean[mrs==3,utility_sample],
+             mrs_samples_mean[mrs==4,utility_sample],
+             mrs_samples_mean[mrs==5,utility_sample],
+             mrs_samples_mean[mrs==6,utility_sample])
 
 ## calculate the costs and QALYs
 dr <- data_main[model_param=="dr", base_case]
@@ -247,18 +252,10 @@ return(output.trace)
 #' (mrs_markov) that tracks health-state transitions by modified Rankin Scale (mRS).
 #'
 #' @param data_main_inp A data.table containing all model parameters.
-#' @param cycles Integer. Number of Markov cycles to simulate (default = 10).
-#'   Each cycle represents one year of follow-up.
-#' @param mrs_samples_mean_inp A data.table containing mean mRS-specific
+#' @param cycles Integer. Number of time-step cycles to simulate (default = 10).
+#' @param mrs_samples_mean_inp A data.table containing mRS-specific
 #'   costs, utilities, and mortality rates
 #'
-#' Internal validation checks ensure:
-#' \itemize{
-#'   \item Transition matrix rows sum to 1 (within tolerance).
-#'   \item All probabilities are within [0,1].
-#'   \item No negative or missing state counts.
-#'   \item Total stroke cohort (\code{n.stroke}) is conserved.
-#' }
 #'
 #' @return A named \code{list} with the following elements:
 #' \describe{
@@ -326,8 +323,7 @@ assert_that(
   !is.na(n.stroke),
   is.numeric(n.stroke),
   n.stroke >= 0,
-  abs(n.stroke - round(n.stroke)) < .Machine$double.eps^0.5,
-  msg = sprintf("`n.stroke` must be a non-negative integer. Got: %s", n.stroke)
+  msg = sprintf("`n.stroke` must be a single non-negative number. Got: %s", n.stroke)
 )
 #  Seed the starting states of the model
 seed <- c(n.stroke, rep(0,(n.states-1))) ## all people start in the first state
@@ -483,7 +479,7 @@ for (j in 1:cycles) {
     error_msg <- paste("'No intervention' transition matrix row sums do not equal 1 at cycle", j,
                        "for states:", paste(bad_states, collapse = ", "))
     
-    warning(error_msg)
+    assertthat::assert_that(FALSE, msg = error_msg)
   }
 }
 
@@ -576,7 +572,7 @@ for (j in 1:cycles) {
     error_msg <- paste("'Intervention' transition matrix row sums do not equal 1 at cycle", j,
                        "for states:", paste(bad_states, collapse = ", "))
     
-    warning(error_msg)
+    assertthat::assert_that(FALSE, msg = error_msg)
     
     # Optional hard stop
     if (exists("stop_on_error") && stop_on_error) stop(error_msg)
@@ -725,6 +721,7 @@ get_MT_IVT_count <- function(trace_matrix, tm_matrix, from_state, to_state) {
   # align (t) with (t+1)
   contrib <- flow_from_to[1:(n_cycles-1)] * p_to_MT_next[2:n_cycles]
   total <- sum(contrib, na.rm = TRUE)
+  
   return(total)
 }
 
@@ -739,6 +736,15 @@ mt.ivt.csc.S <- get_MT_IVT_count(trace.standard, tm.standard, "IVT_EARLY_CSC","E
 MT.IVT.I <- as.numeric(mt.ivt.asc.I + mt.ivt.csc.I)
 MT.IVT.S <- as.numeric(mt.ivt.asc.S + mt.ivt.csc.S)
 
+# MT patients arriving via the ASC pathway (drip-and-ship -> incur ASC->CSC transfer)
+# IVT-ASC path already computed above as mt.ivt.asc.I / mt.ivt.asc.S
+mt.asc.noivt.I <- get_MT_IVT_count(trace.intervention, tm.intervention, "NOIVT_EARLY_ASC", "EMT_EARLY_ASC_NOIVT")
+mt.asc.late.I  <- get_MT_IVT_count(trace.intervention, tm.intervention, "ASC_LATE",         "EMT_LATE_ASC")
+mt.asc.noivt.S <- get_MT_IVT_count(trace.standard,     tm.standard,     "NOIVT_EARLY_ASC", "EMT_EARLY_ASC_NOIVT")
+mt.asc.late.S  <- get_MT_IVT_count(trace.standard,     tm.standard,     "ASC_LATE",         "EMT_LATE_ASC")
+
+MT.ASC.I <- as.numeric(mt.ivt.asc.I + mt.asc.noivt.I + mt.asc.late.I)
+MT.ASC.S <- as.numeric(mt.ivt.asc.S + mt.asc.noivt.S + mt.asc.late.S)
 
 #  Define cost for each procedure 
 procedure.names <- c("IVT", "MT", "IVT + MT",
@@ -834,6 +840,18 @@ c.B360 <- (n.asc*(data_main[model_param=="c.train",base_case]+
   (n.csc*(data_main[model_param=="c.train",base_case]+
             (data_main[model_param=="c.360.csc",base_case])))
 
+# ASC->CSC transfer cost, applied to MT patients from the ASC pathway only
+c.transfer <- data_main[model_param == "c.transfer", base_case]
+stopifnot(length(c.transfer) == 1)
+
+transfer_row <- data.table(
+  procedure          = "ASC-CSC transfer (MT)",
+  intervention       = MT.ASC.I,
+  standard           = MT.ASC.S,
+  unit.cost          = c.transfer
+)
+process_results <- rbind(process_results, transfer_row, use.names = TRUE)
+
 
 ### calculating LT cost and QoL impacts
 seed_distribution_ivt <- data_main[model_param=="dist.ivt"][order(mrs), base_case]
@@ -876,8 +894,8 @@ diff_ivt <- output_ivt - output_no_ivt
 diff_MT <- output_MT - output_no_MT
 
 ## add to process results
-process_results$LT_cost <- c(diff_ivt$discounted.costs, diff_MT$discounted.costs,diff_MT$discounted.costs,rep(0,3))
-process_results$LT_qol <- c(diff_ivt$discounted.utility, diff_MT$discounted.utility,diff_MT$discounted.utility,rep(0,3))
+process_results$LT_cost <- c(diff_ivt$discounted.costs, diff_MT$discounted.costs,diff_MT$discounted.costs,rep(0,4))
+process_results$LT_qol <- c(diff_ivt$discounted.utility, diff_MT$discounted.utility,diff_MT$discounted.utility,rep(0,4))
 
 ############### RESULTS CALCULATIONS AND FORMATTING ###########
 process_results$intervention_costs <- process_results$intervention * (process_results$unit.cost + 
