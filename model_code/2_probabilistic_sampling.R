@@ -1,8 +1,7 @@
 ###############################################
 # TITLE: Probabilistic Sampling for B360S Model
-# AUTHOR: Nichola Naylor (OI Pharma Partners Ltd), aided by GPT-4o,GTP-5 & Github co-pilot
-# DATE: September 2025
-#
+# AUTHOR: Nichola Naylor (OI Pharma Partners Ltd), aided by GPT-4o,GTP-5 & Github co-pilot, Claude Opus 4.6 and Claude Opus 4.8
+
 # DESCRIPTION:
 # This R script performs probabilistic sensitivity analysis (PSA) sampling
 # for a stroke decision model. It:
@@ -15,11 +14,15 @@
 # - inputs/created_inputs/parameters_edited.RData (created by "1_hospital_data_processing.R")
 #
 # OUTPUTS:
-# - inputs/created_inputs/mrs_samples.RData
-# - inputs/created_inputs/mrs_samples_mean.RData
-# - inputs/created_inputs/params.psa.sample.RData
-# - inputs/created_inputs/parameters_edited.RData
-# - inputs/created_inputs/parameters_post_psa.csv 
+# - inputs/created_inputs/mrs_samples.RData          # full PSA draws: mRS cost/utility/mortality
+# - inputs/created_inputs/mrs_samples_mean.RData     # deterministic (mean) mRS values
+#### the inputs of this actually get replaced by the deterministic csv values to be used in the deterministic model 
+# - inputs/created_inputs/dist_sample_df.RData       # Dirichlet mRS distribution draws (used by 3b)
+# - inputs/created_inputs/params_psa_sample.RData    # wide PSA parameter samples
+# - inputs/created_inputs/parameters_post_psa.csv    # audit copy of parameters after PSA
+# - inputs/created_inputs/parameters_edited.RData    # NB: OVERWRITTEN IN PLACE (also an input).
+#     Adds DSA bounds for c.mt/c.lvo and sets deterministic base_case values for the
+#     eight OR-derived intervention probabilities. Re-run 3a onwards after changing this.
 ###############################################
 
 #####   1. INITIALISE & LOAD PACKAGES   ####
@@ -55,12 +58,27 @@ parameters[, `:=`(
 
 inputs <- parameters[!is.na(mrs)]
 
+# checks for distributions
+# every distribution the pipeline can sample, across all blocks:
+#   generic sampling in our model: gamma, beta, uniform
+#   bespoke sampling in or model: truncated normal (utilities), gamma (costs),
+#                        lognormal (rr.mort, or.*), dirichlet (dist.*),
+#                        "based on OR sample" (derived intervention probs)
+known_dists <- c("gamma", "beta", "uniform", "truncated normal",
+                 "lognormal", "dirichlet", "based on OR sample")
+unknown <- setdiff(unique(parameters$PSA_distribution[
+  !is.na(parameters$PSA_distribution) &
+    parameters$PSA_distribution != ""]), known_dists)
+stopifnot(length(unknown) == 0)
+
 # Separate the data into distribution, utility, and cost
-dist <- inputs[model_param != "utility.mrs" & model_param != "cost.mrs" &
-                 model_param!="rr.mort"] #distribution of patients across mrs scores
 utility <- inputs[model_param == "utility.mrs" & mrs %in% c(0:5)] ## note mrs 6 is dead
 cost <- inputs[model_param == "cost.mrs"& mrs %in% c(0:5)] 
 mort <- inputs[model_param=="rr.mort" & mrs %in% c(2:5)] 
+dist <- inputs[model_param != "utility.mrs" & model_param != "cost.mrs" &
+                 model_param!="rr.mort"] #distribution of patients across mrs scores
+
+stopifnot(length(unique(dist$model_param))==4) ## check other params not in the list
 
 n.sample <- 1000 # Number of samples for PSA
 
@@ -82,7 +100,7 @@ check_distributions <- function(data) {
   })
 }
 
-# Check the distributions in the 'dist' dataframe
+# Check the distributions in the 'dist' datatable
 stopifnot(all(abs(check_distributions(dist) - 1) < 1e-8))
 
 #######  3. SAMPLING UTILITIES, COSTS, MORT  ######
@@ -219,6 +237,7 @@ generate_lognormal_samples <- function(lower, upper, n) {
 util_samples <- list()
 cost_samples <- list()
 mort_samples <- list()
+dist_samples <- list()
 
 for (i in 1:nrow(utility)) {
   # Utility samples
@@ -243,6 +262,29 @@ for (i in 1:nrow(mort)) {
   mort_lower <- mort$PSA_low[i]
   mort_upper <- mort$PSA_high[i]
   mort_samples[[i]] <- generate_lognormal_samples(lower = mort_lower, upper = mort_upper, n = n.sample)
+}
+
+# Dirichlet samples for the mRS distributions
+# (one JOINT draw across each distribution's 7 mRS rows -> loop per distribution, not per row;
+#  PSA_low holds the concentration k, base_case the mean per mRS)
+dist_ids <- unique(dist[PSA_distribution == "dirichlet",
+                        .(model_param)])
+
+for (i in 1:nrow(dist_ids)) {
+  grp <- dist[model_param          == dist_ids$model_param[i]]
+  
+  alpha <- as.numeric(grp$PSA_low) * grp$base_case          # alpha_i = k * mean_i
+  g <- matrix(rgamma(n.sample * nrow(grp),
+                     shape = rep(alpha, each = n.sample), rate = 1),
+              nrow = n.sample)
+  p <- g / rowSums(g)                                       # each draw sums to 1
+  
+  dist_samples[[i]] <- data.frame(
+    model_param = dist_ids$model_param[i],
+    mrs         = rep(grp$mrs, each = n.sample),
+    dist_sample = as.vector(p),
+    sample_id   = rep(1:n.sample, times = nrow(grp))
+  )
 }
 
 # Combine all utility samples into a data frame
@@ -295,6 +337,14 @@ mort_sample_df <- rbind(mort_sample_df, data.frame(mrs = 0, mort_sample = 1, sam
 mort_sample_df <- rbind(mort_sample_df, data.frame(mrs = 1, mort_sample = 1, sample_id = 1:n.sample))
 mort_sample_df <- rbind(mort_sample_df, data.frame(mrs = 6, mort_sample = NA, sample_id = 1:n.sample))
 
+# Combine all Dirichlet samples into a data frame
+dist_sample_df <- bind_rows(dist_samples)
+
+# check: each draw sums to 1 within each distribution
+assert_that(
+  all(abs(aggregate(dist_sample ~ model_param + sample_id, dist_sample_df, sum)$dist_sample - 1) < 1e-8),
+  msg = "Each Dirichlet draw must sum to 1 across mRS."
+)
 # checks
 assert_that(all(util_sample_df$utility_sample <= 1),
   msg = "Utilities must <= 1 (inclusive).") ## !!! note our input data do have negative utility values
@@ -313,10 +363,11 @@ mrs_samples <- mort_sample_df %>%
 ## use this to check values make sense
 mrs_samples_mean <- mrs_samples %>%
   group_by(mrs) %>%
-  summarise(utility_sample = median(utility_sample, na.rm = TRUE),
-            cost_sample = median(cost_sample, na.rm = TRUE),
-            mort_sample = median(mort_sample, na.rm = TRUE)) %>%
+  summarise(utility_sample = mean(utility_sample, na.rm = TRUE),
+            cost_sample = mean(cost_sample, na.rm = TRUE),
+            mort_sample = mean(mort_sample, na.rm = TRUE)) %>%
   as.data.table()
+mrs_samples_mean
 
 ## replace for deterministic values for use in deterministic model
 mrs_samples_mean[mrs_samples_mean$mrs == 0, "cost_sample"] <- parameters[model_param=="cost.mrs"& mrs==0,base_case]
@@ -344,11 +395,12 @@ mrs_samples_mean[mrs_samples_mean$mrs == 4, "utility_sample"] <- parameters[mode
 mrs_samples_mean[mrs_samples_mean$mrs == 5, "utility_sample"] <- parameters[model_param=="utility.mrs"& mrs==5,base_case]
 mrs_samples_mean[mrs_samples_mean$mrs == 6, "utility_sample"] <- parameters[model_param=="utility.mrs"& mrs==6,base_case]
 
+
 # save files
 mrs_samples_mean <- as.data.table(mrs_samples_mean)
 save(mrs_samples_mean, file="inputs/created_inputs/mrs_samples_mean.RData")
 save(mrs_samples, file="inputs/created_inputs/mrs_samples.RData")
-
+save(dist_sample_df, file = "inputs/created_inputs/dist_sample_df.RData")
 
 ######   4. SAMPLE OTHER PSA PARAMETERS   ####
 
@@ -356,11 +408,11 @@ save(mrs_samples, file="inputs/created_inputs/mrs_samples.RData")
 params.psa <- parameters[!is.na(PSA_distribution) & PSA_distribution != "" & PSA_distribution != "NA"]
 
 ## remove ones already have samples for/will be sampling separately
-already.sampled <- c("q.ivt","q.mt","c.ivt.lt",
-                     "c.mt.lt","utility.mrs","cost.mrs","or.mt","or.ivt",
-                     "rr.mort")
+already.sampled <- c("utility.mrs","cost.mrs","or.mt","or.ivt",
+                     "rr.mort","dist.ivt","dist.noivt","dist.mt","dist.nomt")
 
 params.psa <- params.psa[!(model_param %in% already.sampled)]
+
 
 ### since same parameter for some ASC and CSC need to rename
 params.psa[, param_id := paste(model_param, Presentation.Setting, Intervention, sep = ",")]
@@ -427,6 +479,7 @@ gamma_samples <- rbindlist(gamma_samples_list)
 uniform_samples <- params_uniform[, .(sample_id = 1:n.sample,
                                       value = runif(n.sample, PSA_low, PSA_high)),
                                   by = .(model_param, Presentation.Setting, Intervention)]
+
 
 # Combine sampled values
 sampled_values <- rbind(beta_samples, gamma_samples)
@@ -610,12 +663,11 @@ update_parameters <- function(params_vector, sum_stats_t, parameters_dt) {
     intervention_arm     <- split_param[3]              # e.g. "no intervention"
     
     # Build column names to pull from sum_stats_t
-    mean_col   <- paste0(param_str, "_mean")
     lower_col  <- paste0(param_str, "_lower_CI")
     upper_col  <- paste0(param_str, "_upper_CI")
     
-    if (!(mean_col %in% names(sum_stats_t))) {
-      stop(paste("Missing summary statistic:", mean_col))
+    if (!(lower_col %in% names(sum_stats_t))) {
+      stop(paste("Missing summary statistic:", lower_col))
     }
     
     # Do the update in the parameters data.table
@@ -624,7 +676,6 @@ update_parameters <- function(params_vector, sum_stats_t, parameters_dt) {
                     Intervention == intervention_arm, 
                   
                   `:=`(
-                    base_case = sum_stats_t[[mean_col]],
                     PSA_low   = sum_stats_t[[lower_col]],
                     PSA_high  = sum_stats_t[[upper_col]]
                   )
@@ -635,13 +686,55 @@ update_parameters <- function(params_vector, sum_stats_t, parameters_dt) {
 
 
 
-# Build list of all parameter keys from sum_stats_t column names
-all_params <- names(sum_stats_t) %>%
-  str_remove("_(mean|lower_CI|upper_CI)") %>%
-  unique()
+# Only the intervention-arm treatment probabilities are DERIVED from sampled
+# ORs x control probabilities, so they have no base_case in the CSV and need a
+# deterministic value Every other parameter keeps its CSV value
+derived_params <- c(
+  "p.noivt.emt2mt,early;ASC,intervention",
+  "p.ivt.emt2mt,early;ASC,intervention",
+  "p.emt2mt,late;ASC,intervention",
+  "p.noivt.emt2mt,early;CSC,intervention",
+  "p.ivt.emt2mt,early;CSC,intervention",
+  "p.emt2mt,late;CSC,intervention",
+  "p.eivt2ivt,early;ASC,intervention",
+  "p.eivt2ivt,early;CSC,intervention"
+)
 
-# Run the update in one go
-update_parameters(all_params, sum_stats_t, parameters)
+# check: every derived param must have summary stats to write back
+stopifnot(all(paste0(derived_params, "_mean") %in% names(sum_stats_t)))
+
+# Run the update for the derived parameters only
+update_parameters(derived_params, sum_stats_t, parameters)
+
+### update: patch in deterministic base case values so that there isn't a mismatch on deterministic vs PSA approaches across parameters
+# Deterministic base_case for OR-derived intervention probabilities:
+# apply the point-estimate OR to the point-estimate control probability.
+# (PSA_low/PSA_high are still taken from the sampled quantiles for reporting.)
+set_deterministic_ptreat <- function(dt, mp, ps, or_value) {
+  p_ctrl <- dt[model_param == mp & Presentation.Setting == ps &
+                 Intervention == "no intervention", base_case]
+  stopifnot(length(p_ctrl) == 1, is.finite(p_ctrl))
+  dt[model_param == mp & Presentation.Setting == ps &
+       Intervention == "intervention",
+     base_case := calculate_ptreatment(p_ctrl, or_value)]
+}
+
+or_mt_asc <- parameters[model_param == "or.mt" & Presentation.Setting == "ASC", base_case]
+or_mt_csc <- parameters[model_param == "or.mt" & Presentation.Setting == "CSC", base_case]
+or_ivt    <- parameters[model_param == "or.ivt", base_case]
+
+stopifnot(length(or_mt_asc)==1)
+stopifnot(length(or_mt_csc)==1)
+stopifnot(length(or_ivt )==1)
+
+set_deterministic_ptreat(parameters, "p.ivt.emt2mt",   "early;ASC", or_mt_asc)
+set_deterministic_ptreat(parameters, "p.noivt.emt2mt", "early;ASC", or_mt_asc)
+set_deterministic_ptreat(parameters, "p.emt2mt",       "late;ASC",  or_mt_asc)
+set_deterministic_ptreat(parameters, "p.ivt.emt2mt",   "early;CSC", or_mt_csc)
+set_deterministic_ptreat(parameters, "p.noivt.emt2mt", "early;CSC", or_mt_csc)
+set_deterministic_ptreat(parameters, "p.emt2mt",       "late;CSC",  or_mt_csc)
+set_deterministic_ptreat(parameters, "p.eivt2ivt",     "early;ASC", or_ivt)
+set_deterministic_ptreat(parameters, "p.eivt2ivt",     "early;CSC", or_ivt)
 
 ###### checks 
 # Utilities can be negative but must be <= 1
@@ -669,7 +762,7 @@ stopifnot(all(mort_sample_df$mort_sample > 0 | is.na(mort_sample_df$mort_sample)
 ######   6. FINAL SAVE   #####
 
 save(parameters, file="inputs/created_inputs/parameters_edited.RData")
-save(params.psa.sample, file="inputs/created_inputs/params.psa.sample.RData")
+save(params.psa.sample, file="inputs/created_inputs/params_psa_sample.RData")
 
 write.csv(parameters, file="inputs/created_inputs/parameters_post_psa.csv")
 
