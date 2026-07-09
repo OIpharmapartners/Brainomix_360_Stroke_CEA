@@ -64,7 +64,7 @@
 "Newham General Hospital",0,"London","Barts Health NHS Trust","Apr 2022-Mar 2023",147
 "Noble's Hospital",0,"Islands","Manx Care","Apr 2022-Mar 2023",178
 "Norfolk and Norwich University Hospital",0,"East of England (North)","Norfolk and Norwich University Hospitals NHS Foundation Trust","Apr 2022-Mar 2023",1017
-"North Bristol Hospitals",0,"West of England","North Bristol NHS Trust","Apr 2022-Mar 2023",999
+"North Bristol Hospitals",1,"West of England","North Bristol NHS Trust","Apr 2022-Mar 2023",999
 "North Devon District Hospital",0,"SW Peninsula","Royal Devon University Healthcare NHS Foundation Trust","Apr 2022-Mar 2023",393
 "North Middlesex Hospital",0,"London","North Middlesex University Hospital NHS Trust","Apr 2022-Mar 2023",271
 "North Tyneside General Hospital",0,"North East and North Cumbria","Northumbria Healthcare NHS Foundation Trust","Apr 2022-Mar 2023",225
@@ -107,7 +107,7 @@
 "Royal Surrey County Hospital",0,"Frimley ICS and Surrey Heartlands","Royal Surrey County Hospital NHS Foundation Trust","Apr 2022-Mar 2023",145
 "Royal Sussex County Hospital",0,"Sussex","University Hospitals Sussex NHS Foundation Trust","Apr 2022-Mar 2023",630
 "Royal United Hospital Bath",0,"West of England","Royal United Hospitals Bath NHS Foundation Trust","Apr 2022-Mar 2023",710
-"Royal Victoria Infirmary",0,"North East and North Cumbria","Newcastle upon Tyne Hospitals NHS Foundation Trust","Apr 2022-Mar 2023",1208
+"Royal Victoria Infirmary",1,"North East and North Cumbria","Newcastle upon Tyne Hospitals NHS Foundation Trust","Apr 2022-Mar 2023",1208
 "Russells Hall Hospital",0,"North Midlands","Dudley Group NHS Foundation Trust","Apr 2022-Mar 2023",618
 "Salford Royal Hospital",1,"Greater Manchester","Northern Care Alliance NHS Foundation Trust","Apr 2022-Mar 2023",1937
 "Salisbury District Hospital",0,"West of England","Salisbury NHS Foundation Trust","Apr 2022-Mar 2023",341
