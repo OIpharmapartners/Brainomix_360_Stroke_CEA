@@ -41,7 +41,7 @@ use_kex    <- length(opt_miss) == 0
 
 # Load precomputed outputs
 load("outputs/base_case_results.RData")     # -> base_case
-load("outputs/network_results.RData")       # -> network_results (named list by ISDN)
+load("outputs/ISDN_results.RData")       # -> ISDN_results (named list by ISDN)
 load("outputs/hospital_results.RData")      # -> hospital_results (named list by Hospital)
 
 # --- Table helpers ---
