@@ -210,9 +210,6 @@ sc9_inc <- data.frame(
 )
 sc9_inc$scenario <- "sc9"
 
-# also create a placeholder process_results row for consistency
-sc9_proc <- copy(base_case$process_results)
-sc9_proc$scenario <- "sc9"
 
 #### ======================================= ####
 #### COMBINE RESULTS                  ####
