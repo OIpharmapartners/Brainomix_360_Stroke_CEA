@@ -151,8 +151,8 @@ high.results <- high.results %>%
 DSA <- merge(low.results, high.results,by="variable",all=TRUE)
 
 ### get a column can use in tornado plot 
-params[ , low.input := round(DSA_low,2)]
-params[ , high.input := round(DSA_high,2)]
+params[ , low.input := round(DSA_low,3)]
+params[ , high.input := round(DSA_high,3)]
 
 params[ , Parameter := paste0(Description," [",low.input," , ", high.input, "]")]
 params <- params[,c("Parameter","model_param")]
