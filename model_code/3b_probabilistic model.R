@@ -1,33 +1,25 @@
 ###############################################
 # TITLE: Running the Probablistic Model Runs for B360S Model
-# AUTHOR: Nichola Naylor (OI Pharma Partners Ltd), aided by GPT-4o,GTP-5 & Github co-pilot
-# DATE: September 2025
+# AUTHOR: Nichola Naylor (OI Pharma Partners Ltd), aided by GPT-4o,GTP-5 & Github co-pilot, Claude Opus 4.6 and Claude Opus 4.8
 #
 # DESCRIPTION:
 # Runs the full decision-tree + mRS Markov model under probabilistic sampling 
-# to characterize parameter uncertainty (PSA). Generates distributions for 
-# total & incremental costs/QALYs, ICER, NMB, CE plane points, and CEAC. It:
-# 1) Draws parameter sets (size = n.sim) from predefined distributions.
-# 2) For each draw, runs `run_model()` and stores key outcomes.
-# 3) Aggregates PSA results (means, medians, CrIs) and formats for plots/tables.
-# 4) Saves tidy outputs for downstream figures: CE plane, CEAC, and tornado/EVPI.
+# to characterize parameter uncertainty (PSA). 
 #
-# INPUTS:
-# - inputs/created_inputs/parameters_edited.RData   # data_main (with PSA columns)
-# - inputs/created_inputs/mrs_samples_mean.RData    # mRS-level cost/utility/mortality
-# - nputs/psa_draws.RData       # pre-sampled draws 
+# INPUTS
+# - inputs/created_inputs/parameters_edited.RData
+#     Contains data_main: model parameters after preprocessing and derived PSA updates.
 #
-# OUTPUTS:
-# - outputs/psa_results.RData (.csv): per-draw costs, QALYs, inc.cost, inc.QALY, NMB
-# - outputs/ce_plane.csv: x=ΔQALY, y=ΔCost, label by strategy
-# - outputs/ceac.csv: WTP vs Pr(NMB>0)
-# - outputs/summary_psa.csv: mean/SD/quantiles for costs, QALYs, ICER, NMB
-#
-# DEPENDENCIES:
-# - 2_probabilistic_sampling.R (defines distributions / draws)   [if used]
-# - core model functions: mrs_markov(), run_model()
-# - Packages: data.table, dplyr, assertthat, conflicted
-###############################################
+# - inputs/created_inputs/mrs_samples.RData
+#     Contains mrs_samples: PSA samples for mRS-specific costs, utilities,
+#     mortality relative risks, and mRS treatment distributions.
+
+# Created files:
+# - outputs/psa_outputs.csv
+#     Combined probabilistic model outputs across PSA samples.
+#     Includes total and incremental costs, QALYs, and NMB components
+#     returned by run_model().
+#################################################
 
 #### ======================================= ####
 ####       1. INITIALISE & LOAD LIBRARIES      ####
@@ -43,6 +35,7 @@ library(tidyverse)
 library(data.table)
 library(assertthat)
 library(stringr)
+library(scales)
 
 
 # Resolve potential function conflicts (tidyverse vs data.table vs base)
@@ -58,15 +51,17 @@ source("model_code/model_functions.R")
 ### load data
 load("inputs/created_inputs/parameters_edited.RData")
 data_main <- parameters
-load("inputs/created_inputs/params.psa.sample.RData")
+load("inputs/created_inputs/params_psa_sample.RData")
 load("inputs/created_inputs/mrs_samples.RData")
 load("inputs/created_inputs/mrs_samples_mean.RData")
+load("inputs/created_inputs/dist_sample_df.RData")
+
 
 #### ======================================= ####
 ####       3. FORMAT DATA                   ####
 #### ======================================= ####
 
-n.sample <- 1000
+n.sample <- length(unique(mrs_samples$sample_id))
 
 ###### for params.psa 
 ### create a new column in params.psa.sample to indicate the sample set
@@ -108,6 +103,14 @@ params.psa[, sample_value := NULL]
 params.psa[, variable := NULL]
 rm(params.psa.sample, sample_set_long)
 
+### for distribution samples
+params.psa <- merge(
+  params.psa,
+  as.data.table(dist_sample_df)[, .(sample_id, model_param, mrs, dir_value = dist_sample)],
+  by = c("sample_id", "model_param", "mrs"), all.x = TRUE)
+params.psa[!is.na(dir_value), base_case := dir_value]
+params.psa[, dir_value := NULL]
+
 ###### for mrs.sample
 mrs_samples <- as.data.table(mrs_samples)
 mrs.samples.list <- split(mrs_samples, by = "sample_id", keep.by = FALSE)
@@ -116,9 +119,8 @@ mrs.samples.list <- split(mrs_samples, by = "sample_id", keep.by = FALSE)
 # Pre-split params.psa by sample_id
 params.psa.list <- split(params.psa, by = "sample_id", keep.by = FALSE)
 
-#### ======================================= ####
-####     QUICK CHECK: Updated PSA Parameters  ####
-#### ======================================= ####
+####   CHECK: Updated PSA Parameters  ####
+
 
 cat("\n--- Sanity check: sampled parameter updates ---\n")
 
@@ -142,6 +144,21 @@ cat("\nTotal rows:", nrow(params.psa),
     "\nDistinct sample_ids:", length(unique(params.psa$sample_id)),
     "\nAny missing base_case values?:", sum(is.na(params.psa$base_case)), "\n")
 
+#### Dirichlet mRS distributions: sampled + integrated correctly ####
+dist_params <- c("dist.ivt", "dist.noivt", "dist.mt", "dist.nomt")
+
+# (a) integration intact: every draw still sums to 1 across the 7 mRS rows
+dist_sums <- params.psa[model_param %in% dist_params,
+                        .(s = sum(base_case)), by = .(model_param, sample_id)]
+stopifnot(dist_sums[, all(abs(s - 1) < 1e-8)])
+
+# (b) actually sampled: base_case varies across draws (not left at the fixed base case)
+dist_var <- params.psa[model_param %in% dist_params,
+                       .(variance = var(base_case)), by = .(model_param, mrs)]
+stopifnot(dist_var[, all(variance > 0)])
+
+cat("\nDirichlet mRS distributions: all draws sum to 1 and vary across samples - OK\n")
+
 ########## RUN MODEL ON SAMPLES ################
 psa.outputs <- vector("list", n.sample)
 pb <- txtProgressBar(min = 1, max = n.sample, initial = 0, style = 3)
@@ -163,6 +180,18 @@ for (i in 1:n.sample) {
   psa.outputs[[i]] <- c(temp.outputs[[2]], temp.outputs[[3]]) ### !!! note list order important here for pull through
 }
 psa.outputs.dt <- rbindlist(psa.outputs, use.names=TRUE, fill=TRUE, idcol=TRUE)
+
+assert_that(
+  nrow(psa.outputs.dt) == n.sample,
+  msg = sprintf(
+    "PSA output row count mismatch: expected %s successful samples, got %s. Failed samples: %s",
+    n.sample,
+    nrow(psa.outputs.dt),
+    paste(which(sapply(errors, Negate(is.null))), collapse = ", ")
+  )
+)
+
+
 write.csv(psa.outputs.dt, file="outputs/psa_outputs.csv")
 
 

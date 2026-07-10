@@ -1,7 +1,6 @@
 ###############################################
 # TITLE: Hospital level analysis for the B360S CEA model
-# AUTHOR: Nichola Naylor (OI Pharma Partners Ltd), aided by GPT-4o,GTP-5 & Github co-pilot
-# DATE: September 2025
+# AUTHOR: Nichola Naylor (OI Pharma Partners Ltd), aided by GPT-4o,GTP-5 & Github co-pilot, Claude Opus 4.6 and Claude Opus 4.8
 #
 # DESCRIPTION:
 # Adapts the core CEA to a single hospital.
@@ -30,11 +29,10 @@ rm(list=ls())
 
 # Load necessary packages
 library(conflicted)
-library(truncnorm)
 library(tidyverse)
 library(data.table)
 library(assertthat)
-library(stringr)
+library(scales)
 
 
 # Resolve potential function conflicts (tidyverse vs data.table vs base)

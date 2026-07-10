@@ -1,7 +1,6 @@
 ###############################################
 # TITLE: Scenario Analyses for B360S Model
 # AUTHOR: Nichola Naylor (OI Pharma Partners Ltd), aided by GPT-4o,GTP-5 & Github co-pilot
-# DATE: September 2025
 #
 # DESCRIPTION:
 # Runs predefined structural and policy scenarios to test alternative assumptions
@@ -15,21 +14,17 @@
 #    - Optional threshold plots (NMB vs key parameter)
 #
 # KEY INPUTS (read-only):
-# - inputs/created_inputs/parameters_edited.RData   # baseline data_main
+# - inputs/created_inputs/parameters_edited.RData    # baseline data_main
 # - inputs/created_inputs/mrs_samples_mean.RData
-# - config/scenarios.yaml or .csv (optional)        # scenario definitions
+# - outputs/base_case_results.RData                  # base case for comparison
+# - outputs/psa_outputs.csv                          # PSA draws (from 3b)
 #
 # KEY OUTPUTS (write):
-# - outputs/scenario_table.csv: inc.cost, inc.QALY, ICER, NMB by scenario
-# - outputs/tornado.csv / tornado.png               # if DSA specified
-# - outputs/threshold.csv / threshold.png           # if thresholding used
-#
-# DEPENDENCIES:
-# - core model functions: mrs_markov(), run_model() & scenario equivalents
-# - PSA outputs optional for overlay (e.g., CEAC under scenario)
-# - Packages: data.table, dplyr, ggplot2 (if plotting), assertthat, conflicted
-#
-#############################################
+# - outputs/scenario_incremental_results.csv         # inc.cost, inc.qol, NMB by scenario
+# - outputs/scenario_process_results.csv             # per-procedure results by scenario
+# - outputs/psa_summary.csv
+
+#### !!! note scenarios are defined here and need recoding if changed
 
 #### ======================================= ####
 ####       INITIALISE & LOAD LIBRARIES      ####
@@ -39,7 +34,6 @@ rm(list=ls())
 
 # Load necessary packages
 library(conflicted)
-library(truncnorm)
 library(tidyverse)
 library(data.table)
 library(assertthat)
@@ -122,13 +116,14 @@ sc4$process_results$scenario <- "sc4"
 
 sc5_data_main <- copy(data_main)
 
-sc5_data_main[model_param=="dist.ivt" & mrs=="0",base_case := 0.154]
-sc5_data_main[model_param=="dist.ivt" & mrs=="1",base_case := 0.173]
-sc5_data_main[model_param=="dist.ivt" & mrs=="2",base_case := 0.061]
-sc5_data_main[model_param=="dist.ivt" & mrs=="3",base_case := 0.228]
-sc5_data_main[model_param=="dist.ivt" & mrs=="4",base_case := 0.099]
-sc5_data_main[model_param=="dist.ivt" & mrs=="5",base_case := 0.067]
-sc5_data_main[model_param=="dist.ivt" & mrs=="6",base_case := 0.218]
+sc5_data_main[model_param=="dist.ivt" & mrs==0,base_case := 0.14157]
+sc5_data_main[model_param=="dist.ivt" & mrs==1,base_case := 0.16769]
+sc5_data_main[model_param=="dist.ivt" & mrs==2,base_case := 0.08384]
+sc5_data_main[model_param=="dist.ivt" & mrs==3,base_case := 0.19125]
+sc5_data_main[model_param=="dist.ivt" & mrs==4,base_case := 0.06035]
+sc5_data_main[model_param=="dist.ivt" & mrs==5,base_case := 0.06035]
+sc5_data_main[model_param=="dist.ivt" & mrs==6,base_case := 0.29495]
+
 
 sc5 <- run_model(sc5_data_main,cycles=10,mrs_samples_mean)
 sc5$incremental_results$scenario <- "sc5"
@@ -156,24 +151,68 @@ sc7$incremental_results$scenario <- "sc7"
 sc7$process_results$scenario <- "sc7"
 
 #### ======================================= ####
-#### 8. Per-AIS patient results (re-scaled base case) ####
+#### 8. Dampened intervention effect (10%)  ####
 #### ======================================= ####
+# The intervention's effect enters the model through pathway probabilities
+# (e.g. p.eivt2ivt, p.ivt.emt2mt), we shrink the incremental effect
+# of the intervention towards standard care by 10%, i.e.:
+#   dampened = standard + 0.9 * (intervention - standard)
 
+sc8_data_main <- copy(data_main)
+damp_factor <- 0.9   # retain 90% of the intervention effect
+
+# paired intervention / standard-care values for probability parameters
+int_rows <- sc8_data_main[Intervention == "intervention" & grepl("^p\\.", model_param),
+                          .(model_param, Presentation.Setting, mrs, int_val = base_case)]
+std_rows <- sc8_data_main[Intervention == "no intervention" & grepl("^p\\.", model_param),
+                          .(model_param, Presentation.Setting, mrs, std_val = base_case)]
+
+effect_map <- merge(int_rows, std_rows,
+                    by = c("model_param", "Presentation.Setting", "mrs"))
+
+assert_that(nrow(effect_map) > 0,
+            msg = "Scenario 8: no paired intervention/standard parameters found")
+
+effect_map[, damp_val := std_val + damp_factor * (int_val - std_val)]
+
+# sanity check: dampened values remain valid probabilities
+assert_that(all(effect_map$damp_val >= 0 & effect_map$damp_val <= 1),
+            msg = "Scenario 8: dampened probabilities outside [0,1]")
+
+# overwrite the intervention-arm rows only
+sc8_data_main[effect_map,
+              on = c("model_param", "Presentation.Setting", "mrs"),
+              base_case := fifelse(Intervention == "intervention", i.damp_val, base_case)]
+
+print(effect_map[, .(model_param, Presentation.Setting, std_val, int_val, damp_val)])
+
+sc8 <- run_model(sc8_data_main, cycles = 10, mrs_samples_mean)
+sc8$incremental_results$scenario <- "sc8"
+sc8$process_results$scenario <- "sc8"
+
+#### ======================================= ####
+#### 9. Per-AIS patient results               ####
+#### ======================================= ####
 # Number of AIS patients from base case imaging counts (should equal ~81,565)
 n.ais <- sum(base_case$process_results$intervention[
   base_case$process_results$procedure %in% c("NCCT + CTA", "NCCT + CTA + CTP", "NCCT + CTA + CTP + MRI")
 ])
 
-sc8_inc <- data.frame(
+assert_that(isTRUE(all.equal(n.ais,
+                             data_main[model_param=="n.stroke",base_case]*
+                               data_main[model_param=="p.ais",base_case])),
+            msg = "issue with AIS numbers in scenario 9")
+
+sc9_inc <- data.frame(
   inc.cost = base_case$incremental_results$inc.cost / n.ais,
   inc.qol  = base_case$incremental_results$inc.qol / n.ais,
   NMB      = base_case$incremental_results$NMB / n.ais
 )
-sc8_inc$scenario <- "sc8"
+sc9_inc$scenario <- "sc9"
 
 # also create a placeholder process_results row for consistency
-sc8_proc <- copy(base_case$process_results)
-sc8_proc$scenario <- "sc8"
+sc9_proc <- copy(base_case$process_results)
+sc9_proc$scenario <- "sc9"
 
 #### ======================================= ####
 #### COMBINE RESULTS                  ####
@@ -184,12 +223,14 @@ incremental.results <- rbind(base_case$incremental_results, sc1$incremental_resu
                              sc4$incremental_results, sc5$incremental_results,
                              sc6$incremental_results,
                              sc7$incremental_results,
-                             sc8_inc)
+                             sc8$incremental_results,
+                             sc9_inc)
 
 process.results <- rbind(base_case$process_results, sc1$process_results,
                          sc2$process_results, sc3$process_results,
                          sc4$process_results, sc5$process_results,
-                         sc6$process_results, sc7$process_results)
+                         sc6$process_results, sc7$process_results,
+                         sc8$process_results)
 
 ### edit dps
 incremental.results <- as.data.table(incremental.results)

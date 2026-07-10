@@ -1,7 +1,6 @@
 ###############################################
 # TITLE: Running the Deterministic Model Runs for B360S Model
-# AUTHOR: Nichola Naylor (OI Pharma Partners Ltd), aided by GPT-4o,GTP-5 & Github co-pilot
-# DATE: September 2025
+# AUTHOR: Nichola Naylor (OI Pharma Partners Ltd), aided by GPT-4o,GTP-5 & Github co-pilot, Claude Opus 4.6 and Claude Opus 4.8
 #
 # DESCRIPTION:
 # This script executes the deterministic base case and deterministic sensitivity analysis (DSA)
@@ -37,6 +36,7 @@ library(tidyverse)
 library(data.table)
 library(assertthat)
 library(stringr)
+library(scales)
 
 
 # Resolve potential function conflicts (tidyverse vs data.table vs base)
@@ -75,6 +75,10 @@ qaly.threshold <- data_main[model_param=="wtp",base_case]
 stopifnot(length(qaly.threshold)==1, is.finite(qaly.threshold), qaly.threshold >= 0)
 
 params <- data_main[`DSA_flag`=="y"]
+
+stopifnot(!any(duplicated(params[, .(model_param,mrs)])))
+### !!! currently only set up for unique parameter names, if e.g. 2 of the same parameter over early/late, asc/csc code
+### needs changing
 
 # Initialize a list to store results
 low.results <- list()

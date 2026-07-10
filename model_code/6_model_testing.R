@@ -1,6 +1,6 @@
 ###############################################
 # TITLE: B360S CEA MODEL TESTING
-# AUTHOR: OIPP, assisted by Claude Opus 4
+# AUTHOR: Nichola Naylor (OI Pharma Partners Ltd), aided by GPT-4o,GTP-5 & Github co-pilot, Claude Opus 4.6 and Claude Opus 4.8
 #
 # DESCRIPTION:
 # Validation test suite for the B360S stroke cost-effectiveness model.
@@ -15,6 +15,8 @@
 #   4: NICE HTA Lab 14-point validation
 #   5: Summary and output
 ###############################################
+
+### !!! make sure the other model scripts (3 & 4) have been run before running
 
 # =============================================================================
 # SECTION 0: SETUP
@@ -270,11 +272,58 @@ long_trace <- long_run[[2]]
 last_row <- long_trace[nrow(long_trace), ]
 
 record_test(
-  "2.4 Markov converges (>99% dead at end of life tables)",
+  "2.4 Markov converges (>=99% dead at end of life tables)",
   round(last_row["mRS6"],2) >= 0.99,
   sprintf("mRS6 = %.4f at cycle %d", last_row["mRS6"], nrow(long_trace))
 )
 
+# ---- 2.5 MT route decomposition reconciles with trace MT total ----
+# The six from_state -> EMT -> MT routes are the ONLY inflows to the absorbing
+# MT state. Their reconstructed sum must equal the MT count the trace recorded.
+# This independently re-implements the flow logic used by get_MT_IVT_count
+# (which is internal to run_model) and cross-checks it against the trace.
+
+mt_routes <- list(
+  c("IVT_EARLY_ASC",   "EMT_EARLY_ASC_IVT"),
+  c("NOIVT_EARLY_ASC", "EMT_EARLY_ASC_NOIVT"),
+  c("ASC_LATE",        "EMT_LATE_ASC"),
+  c("IVT_EARLY_CSC",   "EMT_EARLY_CSC_IVT"),
+  c("NOIVT_EARLY_CSC", "EMT_EARLY_CSC_NOIVT"),
+  c("CSC_LATE",        "EMT_LATE_CSC")
+)
+
+mt_route_count <- function(trace_mat, tm_mat, from_state, to_state) {
+  states <- dimnames(tm_mat)[[1]]
+  i_from <- match(from_state, states)
+  i_to   <- match(to_state,   states)
+  i_MT   <- match("MT",       states)
+  n      <- dim(tm_mat)[3]
+  flow   <- trace_mat[, from_state] * tm_mat[i_from, i_to, ]   # into EMT
+  sum(flow[1:(n - 1)] * tm_mat[i_to, i_MT, ][2:n])             # EMT -> MT
+}
+
+recon_mt <- function(trace_mat, tm_mat) {
+  sum(vapply(mt_routes,
+             function(r) mt_route_count(trace_mat, tm_mat, r[1], r[2]),
+             numeric(1)))
+}
+
+lc         <- dim(base$trace.standard)[1]
+recon_std  <- recon_mt(base$trace.standard,     base$tm.standard)
+recon_int  <- recon_mt(base$trace.intervention, base$tm.intervention)
+mt_std     <- unname(base$trace.standard[lc, "MT"])
+mt_int     <- unname(base$trace.intervention[lc, "MT"])
+
+record_test(
+  "2.5a MT routes reconcile with trace total (standard)",
+  isTRUE(all.equal(recon_std, mt_std, tolerance = 1e-6)),
+  sprintf("Sum of 6 routes = %.2f vs trace MT = %.2f", recon_std, mt_std)
+)
+record_test(
+  "2.5b MT routes reconcile with trace total (intervention)",
+  isTRUE(all.equal(recon_int, mt_int, tolerance = 1e-6)),
+  sprintf("Sum of 6 routes = %.2f vs trace MT = %.2f", recon_int, mt_int)
+)
 
 # =============================================================================
 # SECTION 3: ECONOMIC STRESS TESTS
@@ -462,7 +511,7 @@ cat("--- NICE 3: Equal Treatment Efficacy -> covered by test 3.3 ---\n")
 
 # ---- NICE 4: All costs = 0 ----
 # Expected: all cost results should be £0
-# In this model, costs come from: procedure costs, B360S costs, and LT mRS costs
+# In this model, costs come from: procedure costs, ASC-CSC transfer costs, B360S costs, and LT mRS costs
 cat("--- NICE 4: All costs = 0 ---\n")
 
 temp_0cost <- copy(data_main)
@@ -641,7 +690,7 @@ record_test(
 cat("--- NICE 13: Zero procedure costs ---\n")
 
 temp_0proc <- copy(data_main)
-temp_0proc[model_param %in% c("c.ivt", "c.mt", "c.nct", "c.cta", "c.ctp", "c.mri"),
+temp_0proc[model_param %in% c("c.ivt", "c.mt", "c.nct", "c.cta", "c.ctp", "c.mri", "c.transfer"),
            base_case := 0]
 res_0proc <- run_model(temp_0proc, 10, mrs_samples_mean)
 
@@ -881,6 +930,79 @@ if (file.exists(sc_file)) {
   }
 } else {
   record_warn("A6 Scenario checks", "scenario_incremental_results.csv not found - skipping")
+}
+
+# ---- A7: ASC-CSC transfer cost checks ----
+cat("--- A7: ASC-CSC transfer cost ---\n")
+
+pr <- base$process_results   # base run_model() result from earlier in the script
+
+# A7a: transfer row exists in base case process_results
+record_test(
+  "A7a Transfer row present in process_results",
+  "ASC-CSC transfer (MT)" %in% pr$procedure,
+  paste("Rows:", paste(pr$procedure, collapse = ", "))
+)
+
+# A7b: unit cost matches parameters.csv
+c.transfer.param <- data_main[model_param == "c.transfer", base_case]
+record_test(
+  "A7b Transfer unit cost matches parameters.csv",
+  isTRUE(all.equal(pr[procedure == "ASC-CSC transfer (MT)", unit.cost], c.transfer.param)),
+  sprintf("process_results: £%.2f, parameters.csv: £%.2f",
+          pr[procedure == "ASC-CSC transfer (MT)", unit.cost], c.transfer.param)
+)
+
+# A7c: transfer counts are bounded by total MT procedures in each arm
+# (every transferred patient must be an MT patient; not every MT patient transfers)
+for (arm in c("intervention", "standard")) {
+  n_transfer <- pr[procedure == "ASC-CSC transfer (MT)", get(arm)]
+  n_mt_total <- sum(pr[procedure %in% c("MT", "IVT + MT"), get(arm)])
+  record_test(
+    sprintf("A7c Transfer count within [0, total MT] (%s arm)", arm),
+    n_transfer >= 0 && n_transfer <= n_mt_total + 1e-6,
+    sprintf("Transfers: %.2f, Total MT: %.2f", n_transfer, n_mt_total)
+  )
+}
+
+# A7d: cost reconciliation - zeroing c.transfer must reduce each arm's total
+# costs by exactly (transfer count x £c.transfer)
+temp_0transfer <- copy(data_main)
+temp_0transfer[model_param == "c.transfer", base_case := 0]
+res_0transfer <- run_model(temp_0transfer, 10, mrs_samples_mean)
+
+exp_delta_int <- pr[procedure == "ASC-CSC transfer (MT)", intervention] * c.transfer.param
+obs_delta_int <- base$summary_data_all$intervention_costs -
+  res_0transfer$summary_data_all$intervention_costs
+record_test(
+  "A7d Zeroing c.transfer removes exactly the transfer cost (intervention arm)",
+  isTRUE(all.equal(obs_delta_int, exp_delta_int, tolerance = 1e-6)),
+  sprintf("Observed: £%.2f, Expected: £%.2f", obs_delta_int, exp_delta_int)
+)
+
+exp_delta_std <- pr[procedure == "ASC-CSC transfer (MT)", standard] * c.transfer.param
+obs_delta_std <- base$summary_data_all$standard_costs -
+  res_0transfer$summary_data_all$standard_costs
+record_test(
+  "A7e Zeroing c.transfer removes exactly the transfer cost (standard arm)",
+  isTRUE(all.equal(obs_delta_std, exp_delta_std, tolerance = 1e-6)),
+  sprintf("Observed: £%.2f, Expected: £%.2f", obs_delta_std, exp_delta_std)
+)
+
+# A7f: variant drift guard - every scenario's process_results must carry the transfer row
+sc_pr_file <- "outputs/scenario_process_results.csv"
+if (file.exists(sc_pr_file)) {
+  sc_pr <- fread(sc_pr_file)
+  missing_sc <- setdiff(unique(sc_pr$scenario),
+                        unique(sc_pr[procedure == "ASC-CSC transfer (MT)", scenario]))
+  record_test(
+    "A7f All scenarios include the ASC-CSC transfer row",
+    length(missing_sc) == 0,
+    if (length(missing_sc) == 0) "All scenarios have the transfer row"
+    else paste("Missing in:", paste(missing_sc, collapse = ", "))
+  )
+} else {
+  record_warn("A7f Scenario transfer-row check", "scenario_process_results.csv not found - skipping")
 }
 
 

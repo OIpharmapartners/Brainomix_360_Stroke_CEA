@@ -1,8 +1,7 @@
 ###############################################
 # TITLE: mRS state flow
 ### this script generates a plot of the flow of patients across mRS states over time
-### inputs: outputs/mrstrace_results.csv
-### outputs: outputs/mrsflow.png
+
 
 
 ### Clear environment
