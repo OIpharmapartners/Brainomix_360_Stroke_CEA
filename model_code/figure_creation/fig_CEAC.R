@@ -107,8 +107,39 @@ plot.ceac.all <- function(results){
   
 }
 
-plot.ceac.all(CEAC.long)
-ggsave("outputs/plot_ceac_all.png", width = 120, height = 100, units='mm',dpi=1000)
+ceac_plot <- plot.ceac.all(CEAC.long)
+ceac_plot
+
+ggsave(
+  "outputs/plot_ceac_all.png",
+  plot = ceac_plot,
+  width = 180,
+  height = 140,
+  units = "mm",
+  dpi = 600,
+  bg = "white"
+)
+
+ggsave(
+  "outputs/plot_ceac_all.pdf",
+  plot = ceac_plot,
+  width = 180,
+  height = 140,
+  units = "mm",
+  device = cairo_pdf,
+  bg = "white"
+)
+
+ggsave(
+  "outputs/plot_ceac_all.tiff",
+  plot = ceac_plot,
+  width = 180,
+  height = 140,
+  units = "mm",
+  dpi = 600,
+  compression = "lzw",
+  bg = "white"
+)
 
 #### for narrative text
 # CEAC thresholds from PSA
