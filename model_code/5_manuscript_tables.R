@@ -270,3 +270,32 @@ print(tableS)
     comma(round(ir$inc.cost / ir$inc.qol, 0)),
     ifelse(ir$inc.cost < 0 & ir$inc.qol > 0, " (dominant)", ""),
     comma(wtp), comma(round(ir$NMB, 0))))
+  
+  
+  #### ======================================= ####
+  #### Estimate percentage increase in IVT / MT ####
+  #### ======================================= ####
+  
+  proc <- read.csv("outputs/proc_results.csv")
+  proc <- as.data.table(proc)
+  
+  # IVT recipients = IVT only + IVT plus MT
+  ivt_b360s <- sum(proc[procedure %in% c("IVT", "IVT + MT"), intervention])
+  ivt_standard <- sum(proc[procedure %in% c("IVT", "IVT + MT"), standard])
+  
+  ivt_pct_increase <- (ivt_b360s - ivt_standard) / ivt_standard * 100
+  
+  # MT recipients = MT only + IVT plus MT
+  mt_b360s <- sum(proc[procedure %in% c("MT", "IVT + MT"), intervention])
+  mt_standard <- sum(proc[procedure %in% c("MT", "IVT + MT"), standard])
+  
+  mt_pct_increase <- (mt_b360s - mt_standard) / mt_standard * 100
+  
+  # Print results
+  cat("B360S IVT recipients:", round(ivt_b360s, 0), "\n")
+  cat("Standard care IVT recipients:", round(ivt_standard, 0), "\n")
+  cat("Relative increase in IVT recipients:", round(ivt_pct_increase, 1), "%\n\n")
+  
+  cat("B360S MT recipients:", round(mt_b360s, 0), "\n")
+  cat("Standard care MT recipients:", round(mt_standard, 0), "\n")
+  cat("Relative increase in MT recipients:", round(mt_pct_increase, 1), "%\n")
